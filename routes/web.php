@@ -21,9 +21,7 @@ Route::middleware([
     'verified',
     ])->group(function () {
         
-    Route::get('/', [DashboardController::class, 'index']);
-    
-    
+    Route::get('/', [DashboardController::class, 'index'])->name('home');
     
     
     Route::get('/dashboard', function () {
