@@ -17,7 +17,11 @@ class PegawaiFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'uuid' => $this->faker->uuid(),
+            'nama' => $this->faker->name(),
+            'user_id' => 3,
+            'nip' => $this->faker->randomNumber(5, true),
+            'jabatan' => $this->faker->jobTitle(),
         ];
     }
 }

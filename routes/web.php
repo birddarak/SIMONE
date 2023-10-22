@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,14 +21,19 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-    ])->group(function () {
-        
+])->group(function () {
+
     Route::get('/', [DashboardController::class, 'index'])->name('home');
-    
-    
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+
+
+    Route::resource('user', UserController::class);
+
+    Route::resource('pegawai', PegawaiController::class);
+
+
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard');
+    // })->name('dashboard');
 
 
 
