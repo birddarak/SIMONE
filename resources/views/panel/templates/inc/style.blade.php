@@ -19,3 +19,9 @@
 <link rel="stylesheet" href="{{ url('templates/panel') }}/node_modules/owl.carousel/dist/assets/owl.theme.default.css">
 <link rel="stylesheet" href="{{ url('templates/panel') }}/dist/css/theme.min.css">
 <script src="{{ url('templates/panel') }}/src/js/vendor/modernizr-2.8.3.min.js"></script>
+
+<style>
+    .border-radius-c {
+        border-radius: 20px;
+    }
+</style>

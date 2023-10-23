@@ -12,8 +12,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data['users'] = User::all()->sortByDesc('id');
-        return view('panel.pages.user.index', $data);
+        return view('panel.pages.user.index');
     }
 
     /**

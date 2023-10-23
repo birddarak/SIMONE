@@ -8,7 +8,8 @@ class User extends Component
 {
     public $users;
 
-    public function mount($users){
+    public function mount($users)
+    {
         $this->users = $users;
     }
 
