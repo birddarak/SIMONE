@@ -11,10 +11,14 @@
                                 <span data-toggle="tooltip" data-placement="top" title="Print Semua">
                                     <a href="#"><i class="ik ik-printer"></i></a>
                                 </span>
+                                <span data-toggle="tooltip" data-placement="top" title="Tambah Program">
+                                    <a href="#"><i class="ik ik-plus"></i></a>
+                                </span>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
+                        @livewire('DPA.table')
                     </div>
                 </div>
             </div>
