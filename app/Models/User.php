@@ -55,7 +55,8 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function pegawai() {
-        return $this->belongsTo(Pegawai::class);
+    public function pegawai()
+    {
+        return $this->hasMany(Pegawai::class);
     }
 }

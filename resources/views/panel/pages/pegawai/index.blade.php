@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        @livewire('pegawai.table', ['pegawais' => $pegawais])
+                        @livewire('pegawai.table')
                     </div>
                 </div>
             </div>
