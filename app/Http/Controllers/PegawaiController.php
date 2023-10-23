@@ -12,7 +12,7 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        $data['pegawais'] = Pegawai::all()->sortByDesc('id');
+        $data['pegawais'] = Pegawai::orderBy('id', 'DESC')->get();
         return view('panel.pages.pegawai.index', $data);
     }
 
