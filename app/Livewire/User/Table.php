@@ -9,7 +9,7 @@ class Table extends Component
 {
     public function render()
     {
-        $data['users'] = User::orderBy("id", 'DESC')->get();
+        $data['users'] = User::where('rule', '!=', 'admin')->orderBy("id", 'DESC')->get();
         return view('livewire.user.table', $data);
     }
 }

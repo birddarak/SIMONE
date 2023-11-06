@@ -8,4 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class Kegiatan extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function program()
+    {
+        return $this->belongsTo(Program::class);
+    }
+
+    public function realisasi_kegiatan()
+    {
+        return $this->belongsTo(RealisasiKegiatan::class);
+    }
+
+    public function subkegiatan()
+    {
+        return $this->hasMany(Subkegiatan::class);
+    }
+
+    public function pegawai() {
+        return $this->belongsTo(Pegawai::class);
+    }
 }

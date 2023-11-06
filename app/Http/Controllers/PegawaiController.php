@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pegawai;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PegawaiController extends Controller
 {
@@ -33,8 +35,30 @@ class PegawaiController extends Controller
             'nip' => 'required',
             'jabatan' => 'required'
         ]);
+        
+        $user = User::create([
+            'uuid' => str()->uuid(),
+            'username' => $request->nama,
+            'email' => $request->email,
+            'email_verified_at' => now(),
+            'password' => Hash::make('password', [
+                'rounds' => 12
+            ]),
+            'rule' => 'pegawai',
+            'remember_token' => str()->random(10)
+        ]);
 
-        $data = $request->all();
+        $pegawai = $request->all();
+        $pegawai['uuid'] = str()->uuid();
+        $pegawai['user_id'] = $user->id; //user_diambil dari user yg baru saja ditambahkan
+
+        // User::create($user);
+
+        // data user yang terakhir ditambahkan diambil id nya untuk dipakai di user_id pegawai
+
+        Pegawai::create($pegawai);
+
+        return redirect()->back()->with('success', 'Pegawai Berhasil di Tambah');
     }
 
     /**
@@ -66,6 +90,7 @@ class PegawaiController extends Controller
      */
     public function destroy(Pegawai $pegawai)
     {
-        //
+        $pegawai->delete();
+        return redirect()->back()->with('success', 'Pegawai Berhasil di Hapus');
     }
 }

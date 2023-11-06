@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Program extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function kegiatan()
+    {
+        return $this->hasMany(Kegiatan::class);
+    }
+
+    public function pegawai()
+    {
+        return $this->belongsTo(Pegawai::class);
+    }
 }

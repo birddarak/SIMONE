@@ -7,13 +7,9 @@ use Livewire\Component;
 
 class Table extends Component
 {
-
-    public $pegawais;
-
-
     public function render()
     {
-        $data['pegawais'] = Pegawai::all();
+        $data['pegawais'] = Pegawai::orderBy('id', 'DESC')->get();
         return view('livewire.pegawai.table', $data);
     }
 }

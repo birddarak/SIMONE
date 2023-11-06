@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class RealisasiKegiatan extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function kegiatan()
+    {
+        return $this->hasMany(Kegiatan::class);
+    }
 }

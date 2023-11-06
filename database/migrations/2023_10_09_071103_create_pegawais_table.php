@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('nip')->unique();
             $table->string('jabatan');
+            $table->date('deleted_at')->nullable();
             $table->timestamps();
         });
     }
