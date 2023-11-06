@@ -30,7 +30,30 @@ class Table extends Component
             'tahun_anggaran' => 'required|string',
             'apbd' => 'required|string|in:murni,perubahan',
             'kode' => 'required|string',
+            'program' => 'required|string',
+            'pegawai_id' => 'required|string',
         ]);
-        dd('ok');
+
+        $pegawai = Pegawai::where('uuid', $this->pegawai_id)->first();
+        $data = [
+            'uuid' => str()->uuid(),
+            'kode' => $this->kode,
+            'title' =>$this->program,
+            'pegawai_id' => $pegawai->id,
+            'tahun_anggaran' => $this->tahun_anggaran,
+            'apbd' => $this->apbd,
+            'pagu_awal' => 0,
+            'pagu_akhir' => 0
+        ];
+
+        Program::create($data);
+    }
+
+    public function update(){
+        
+    }
+
+    public function delete($uuid){
+        Program::where('uuid', $uuid)->delete();
     }
 }

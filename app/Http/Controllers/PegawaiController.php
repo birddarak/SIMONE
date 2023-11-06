@@ -50,11 +50,7 @@ class PegawaiController extends Controller
 
         $pegawai = $request->all();
         $pegawai['uuid'] = str()->uuid();
-        $pegawai['user_id'] = $user->id; //user_diambil dari user yg baru saja ditambahkan
-
-        // User::create($user);
-
-        // data user yang terakhir ditambahkan diambil id nya untuk dipakai di user_id pegawai
+        $pegawai['user_id'] = $user->id;
 
         Pegawai::create($pegawai);
 
