@@ -38,7 +38,7 @@ class Table extends Component
         $data = [
             'uuid' => str()->uuid(),
             'kode' => $this->kode,
-            'title' =>$this->program,
+            'title' => $this->program,
             'pegawai_id' => $pegawai->id,
             'tahun_anggaran' => $this->tahun_anggaran,
             'apbd' => $this->apbd,
@@ -49,11 +49,18 @@ class Table extends Component
         Program::create($data);
     }
 
-    public function update(){
-        
+    public function update($uuid, $field, $value)
+    {
+        Program::where('uuid', $uuid)
+            ->update(
+                [
+                    $field => $value
+                ]
+            );
     }
 
-    public function delete($uuid){
+    public function delete($uuid)
+    {
         Program::where('uuid', $uuid)->delete();
     }
 }
