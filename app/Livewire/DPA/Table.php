@@ -24,7 +24,7 @@ class Table extends Component
     }
 
 
-    public function simpan()
+    public function store()
     {
         $this->validate([
             'tahun_anggaran' => 'required|string',
@@ -51,15 +51,16 @@ class Table extends Component
 
     public function update($uuid, $field, $value)
     {
+        $pegawai = ($field == 'pegawai_id') ? Pegawai::where('uuid', $value)->first() : null;
         Program::where('uuid', $uuid)
             ->update(
                 [
-                    $field => $value
+                    $field => (is_null($pegawai)) ? $value : $pegawai->id
                 ]
             );
     }
 
-    public function delete($uuid)
+    public function destroy($uuid)
     {
         Program::where('uuid', $uuid)->delete();
     }

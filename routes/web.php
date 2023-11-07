@@ -25,9 +25,9 @@ Route::middleware([
     'verified',
 ])->group(function () {
 
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    
     Route::get('logout', [DashboardController::class, 'logout'])->name('logout');
-
-    Route::get('/', [DashboardController::class, 'index'])->name('home');
 
     Route::resource('dpa', DpaController::class);
     

@@ -19,7 +19,7 @@
                 <div class="container">
                     <div class="apps-wrap">
                         <div class="app-item">
-                            <a href="{{ route('home') }}"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
+                            <a href="{{ route('dashboard') }}"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
                         </div>
                         <div class="app-item">
                             <a href="{{ route('dpa.index') }}"><i class="ik ik-book"></i><span>DPA</span></a>
@@ -29,6 +29,9 @@
                         </div>
                         <div class="app-item">
                             <a href="{{ route('user.index') }}"><i class="ik ik-user"></i><span>User</span></a>
+                        </div>
+                        <div class="app-item">
+                            <a href="#"><i class="ik ik-printer"></i><span>Laporan</span></a>
                         </div>
                     </div>
                 </div>
