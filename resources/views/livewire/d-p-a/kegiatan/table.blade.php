@@ -22,17 +22,14 @@
         <thead class="thead-dark">
             <tr>
                 <th class="text-center">KODE</th>
-                <th>PROGRAM</th>
+                <th>KEGIATAN</th>
                 <th>PENANGGUNG JAWAB</th>
                 <th>SEBELUM PERUBAHAN</th>
                 <th>PAGU VALIDASI</th>
-                <th>RINCIAN</th>
                 <th>AKSI</th>
             </tr>
         </thead>
         <tbody>
-
-            {{-- insert --}}
             <tr>
                 <td>
                     <input type="text" placeholder="KODE"
@@ -48,15 +45,15 @@
                     @enderror
                 </td>
                 <td>
-                    <input type="text" placeholder="PROGRAM"
-                        class="form-control @error('program')
+                    <input type="text" placeholder="KEGIATAN"
+                        class="form-control @error('kegiatan')
                     is-invalid
                 @enderror"
-                        wire:model='program'>
+                        wire:model='kegiatan'>
 
-                    @error('program')
+                    @error('kegiatan')
                         <span class="text-danger">
-                            Mohon isi Nama Program
+                            Mohon isi Nama kegiatan
                         </span>
                     @enderror
                 </td>
@@ -81,7 +78,6 @@
                 </td>
                 <td> </td>
                 <td> </td>
-                <td> </td>
                 <td>
                     <button class="btn btn-primary btn-sm btn-block" wire:click='store'>
                         <i class="ik ik-save"></i>
@@ -91,25 +87,25 @@
             {{-- --}}
 
             {{-- data --}}
-            @foreach ($programs as $program)
+            @foreach ($kegiatans as $kegiatan)
                 <tr>
                     <td>
-                        <input type="text" value="{{ $program->kode }}"
-                            wire:blur="update('{{ $program->uuid }}', 'kode', $event.target.value)"
+                        <input type="text" value="{{ $kegiatan->kode }}"
+                            wire:blur="update('{{ $kegiatan->uuid }}', 'kode', $event.target.value)"
                             class="form-control">
                     </td>
                     <td>
-                        <input type="text" value="{{ $program->title }}"
-                            wire:blur="update('{{ $program->uuid }}', 'title', $event.target.value)"
+                        <input type="text" value="{{ $kegiatan->title }}"
+                            wire:blur="update('{{ $kegiatan->uuid }}', 'title', $event.target.value)"
                             class="form-control">
                     </td>
                     <td>
-                        <select wire:change="update('{{ $program->uuid }}', 'pegawai_id', $event.target.value)"
+                        <select wire:change="update('{{ $kegiatan->uuid }}', 'pegawai_id', $event.target.value)"
                             class="form-control" style="width: 100% !important;">
                             <option value="">Pilih</option>
                             @forelse ($pegawais as $pegawai)
                                 <option value="{{ $pegawai->uuid }}"
-                                    {{ $pegawai->id == $program->pegawai_id ? 'selected' : '' }}>
+                                    {{ $pegawai->id == $kegiatan->pegawai_id ? 'selected' : '' }}>
                                     {{ $pegawai->nama }}
                                 </option>
                             @empty
@@ -117,14 +113,11 @@
                             @endforelse
                         </select>
                     </td>
-                    <td>@currency($program->pagu_awal)</td>
-                    <td>@currency($program->pagu_akhir)</td>
-                    <td>
-
-                    </td>
+                    <td>@currency($kegiatan->pagu_awal)</td>
+                    <td>@currency($kegiatan->pagu_akhir)</td>
                     <td>
                         <div class="list-actions d-flex justify-content-around form-inline">
-                            <a href="{{ route('dpa.kegiatan', $program->uuid) }}" class="btn btn-sm">
+                            <a href="{{ route('dpa.subkegiatan', $kegiatan->uuid) }}" class="btn btn-sm">
                                 <i class="ik ik-file"></i>
                             </a>
                             {{-- <button class="btn btn-sm" onclick="return confirm('Ingin menghapus Program ini?')"
