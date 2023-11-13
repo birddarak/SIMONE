@@ -8,7 +8,8 @@
 <link rel="stylesheet" href="{{ url('templates/panel') }}/node_modules/ionicons/dist/css/ionicons.min.css">
 <link rel="stylesheet" href="{{ url('templates/panel') }}/node_modules/perfect-scrollbar/css/perfect-scrollbar.css">
 <link rel="stylesheet" href="{{ url('templates/panel') }}/node_modules/select2-4/dist/css/select2.min.css">
-<link rel="stylesheet" href="{{ url('templates/panel') }}/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+<link rel="stylesheet"
+    href="{{ url('templates/panel') }}/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
 <link rel="stylesheet" href="{{ url('templates/panel') }}/node_modules/mohithg-switchery/dist/switchery.min.css">
 <link rel="stylesheet"
     href="{{ url('templates/panel') }}/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
@@ -24,5 +25,14 @@
 <style>
     .border-radius-c {
         border-radius: 20px;
+    }
+
+    .card {
+        box-shadow: none;
+        border-radius: 20px;
+    }
+
+    .table tr .form-control {
+        border: none;
     }
 </style>

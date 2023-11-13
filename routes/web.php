@@ -26,11 +26,13 @@ Route::middleware([
 ])->group(function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    
+
     Route::get('logout', [DashboardController::class, 'logout'])->name('logout');
 
     Route::resource('dpa', DpaController::class);
-    
+    Route::get('dpa/{program:uuid}/kegiatan', [DpaController::class, 'dpa_kegiatan'])->name('dpa.kegiatan');
+    Route::get('dpa/{kegiatan:uuid}/subkegiatan', [DpaController::class, 'dpa_subkegiatan'])->name('dpa.subkegiatan');
+
     Route::resource('program', ProgramController::class)->parameter('program', 'program:uuid');
 
     Route::resource('user', UserController::class)->parameter('user', 'user:uuid');
