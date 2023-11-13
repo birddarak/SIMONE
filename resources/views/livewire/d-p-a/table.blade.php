@@ -24,7 +24,6 @@
                 <th class="text-center">KODE</th>
                 <th>PROGRAM</th>
                 <th>PENANGGUNG JAWAB</th>
-                <th>SEBELUM PERUBAHAN</th>
                 <th>PAGU VALIDASI</th>
                 <th>RINCIAN</th>
                 <th>AKSI</th>
@@ -81,7 +80,6 @@
                 </td>
                 <td> </td>
                 <td> </td>
-                <td> </td>
                 <td>
                     <button class="btn btn-primary btn-sm btn-block" wire:click='store'>
                         <i class="ik ik-save"></i>
@@ -117,8 +115,18 @@
                             @endforelse
                         </select>
                     </td>
-                    <td>@currency($program->pagu_awal)</td>
-                    <td>@currency($program->pagu_akhir)</td>
+                    <td>
+
+                        @php
+                            $pagu_validasi = 0;
+                            foreach ($program->kegiatan as $keg) {
+                                foreach ($keg->subkegiatan as $sub) {
+                                    $pagu_validasi += $sub->pagu_awal;
+                                }
+                            }
+                        @endphp
+
+                        @currency($pagu_validasi)</td>
                     <td>
 
                     </td>

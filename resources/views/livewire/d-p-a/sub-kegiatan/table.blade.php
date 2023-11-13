@@ -112,6 +112,7 @@
                             <input type="text" value="{{ $kegiatan->pagu_awal }}"
                                 wire:blur="update('{{ $kegiatan->uuid }}', 'pagu_awal', $event.target.value)"
                                 class="form-control">
+                            <strong>(@currency($kegiatan->pagu_awal))</strong>
                         </div>
                     </td>
                     <td>
