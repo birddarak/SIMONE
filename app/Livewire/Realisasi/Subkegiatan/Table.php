@@ -39,22 +39,22 @@ class Table extends Component
             'file' => 'required'
         ]);
 
-        $subKegiatan = Subkegiatan::where('uuid', $uuid)->first();
+        // $subKegiatan = Subkegiatan::where('uuid', $uuid)->first();
 
-        // $file = $this->file('file')->store('assets/sub-kegiatan/realisasi', 'public');
+        // // $file = $this->file('file')->store('assets/sub-kegiatan/realisasi', 'public');
 
-        $data = [
-            'uuid' => str()->uuid(),
-            'subkegiatan_id' => $subKegiatan->id,
-            'tanggal' => date('Y-m-d'),
-            'triwulan' => $this->triwulan,
-            'target' => $this->target,
-            'pagu' => $this->pagu,
-            'rincian' => $this->rincian,
-            'file' => 'asdasdasd',
-            'satuan' => 'point',
-        ];
+        // $data = [
+        //     'uuid' => str()->uuid(),
+        //     'subkegiatan_id' => $subKegiatan->id,
+        //     'tanggal' => date('Y-m-d'),
+        //     'triwulan' => $this->triwulan,
+        //     'target' => $this->target,
+        //     'pagu' => $this->pagu,
+        //     'rincian' => $this->rincian,
+        //     'file' => 'asdasdasd',
+        //     'satuan' => 'point',
+        // ];
 
-        RealisasiSubkegiatan::create($data);
+        // RealisasiSubkegiatan::create($data);
     }
 }
