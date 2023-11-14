@@ -1,6 +1,12 @@
 <div>
     <div class="card border border-2">
         <div class="card-body">
+            <button onclick="window.history.back()" class="btn btn-light">
+                <i class="fas fa-arrow-left"></i>
+                Kembali
+            </button>
+            <br>
+            <br>
             <table class="text-uppercase col-12">
                 <tr>
                     <td class="col-3">PROGRAM</td>
@@ -26,17 +32,17 @@
                     <td class="col-3">PAGU PROGRAM</td>
                     <td>:</td>
                     @php
-                    $pagu_program = 0;
-                    foreach ($program->kegiatan as $keg) {
-                    foreach ($keg->subkegiatan as $sub) {
-                    $pagu_program += $sub->pagu_awal;
-                    }
-                    }
+                        $pagu_program = 0;
+                        foreach ($program->kegiatan as $keg) {
+                            foreach ($keg->subkegiatan as $sub) {
+                                $pagu_program += $sub->pagu_awal;
+                            }
+                        }
                     @endphp
                     <td><b>@currency($pagu_program)</b></td>
                 </tr>
             </table>
-            <button onclick="window.history.back()">kembali</button>
+
         </div>
     </div>
     <table class="table table-sm">
@@ -55,37 +61,37 @@
 
             {{-- data --}}
             @foreach ($kegiatans as $kegiatan)
-            <tr>
-                <td>
-                    {{ $kegiatan->kode }}
-                </td>
-                <td>
-                    {{ $kegiatan->title }}
-                </td>
-                <td>
-                    {{ $kegiatan->pegawai->nama}}
-                </td>
-                <td>
+                <tr>
+                    <td>
+                        {{ $kegiatan->kode }}
+                    </td>
+                    <td>
+                        {{ $kegiatan->title }}
+                    </td>
+                    <td>
+                        {{ $kegiatan->pegawai->nama }}
+                    </td>
+                    <td>
 
-                    @php
-                    $pagu_validasi = 0;
-                    foreach ($kegiatan->subkegiatan as $sub) {
-                    $pagu_validasi += $sub->pagu_awal;
-                    }
-                    @endphp
+                        @php
+                            $pagu_validasi = 0;
+                            foreach ($kegiatan->subkegiatan as $sub) {
+                                $pagu_validasi += $sub->pagu_awal;
+                            }
+                        @endphp
 
-                    @currency($pagu_validasi)</td>
-                <td>
+                        @currency($pagu_validasi)</td>
+                    <td>
 
-                </td>
-                <td>
-                    <div class="list-actions d-flex justify-content-around form-inline">
-                        <a href="{{ route('realisasi.subkegiatan', $kegiatan->uuid) }}" class="btn btn-sm">
-                            <i class="ik ik-corner-down-right"></i>
-                        </a>
-                    </div>
-                </td>
-            </tr>
+                    </td>
+                    <td>
+                        <div class="list-actions d-flex justify-content-around form-inline">
+                            <a href="{{ route('realisasi.subkegiatan', $kegiatan->uuid) }}" class="btn btn-sm">
+                                <i class="ik ik-corner-down-right"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
             @endforeach
             {{-- --}}
 
