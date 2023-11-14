@@ -20,7 +20,7 @@
 
                     @error('kode')
                         <span class="text-danger">
-                            Mohon isi Kode Program
+                            Mohon isi Kode Kegiatan
                         </span>
                     @enderror
                 </td>
@@ -33,7 +33,7 @@
 
                     @error('kegiatan')
                         <span class="text-danger">
-                            Mohon isi Nama kegiatan
+                            Mohon isi Nama Kegiatan
                         </span>
                     @enderror
                 </td>
@@ -104,10 +104,10 @@
                     <td>
                         <div class="list-actions d-flex justify-content-around form-inline">
                             <a href="{{ route('dpa.subkegiatan', $kegiatan->uuid) }}" class="btn btn-sm">
-                                <i class="ik ik-file"></i>
+                                <i class="ik ik-corner-down-right"></i>
                             </a>
-                            {{-- <button class="btn btn-sm" onclick="return confirm('Ingin menghapus Program ini?')"
-                                wire:click='destroy("{{ $program->uuid }}")'><i class="ik ik-trash-2"></i></button> --}}
+                            <button class="btn btn-sm" onclick="return confirm('Ingin menghapus Kegiatan ini?')"
+                                wire:click='destroy("{{ $kegiatan->uuid }}")'><i class="ik ik-trash-2"></i></button>
                         </div>
                     </td>
                 </tr>

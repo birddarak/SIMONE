@@ -1,8 +1,7 @@
 <div>
-    {{-- menggunakan data ini agar dapat dipakai saat store ke database????? --}}
     <div class="row mb-4">
         <div class="col-12 col-md-3">
-            <select class="form-control" wire:model.live='tahun_anggaran'>
+            <select class="form-control" wire:model='tahun_anggaran' wire:change='index()'>
                 @for ($i = 2019; $i <= date('Y'); $i++)
                     <option value="{{ $i }}">
                         {{ $i }}
@@ -11,7 +10,7 @@
             </select>
         </div>
         <div class="col-12 col-md-3">
-            <select class="form-control" wire:model='apbd'>
+            <select class="form-control" wire:model='apbd' wire:change='index()'>
                 <option value="murni">MURNI</option>
                 <option value="perubahan">PERUBAHAN</option>
             </select>
@@ -133,7 +132,7 @@
                     <td>
                         <div class="list-actions d-flex justify-content-around form-inline">
                             <a href="{{ route('dpa.kegiatan', $program->uuid) }}" class="btn btn-sm">
-                                <i class="ik ik-file"></i>
+                                <i class="ik ik-corner-down-right"></i>
                             </a>
                             {{-- <button class="btn btn-sm" onclick="return confirm('Ingin menghapus Program ini?')"
                                 wire:click='destroy("{{ $program->uuid }}")'><i class="ik ik-trash-2"></i></button> --}}

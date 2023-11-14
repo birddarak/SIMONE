@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
-                        @livewire('realisasi.sub-kegiatan.table', ['kegiatan' => $kegiatan])
+                        @livewire('realisasi.subkegiatan.table', ['kegiatan' => $kegiatan])
                     </div>
                 </div>
             </div>

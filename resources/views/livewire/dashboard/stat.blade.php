@@ -1,16 +1,15 @@
 <div class="container-fluid">
     <div class="row mb-4">
         <div class="col-12 col-md-3">
-            <select class="form-control" wire:model='tahun_anggaran' wire:change='filter()'>
-                @for ($i = 2019; $i <= date('Y'); $i++)
-                    <option value="{{ $i }}">
-                        {{ $i }}
+            <select class="form-control" wire:model='tahun_anggaran' wire:change='index()'>
+                @for ($i = 2019; $i <= date('Y'); $i++) <option value="{{ $i }}">
+                    {{ $i }}
                     </option>
-                @endfor
+                    @endfor
             </select>
         </div>
         <div class="col-12 col-md-3">
-            <select class="form-control" wire:model='apbd' wire:change='filter()'>
+            <select class="form-control" wire:model='apbd' wire:change='index()'>
                 <option value="murni">MURNI</option>
                 <option value="perubahan">PERUBAHAN</option>
             </select>

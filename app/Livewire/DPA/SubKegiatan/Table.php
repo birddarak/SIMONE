@@ -20,7 +20,7 @@ class Table extends Component
     {
         $data['pegawais'] = Pegawai::all();
         $data['subKegiatans'] = Subkegiatan::where('kegiatan_id', $this->kegiatan->id)->get();
-        return view('livewire.d-p-a.sub-kegiatan.table', $data);
+        return view('livewire.d-p-a.subkegiatan.table', $data);
     }
 
     public function store()

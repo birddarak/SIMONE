@@ -78,25 +78,25 @@
             {{-- --}}
 
             {{-- data --}}
-            @foreach ($subKegiatans as $kegiatan)
+            @foreach ($subKegiatans as $subkegiatan)
                 <tr>
                     <td>
-                        <input type="text" value="{{ $kegiatan->kode }}"
-                            wire:blur="update('{{ $kegiatan->uuid }}', 'kode', $event.target.value)"
+                        <input type="text" value="{{ $subkegiatan->kode }}"
+                            wire:blur="update('{{ $subkegiatan->uuid }}', 'kode', $event.target.value)"
                             class="form-control">
                     </td>
                     <td>
-                        <input type="text" value="{{ $kegiatan->title }}"
-                            wire:blur="update('{{ $kegiatan->uuid }}', 'title', $event.target.value)"
+                        <input type="text" value="{{ $subkegiatan->title }}"
+                            wire:blur="update('{{ $subkegiatan->uuid }}', 'title', $event.target.value)"
                             class="form-control">
                     </td>
                     <td>
-                        <select wire:change="update('{{ $kegiatan->uuid }}', 'pegawai_id', $event.target.value)"
+                        <select wire:change="update('{{ $subkegiatan->uuid }}', 'pegawai_id', $event.target.value)"
                             class="form-control" style="width: 100% !important;">
                             <option value="">Pilih</option>
                             @forelse ($pegawais as $pegawai)
                                 <option value="{{ $pegawai->uuid }}"
-                                    {{ $pegawai->id == $kegiatan->pegawai_id ? 'selected' : '' }}>
+                                    {{ $pegawai->id == $subkegiatan->pegawai_id ? 'selected' : '' }}>
                                     {{ $pegawai->nama }}
                                 </option>
                             @empty
@@ -109,19 +109,16 @@
                             <span class="btn">
                                 Rp.
                             </span>
-                            <input type="text" value="{{ $kegiatan->pagu_awal }}"
-                                wire:blur="update('{{ $kegiatan->uuid }}', 'pagu_awal', $event.target.value)"
+                            <input type="text" value="{{ $subkegiatan->pagu_awal }}"
+                                wire:blur="update('{{ $subkegiatan->uuid }}', 'pagu_awal', $event.target.value)"
                                 class="form-control">
-                            <strong>(@currency($kegiatan->pagu_awal))</strong>
+                            <strong>(@currency($subkegiatan->pagu_awal))</strong>
                         </div>
                     </td>
                     <td>
                         <div class="list-actions d-flex justify-content-around form-inline">
-                            <a href="{{ route('dpa.subkegiatan', $kegiatan->uuid) }}" class="btn btn-sm">
-                                <i class="ik ik-file"></i>
-                            </a>
-                            {{-- <button class="btn btn-sm" onclick="return confirm('Ingin menghapus Program ini?')"
-                                wire:click='destroy("{{ $program->uuid }}")'><i class="ik ik-trash-2"></i></button> --}}
+                            <button class="btn btn-sm" onclick="return confirm('Ingin menghapus Sub Kegiatan ini?')"
+                                wire:click='destroy("{{ $subkegiatan->uuid }}")'><i class="ik ik-trash-2"></i></button>
                         </div>
                     </td>
                 </tr>

@@ -16,6 +16,6 @@ class RealisasiController extends Controller
     }
 
     public function realisasi_subkegiatan(Kegiatan $kegiatan){
-        return view('panel.pages.realisasi.sub-kegiatan', ['kegiatan' => $kegiatan]);
+        return view('panel.pages.realisasi.subkegiatan', ['kegiatan' => $kegiatan]);
     }
 }

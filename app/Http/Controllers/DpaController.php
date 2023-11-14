@@ -19,6 +19,6 @@ class DpaController extends Controller
 
     public function dpa_subkegiatan(Kegiatan $kegiatan)
     {
-        return view('panel.pages.dpa.sub-kegiatan', ['kegiatan' => $kegiatan]);
+        return view('panel.pages.dpa.subkegiatan', ['kegiatan' => $kegiatan]);
     }
 }

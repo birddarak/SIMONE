@@ -15,7 +15,7 @@ class Table extends Component
     public $kegiatan;
 
     // FORM REALISASI
-    public $triwulan, $target, $pagu, $rincian, $file;
+    public $triwulan, $target, $satuan, $pagu, $rincian, $file;
 
     public function mount($kegiatan)
     {
@@ -35,13 +35,13 @@ class Table extends Component
         $this->validate([
             'triwulan' => 'required|string|in:I,II,III,IV',
             'target' => 'required|string',
+            'satuan' => 'required|string',
             'pagu' => 'required',
-            'file' => 'required'
         ]);
 
         $subKegiatan = Subkegiatan::where('uuid', $uuid)->first();
 
-        // $file = $this->file('file')->store('assets/sub-kegiatan/realisasi', 'public');
+        // $file = $this->file('file')->store('assets/subkegiatan/realisasi', 'public');
 
         $data = [
             'uuid' => str()->uuid(),
@@ -49,6 +49,7 @@ class Table extends Component
             'tanggal' => date('Y-m-d'),
             'triwulan' => $this->triwulan,
             'target' => $this->target,
+            'satuan' => $this->satuan,
             'pagu' => $this->pagu,
             'rincian' => $this->rincian,
             'file' => 'asdasdasd',

@@ -104,8 +104,12 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </td>
-                    <td>
+                    <td class="d-flex justify-content-center">
                         <input type="text" class="form-control" placeholder="TARGET" wire:model='target'>
+                        @error('target')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                        <input type="text" class="form-control" placeholder="SATUAN" wire:model='satuan'>
                         @error('target')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror

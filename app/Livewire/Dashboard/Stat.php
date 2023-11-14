@@ -15,10 +15,10 @@ class Stat extends Component
 
     public function render()
     {
-        return $this->filter();
+        return $this->index();
     }
 
-    public function filter()
+    public function index()
     {
         $programs = Program::where('tahun_anggaran', $this->tahun_anggaran)->where('apbd', $this->apbd);
         $kegiatans = Kegiatan::whereHas('program', function ($query) {
