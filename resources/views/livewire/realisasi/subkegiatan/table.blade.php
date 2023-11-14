@@ -112,12 +112,12 @@
                                     $pagu_terserap += $rs->pagu;
                                 }
                             @endphp
-                            <h5 class="m-0">
+                            <h6 class="m-0">
                                 <strong
                                     class="{{ $subkegiatan->pagu_awal == $pagu_terserap ? 'text-success' : 'text-danger' }}">
                                     @currency($pagu_terserap)
                                 </strong>
-                            </h5>
+                            </h6>
 
                         </td>
                         <td colspan="5">
