@@ -32,7 +32,7 @@ class PegawaiController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'nip' => 'required',
+            'nip' => 'required|unique:pegawais,nip',
             'jabatan' => 'required'
         ]);
         

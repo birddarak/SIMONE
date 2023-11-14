@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DpaController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\RealisasiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,4 +39,9 @@ Route::middleware([
     Route::resource('user', UserController::class)->parameter('user', 'user:uuid');
 
     Route::resource('pegawai', PegawaiController::class)->parameter('pegawai', 'pegawai:uuid');
+
+    Route::resource('realisasi', RealisasiController::class);
+    Route::get('realisasi/{program:uuid}/kegiatan', [RealisasiController::class, 'realisasi_kegiatan'])->name('realisasi.kegiatan');
+    Route::get('realisasi/{kegiatan:uuid}/subkegiatan', [RealisasiController::class, 'realisasi_subkegiatan'])->name('realisasi.subkegiatan');
+    
 });

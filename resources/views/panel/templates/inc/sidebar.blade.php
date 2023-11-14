@@ -10,6 +10,9 @@
             <div class="nav-item {{ in_array(Route::currentRouteName(), ['dpa.index']) ? 'active' : '' }}">
                 <a href="{{ route('dpa.index') }}"><i class="ik ik-book"></i><span>DPA</span></a>
             </div>
+            <div class="nav-item {{ in_array(Route::currentRouteName(), ['realisasi.index']) ? 'active' : '' }}">
+                <a href="{{ route('realisasi.index') }}"><i class="ik ik-book-open"></i><span>Realisasi</span></a>
+            </div>
             <div class="nav-lavel">Master Data</div>
             <div
                 class="nav-item {{ in_array(Route::currentRouteName(), ['pegawai.index', 'pegawai.create', 'pegawai.edit']) ? 'active' : '' }}">

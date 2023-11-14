@@ -13,6 +13,6 @@ class RealisasiSubkegiatan extends Model
 
     public function subkegiatan()
     {
-        return $this->hasMany(Subkegiatan::class);
+        return $this->belongsTo(Subkegiatan::class);
     }
 }

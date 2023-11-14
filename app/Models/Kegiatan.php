@@ -18,7 +18,7 @@ class Kegiatan extends Model
 
     public function realisasi_kegiatan()
     {
-        return $this->belongsTo(RealisasiKegiatan::class);
+        return $this->hasMany(RealisasiKegiatan::class);
     }
 
     public function subkegiatan()
