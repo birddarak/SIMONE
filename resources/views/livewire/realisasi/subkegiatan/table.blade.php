@@ -53,11 +53,11 @@
                     <th>PENANGGUNG JAWAB</th>
                     <th>PAGU VALIDASI</th>
                     <th>PAGU TERSERAP</th>
-                    <th>TW</th>
+                    {{-- <th>TW</th>
                     <th>TARGET / SATUAN</th>
                     <th>PAGU</th>
                     <th>RINCIAN</th>
-                    <th>FILE</th>
+                    <th>FILE</th> --}}
                     <th>AKSI</th>
                 </tr>
             </thead>
@@ -65,8 +65,9 @@
 
                 {{-- data --}}
                 @foreach ($subkegiatans as $subkegiatan)
-                    <tr class="text-info">
+                    <tr class="text-primary">
                         <td>
+                            <i class="fas fa-arrow-right"></i>
                             {{ $subkegiatan->kode }}
                         </td>
                         <td>
@@ -85,10 +86,12 @@
                                     $pagu_terserap += $rs->pagu;
                                 }
                             @endphp
-                            <strong
-                                class="{{ $subkegiatan->pagu_awal == $pagu_terserap ? 'text-success' : 'text-danger' }}">
-                                @currency($pagu_terserap)
-                            </strong>
+                            <h5 class="m-0">
+                                <strong
+                                    class="{{ $subkegiatan->pagu_awal == $pagu_terserap ? 'text-success' : 'text-danger' }}">
+                                    @currency($pagu_terserap)
+                                </strong>
+                            </h5>
 
                         </td>
                         <td colspan="5">
@@ -101,8 +104,28 @@
                             </div>
                         </td>
                     </tr>
+                    <tr class="bg-info text-white">
+                        <td>
+                            Triwulan
+                        </td>
+                        <td>
+                            Target & Satuan
+                        </td>
+                        <td>
+                            Pagu
+                        </td>
+                        <td>
+                            Rincian
+                        </td>
+                        <td>
+                            File
+                        </td>
+                        <td>
+                            <i class="fas fa-cog fa-fw"></i>
+                        </td>
+                    </tr>
                     <tr>
-                        <td colspan="5"></td>
+                        {{-- <td colspan="5"></td> --}}
                         <td>
                             <select class="form-control form-control-sm" wire:model='triwulan'>
                                 <option>.::PILIH TRIWULAN::.</option>
@@ -157,7 +180,7 @@
                     </tr>
                     @foreach ($subkegiatan->realisasi_subkegiatan()->orderBy('triwulan', 'ASC')->get() as $rs)
                         <tr>
-                            <td colspan="5"></td>
+                            {{-- <td colspan="5"></td> --}}
                             <td>
                                 <select style="width: 100% !important;" class="form-control">
                                     <option value="I" {{ $rs->triwulan == 'I' ? 'selected' : '' }}>I</option>
