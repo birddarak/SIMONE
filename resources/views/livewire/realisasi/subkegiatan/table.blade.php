@@ -44,137 +44,159 @@
             </table>
         </div>
     </div>
-    <table class="table table-sm">
-        <thead class="thead-dark">
-            <tr>
-                <th class="text-center">KODE</th>
-                <th>SUB KEGIATAN</th>
-                <th>PENANGGUNG JAWAB</th>
-                <th>PAGU VALIDASI</th>
-                <th>PERSENTASE PAGU</th>
-                <th>TW</th>
-                <th class="text-center">TARGET</th>
-                <th>PAGU</th>
-                <th>RINCIAN</th>
-                <th>FILE</th>
-                <th>AKSI</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="table-responsive">
+        <table class="table table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="text-center">KODE</th>
+                    <th>SUB KEGIATAN</th>
+                    <th>PENANGGUNG JAWAB</th>
+                    <th>PAGU VALIDASI</th>
+                    <th>PAGU TERSERAP</th>
+                    <th>TW</th>
+                    <th>TARGET / SATUAN</th>
+                    <th>PAGU</th>
+                    <th>RINCIAN</th>
+                    <th>FILE</th>
+                    <th>AKSI</th>
+                </tr>
+            </thead>
+            <tbody>
 
-            {{-- data --}}
-            @foreach ($subkegiatans as $subkegiatan)
-                <tr class="text-info">
-                    <td>
-                        {{ $subkegiatan->kode }}
-                    </td>
-                    <td>
-                        {{ $subkegiatan->title }}
-                    </td>
-                    <td>
-                        {{ $subkegiatan->pegawai->nama }}
-                    </td>
-                    <td>
-                        @currency($subkegiatan->pagu_awal)
-                    </td>
-                    <td>
-                        ...
-                    </td>
-                    <td colspan="5">
-                    </td>
-                    <td>
-                        <div class="list-actions d-flex justify-content-around form-inline">
-                            {{-- <a href="{{ route('realisasi.subkegiatan', $kegiatan->uuid) }}" class="btn btn-sm">
+                {{-- data --}}
+                @foreach ($subkegiatans as $subkegiatan)
+                    <tr class="text-info">
+                        <td>
+                            {{ $subkegiatan->kode }}
+                        </td>
+                        <td>
+                            {{ $subkegiatan->title }}
+                        </td>
+                        <td>
+                            {{ $subkegiatan->pegawai->nama }}
+                        </td>
+                        <td>
+                            @currency($subkegiatan->pagu_awal)
+                        </td>
+                        <td>
+                            @php
+                                $pagu_terserap = 0;
+                                foreach ($subkegiatan->realisasi_subkegiatan as $rs) {
+                                    $pagu_terserap += $rs->pagu;
+                                }
+                            @endphp
+                            <strong
+                                class="{{ $subkegiatan->pagu_awal == $pagu_terserap ? 'text-success' : 'text-danger' }}">
+                                @currency($pagu_terserap)
+                            </strong>
+
+                        </td>
+                        <td colspan="5">
+                        </td>
+                        <td>
+                            <div class="list-actions d-flex justify-content-around form-inline">
+                                {{-- <a href="{{ route('realisasi.subkegiatan', $kegiatan->uuid) }}" class="btn btn-sm">
                             <i class="ik ik-corner-down-right"></i>
                         </a> --}}
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="5"></td>
-                    <td>
-                        <select class="form-control form-control-sm" wire:model='triwulan'>
-                            <option>.::PILIH TRIWULAN::.</option>
-                            <option value="I">I</option>
-                            <option value="II">II</option>
-                            <option value="III">III</option>
-                            <option value="IV">IV</option>
-                        </select>
-                        @error('triwulan')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </td>
-                    <td class="d-flex justify-content-center">
-                        <input type="text" class="form-control" placeholder="TARGET" wire:model='target'>
-                        @error('target')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                        <input type="text" class="form-control" placeholder="SATUAN" wire:model='satuan'>
-                        @error('target')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </td>
-                    <td>
-                        <div class="input-group">
-                            <span class="btn">
-                                Rp.
-                            </span>
-                            <input type="number" class="form-control" wire:model='pagu'>
-                        </div>
-                        @error('pagu')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" placeholder="RINCIAN" wire:model='rincian'>
-                        @error('rincian')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </td>
-                    <td>
-                        <input type="file" class="form-control" placeholder="FILE" wire:model='file'>
-                        @error('file')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </td>
-                    <td>
-                        <button class="btn  btn-primary" wire:click='simpan("{{ $subkegiatan->uuid }}")'>
-                            <i class="fas fa-save"></i>
-                        </button>
-                    </td>
-                </tr>
-                @foreach ($subkegiatan->realisasi_subkegiatan as $rs)
+                            </div>
+                        </td>
+                    </tr>
                     <tr>
                         <td colspan="5"></td>
                         <td>
-                            <select style="width: 100% !important;" class="form-control">
-                                <option value="I" {{ $rs->triwulan == 'I' ? 'selected' : '' }}>I</option>
-                                <option value="II" {{ $rs->triwulan == 'II' ? 'selected' : '' }}>II</option>
-                                <option value="III" {{ $rs->triwulan == 'III' ? 'selected' : '' }}>III</option>
-                                <option value="IV" {{ $rs->triwulan == 'IV' ? 'selected' : '' }}>IV</option>
+                            <select class="form-control form-control-sm" wire:model='triwulan'>
+                                <option>.::PILIH TRIWULAN::.</option>
+                                <option value="I">I</option>
+                                <option value="II">II</option>
+                                <option value="III">III</option>
+                                <option value="IV">IV</option>
                             </select>
+                            @error('triwulan')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </td>
                         <td class="d-flex justify-content-center">
-                            <input type="text" value="{{ $rs->target }}" class="form-control">
-                            <input type="text" value="{{ $rs->satuan }}" class="form-control">
+                            <input type="text" class="form-control" placeholder="TARGET" wire:model='target'>
+                            @error('target')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                            /
+                            <input type="text" class="form-control" placeholder="SATUAN" wire:model='satuan'>
+                            @error('target')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </td>
                         <td>
-                            <input type="text" value="{{ $rs->pagu }}" class="form-control">
+                            <div class="input-group">
+                                <span class="btn">
+                                    Rp.
+                                </span>
+                                <input type="number" class="form-control" wire:model='pagu'>
+                            </div>
+                            @error('pagu')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </td>
                         <td>
-                            <input type="text" value="{{ $rs->keterangan }}" class="form-control">
+                            <input type="text" class="form-control" placeholder="RINCIAN" wire:model='rincian'>
+                            @error('rincian')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </td>
                         <td>
-                            <i class="ik ik-file"></i>
+                            <input type="file" class="form-control" placeholder="FILE" wire:model='file'>
+                            @error('file')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </td>
                         <td>
-                            <i class="ik ik-edit"></i>
-                            <i class="ik ik-trash"></i>
+                            <button class="btn  btn-primary" wire:click='simpan("{{ $subkegiatan->uuid }}")'>
+                                <i class="fas fa-save"></i>
+                            </button>
                         </td>
                     </tr>
+                    @foreach ($subkegiatan->realisasi_subkegiatan()->orderBy('triwulan', 'ASC')->get() as $rs)
+                        <tr>
+                            <td colspan="5"></td>
+                            <td>
+                                <select style="width: 100% !important;" class="form-control">
+                                    <option value="I" {{ $rs->triwulan == 'I' ? 'selected' : '' }}>I</option>
+                                    <option value="II" {{ $rs->triwulan == 'II' ? 'selected' : '' }}>II</option>
+                                    <option value="III" {{ $rs->triwulan == 'III' ? 'selected' : '' }}>III</option>
+                                    <option value="IV" {{ $rs->triwulan == 'IV' ? 'selected' : '' }}>IV</option>
+                                </select>
+                            </td>
+                            <td class="d-flex justify-content-center">
+                                <input type="text" value="{{ $rs->target }}" class="form-control"
+                                    wire:blur="update('{{ $rs->uuid }}', 'target', $event.target.value)">
+                                /
+                                <input type="text" value="{{ $rs->satuan }}" class="form-control"
+                                    wire:blur="update('{{ $rs->uuid }}', 'satuan', $event.target.value)">
+                            </td>
+                            <td>
+                                <div class="d-flex">
+                                    <input type="text" value="{{ $rs->pagu }}" class="form-control"
+                                        wire:blur="update('{{ $rs->uuid }}', 'pagu', $event.target.value)"> =
+                                    <strong>@currency($rs->pagu)</strong>
+                                </div>
+                            </td>
+                            <td>
+                                <input type="text" value="{{ $rs->keterangan }}" class="form-control"
+                                    wire:blur="update('{{ $rs->uuid }}', 'keterangan', $event.target.value)">
+                            </td>
+                            <td>
+                                <a href="{{ url('storage') . '/' . $rs->file }}">
+                                    <i class="ik ik-file"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <i class="ik ik-trash"></i>
+                            </td>
+                        </tr>
+                    @endforeach
                 @endforeach
-            @endforeach
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>

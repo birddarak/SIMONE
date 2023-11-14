@@ -15,7 +15,7 @@ class Table extends Component
     public $kegiatan;
 
     // FORM REALISASI
-    public $triwulan, $target, $satuan, $pagu, $rincian, $file;
+    public $triwulan, $target,  $pagu, $rincian, $file, $satuan;
 
     public function mount($kegiatan)
     {
@@ -41,7 +41,7 @@ class Table extends Component
 
         $subKegiatan = Subkegiatan::where('uuid', $uuid)->first();
 
-        // $file = $this->file('file')->store('assets/sub-kegiatan/realisasi', 'public');
+        $file = $this->file->store('assets/sub-kegiatan/realisasi', 'public');
 
         $data = [
             'uuid' => str()->uuid(),
@@ -52,10 +52,32 @@ class Table extends Component
             'satuan' => $this->satuan,
             'pagu' => $this->pagu,
             'rincian' => $this->rincian,
-            'file' => 'asdasdasd',
-            'satuan' => 'point',
+            'file' => $file,
+            'satuan' => $this->satuan,
         ];
 
+        $this->file = null;
+        $this->triwulan = '';
+        $this->target = '';
+        $this->satuan = '';
+        $this->pagu = '';
+        $this->satuan = '';
+
         RealisasiSubkegiatan::create($data);
+    }
+
+    public function update($uuid, $field, $value)
+    {
+        RealisasiSubkegiatan::where('uuid', $uuid)
+            ->update(
+                [
+                    $field => $value
+                ]
+            );
+    }
+
+    public function destroy($uuid)
+    {
+        RealisasiSubkegiatan::where('uuid', $uuid)->delete();
     }
 }

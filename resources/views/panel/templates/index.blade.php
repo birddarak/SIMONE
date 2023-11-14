@@ -21,7 +21,7 @@
         @include('panel.templates.inc.header')
 
         <div class="page-wrap">
-            <div class="app-sidebar colored">
+            <div class="app-sidebar colored shadow-none">
                 @include('panel.templates.inc.sidebar_header')
 
                 @include('panel.templates.inc.sidebar')

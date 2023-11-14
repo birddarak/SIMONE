@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="{{ url('templates/panel') }}/node_modules/owl.carousel/dist/assets/owl.carousel.css">
 <link rel="stylesheet" href="{{ url('templates/panel') }}/node_modules/owl.carousel/dist/assets/owl.theme.default.css">
 <link rel="stylesheet" href="{{ url('templates/panel') }}/node_modules/jquery-toast-plugin/dist/jquery.toast.min.css">
-<link rel="stylesheet" href="{{ url('templates/panel') }}/dist/css/theme.min.css">
+<link rel="stylesheet" href="{{ url('templates/panel') }}/dist/css/theme.css">
 <script src="{{ url('templates/panel') }}/src/js/vendor/modernizr-2.8.3.min.js"></script>
 
 <style>
