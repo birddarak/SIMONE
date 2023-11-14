@@ -1,23 +1,4 @@
 <div>
-    {{-- menggunakan data ini agar dapat dipakai saat store ke database????? --}}
-    <div class="row mb-4">
-        <div class="col-12 col-md-3">
-            <select class="form-control" wire:model.live='tahun_anggaran'>
-                @for ($i = 2019; $i <= date('Y'); $i++)
-                    <option value="{{ $i }}">
-                        {{ $i }}
-                    </option>
-                @endfor
-            </select>
-        </div>
-        <div class="col-12 col-md-3">
-            <select class="form-control" wire:model='apbd'>
-                <option value="murni">MURNI</option>
-                <option value="perubahan">PERUBAHAN</option>
-            </select>
-        </div>
-    </div>
-
     <table class="table table-sm">
         <thead class="thead-dark">
             <tr>
