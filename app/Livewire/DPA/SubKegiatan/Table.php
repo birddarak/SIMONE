@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\DPA\SubKegiatan;
+namespace App\Livewire\DPA\Subkegiatan;
 
 use App\Models\Pegawai;
 use App\Models\Subkegiatan;
