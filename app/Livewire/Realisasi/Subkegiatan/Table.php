@@ -39,7 +39,7 @@ class Table extends Component
             'pagu' => 'required',
         ]);
 
-        // $subKegiatan = Subkegiatan::where('uuid', $uuid)->first();
+        $subKegiatan = Subkegiatan::where('uuid', $uuid)->first();
 
         // $file = $this->file('file')->store('assets/sub-kegiatan/realisasi', 'public');
 
@@ -49,6 +49,7 @@ class Table extends Component
             'tanggal' => date('Y-m-d'),
             'triwulan' => $this->triwulan,
             'target' => $this->target,
+            'satuan' => $this->satuan,
             'pagu' => $this->pagu,
             'rincian' => $this->rincian,
             'file' => 'asdasdasd',
