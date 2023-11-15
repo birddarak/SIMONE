@@ -29,18 +29,22 @@
         <div class="container-fluid h-100">
             <div class="row flex-row h-100 bg-white">
                 <div class="col-xl-8 col-lg-6 col-md-5 p-0 d-md-block d-lg-block d-sm-none d-none">
-                    <div class="lavalite-bg"
-                        style="background-image: url('{{ url('templates/panel') }}/img/auth/login-bg.jpg')">
+                    <div class="lavalite-bg" style="background-image: url('{{ url('assets/kantor.JPG') }}')">
                         <div class="lavalite-overlay"></div>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-6 col-md-7 my-auto p-0">
                     <div class="authentication-form mx-auto">
                         <div class="logo-centered">
-                            <a href="{{ url('templates/panel') }}/index.html"><img
-                                    src="{{ url('templates/panel') }}/src/img/brand.svg" alt=""></a>
+                            <h4>
+                                <a href="{{ url('templates/panel') }}/index.html">
+                                    <strong>
+                                        SIEMON
+                                    </strong>
+                                </a>
+                            </h4>
                         </div>
-                        <h3>Sign In to ThemeKit</h3>
+                        <h3>Sign In to Siemon</h3>
                         <p>Happy to see you again!</p>
 
                         <form method="POST" action="{{ route('login') }}">
@@ -63,16 +67,16 @@
                                         <span class="custom-control-label">&nbsp;Remember Me</span>
                                     </label>
                                 </div>
-                                <div class="col text-right">
+                                {{-- <div class="col text-right">
                                     <a href="forgot-password.html">Forgot Password ?</a>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="sign-btn text-center">
                                 <button class="btn btn-theme">Sign In</button>
                             </div>
                         </form>
                         <div class="register">
-                            <p>Don't have an account? <a href="register.html">Create an account</a></p>
+                            {{-- <p>Don't have an account? <a href="register.html">Create an account</a></p> --}}
                         </div>
                     </div>
                 </div>
