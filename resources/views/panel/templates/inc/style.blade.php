@@ -34,5 +34,6 @@
 
     .table tr .form-control {
         border: none;
+        background-color: transparent;
     }
 </style>

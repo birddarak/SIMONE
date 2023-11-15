@@ -150,7 +150,7 @@
                             <i class="fas fa-cog fa-fw"></i>
                         </td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: rgb(218, 218, 218);">
                         {{-- <td colspan="5"></td> --}}
                         <td class="border ">
                             <div class="input-group">
@@ -214,7 +214,7 @@
                         </td>
                     </tr>
                     @foreach ($subkegiatan->realisasi_subkegiatan()->orderBy('triwulan', 'ASC')->get() as $rs)
-                        <tr>
+                        <tr style="background-color: rgb(218, 218, 218);">
                             {{-- <td colspan="5"></td> --}}
                             <td>
                                 <select style="width: 100% !important;" class="form-control">
