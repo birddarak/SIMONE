@@ -20,7 +20,8 @@ class Stat extends Component
 
     public function index()
     {
-        $programs = Program::where('tahun_anggaran', $this->tahun_anggaran)->where('apbd', $this->apbd);
+        $data['programs'] = Program::where('tahun_anggaran', $this->tahun_anggaran)->where('apbd', $this->apbd);
+        $data['progs'] = Program::where('tahun_anggaran', $this->tahun_anggaran)->where('apbd', $this->apbd)->get();
         $kegiatans = Kegiatan::whereHas('program', function ($query) {
             return $query->where('tahun_anggaran', $this->tahun_anggaran)->where('apbd', $this->apbd);
         });
@@ -28,7 +29,7 @@ class Stat extends Component
             return $query->where('tahun_anggaran', $this->tahun_anggaran)->where('apbd', $this->apbd);
         });
 
-        $data['total_program'] = $programs->count();
+        $data['total_program'] = $data['programs']->count();
         $data['total_kegiatan'] = $kegiatans->count();
         $data['total_subkegiatan'] = $subkegiatans->count();
 
