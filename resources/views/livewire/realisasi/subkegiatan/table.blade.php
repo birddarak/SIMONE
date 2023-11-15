@@ -152,30 +152,39 @@
                     </tr>
                     <tr>
                         {{-- <td colspan="5"></td> --}}
-                        <td>
-                            <select class="form-control form-control-sm" wire:model='triwulan'>
-                                <option>.::PILIH TRIWULAN::.</option>
-                                <option value="I">I</option>
-                                <option value="II">II</option>
-                                <option value="III">III</option>
-                                <option value="IV">IV</option>
-                            </select>
-                            @error('triwulan')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                        <td class="border ">
+                            <div class="input-group">
+                                <select class="form-control form-control-sm" wire:model='triwulan'>
+                                    <option>.::PILIH TRIWULAN::.</option>
+                                    <option value="I">I</option>
+                                    <option value="II">II</option>
+                                    <option value="III">III</option>
+                                    <option value="IV">IV</option>
+                                </select>
+                                @error('triwulan')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                <input type="date" class="form-control" placeholder="Tanggal" wire:model='tanggal'
+                                    value="{{ date('Y-m-d') }}">
+                                @error('target')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </td>
-                        <td class="d-flex justify-content-center">
-                            <input type="text" class="form-control" placeholder="TARGET" wire:model='target'>
-                            @error('target')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                            /
-                            <input type="text" class="form-control" placeholder="SATUAN" wire:model='satuan'>
-                            @error('target')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                        <td class="border">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="TARGET" wire:model='target'>
+                                @error('target')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                /
+                                <input type="text" class="form-control" placeholder="SATUAN" wire:model='satuan'>
+                                @error('target')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </td>
-                        <td>
+                        <td class="border">
                             <div class="input-group">
                                 <span class="btn">
                                     Rp.
@@ -186,7 +195,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </td>
-                        <td>
+                        <td class="border">
                             <input type="text" class="form-control" placeholder="RINCIAN" wire:model='rincian'>
                             @error('rincian')
                                 <span class="text-danger">{{ $message }}</span>
@@ -198,7 +207,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </td>
-                        <td>
+                        <td class="border">
                             <button class="btn  btn-primary" wire:click='simpan("{{ $subkegiatan->uuid }}")'>
                                 <i class="fas fa-save"></i>
                             </button>
@@ -239,7 +248,9 @@
                                 </a>
                             </td>
                             <td>
-                                <i class="ik ik-trash"></i>
+                                <button class="btn btn-sm btn-light" wire:click='destroy("{{ $rs->uuid }}")'>
+                                    <i class="ik ik-trash text-danger"></i>
+                                </button>
                             </td>
                         </tr>
                     @endforeach
