@@ -5,6 +5,7 @@ namespace App\Livewire\Realisasi\Subkegiatan;
 use App\Models\Kegiatan;
 use App\Models\RealisasiSubkegiatan;
 use App\Models\Subkegiatan;
+use Illuminate\Support\Facades\File;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -15,7 +16,7 @@ class Table extends Component
     public $kegiatan;
 
     // FORM REALISASI
-    public $triwulan, $target, $pagu, $rincian, $file, $satuan;
+    public $triwulan, $tanggal, $target,  $pagu, $rincian, $file, $satuan;
 
     public function mount($kegiatan)
     {
@@ -41,18 +42,18 @@ class Table extends Component
 
         $subkegiatan = Subkegiatan::where('uuid', $uuid)->first();
 
-        // $this->file->store('assets/sub-kegiatan/realisasi', 'public');
+        $file = $this->file->store('assets/sub-kegiatan/realisasi', 'public');
 
         $data = [
             'uuid' => str()->uuid(),
             'subkegiatan_id' => $subkegiatan->id,
-            'tanggal' => date('Y-m-d'),
+            'tanggal' => $this->tanggal,
             'triwulan' => $this->triwulan,
             'target' => $this->target,
             'satuan' => $this->satuan,
             'pagu' => $this->pagu,
             'rincian' => $this->rincian,
-            // 'file' => $this->file,
+            'file' => $file,
             'satuan' => $this->satuan,
         ];
 
@@ -74,6 +75,8 @@ class Table extends Component
 
     public function destroy($uuid)
     {
-        RealisasiSubkegiatan::where('uuid', $uuid)->delete();
+        $data = RealisasiSubkegiatan::where('uuid', $uuid)->first();
+        File::delete('storage/' . $data->file);
+        $data->delete();
     }
 }
