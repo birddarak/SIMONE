@@ -15,7 +15,7 @@ class Table extends Component
     public $kegiatan;
 
     // FORM REALISASI
-    public $triwulan, $target,  $pagu, $rincian, $file, $satuan;
+    public $triwulan, $target, $pagu, $rincian, $file, $satuan;
 
     public function mount($kegiatan)
     {
@@ -30,7 +30,7 @@ class Table extends Component
         return view('livewire.realisasi.subkegiatan.table', $data);
     }
 
-    public function simpan($uuid)
+    public function store($uuid)
     {
         $this->validate([
             'triwulan' => 'required|string|in:I,II,III,IV',
@@ -39,31 +39,27 @@ class Table extends Component
             'pagu' => 'required',
         ]);
 
-        $subKegiatan = Subkegiatan::where('uuid', $uuid)->first();
+        $subkegiatan = Subkegiatan::where('uuid', $uuid)->first();
 
-        $file = $this->file->store('assets/sub-kegiatan/realisasi', 'public');
+        // $this->file->store('assets/sub-kegiatan/realisasi', 'public');
 
         $data = [
             'uuid' => str()->uuid(),
-            'subkegiatan_id' => $subKegiatan->id,
+            'subkegiatan_id' => $subkegiatan->id,
             'tanggal' => date('Y-m-d'),
             'triwulan' => $this->triwulan,
             'target' => $this->target,
             'satuan' => $this->satuan,
             'pagu' => $this->pagu,
             'rincian' => $this->rincian,
-            'file' => $file,
+            // 'file' => $this->file,
             'satuan' => $this->satuan,
         ];
 
-        $this->file = null;
-        $this->triwulan = '';
-        $this->target = '';
-        $this->satuan = '';
-        $this->pagu = '';
-        $this->satuan = '';
-
         RealisasiSubkegiatan::create($data);
+
+        session()->flash('message', 'Berhasil menambahkan realisasi triwulan <b>' . $this->triwulan . '</b> kedalam Sub Kegiatan <b>' . $subkegiatan->title .'</b>');
+        $this->reset(['triwulan', 'target',  'pagu', 'rincian', 'file', 'satuan']);
     }
 
     public function update($uuid, $field, $value)

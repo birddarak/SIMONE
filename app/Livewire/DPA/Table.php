@@ -52,6 +52,9 @@ class Table extends Component
         ];
 
         Program::create($data);
+
+        session()->flash('message', 'Berhasil menambahkan <b>' . $this->program . '</b> kedalam Program');
+        $this->reset(['kode', 'program', 'pegawai_id']);
     }
 
     public function update($uuid, $field, $value)

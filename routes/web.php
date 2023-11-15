@@ -36,8 +36,6 @@ Route::middleware([
 
     Route::resource('program', ProgramController::class)->parameter('program', 'program:uuid');
 
-    Route::resource('user', UserController::class)->parameter('user', 'user:uuid');
-
     Route::resource('pegawai', PegawaiController::class)->parameter('pegawai', 'pegawai:uuid');
 
     Route::resource('realisasi', RealisasiController::class);

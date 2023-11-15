@@ -71,6 +71,11 @@
         </div>
     </div>
     <div class="table-responsive">
+        @if(session()->has('message'))
+        <div class="alert alert-success">
+            {!! session('message') !!}
+        </div>
+        @endif
         <table class="table table-sm">
             <thead class="thead-dark">
                 <tr>
@@ -199,7 +204,7 @@
                             @enderror
                         </td>
                         <td>
-                            <button class="btn  btn-primary" wire:click='simpan("{{ $subkegiatan->uuid }}")'>
+                            <button class="btn btn-primary" wire:click='store("{{ $subkegiatan->uuid }}")'>
                                 <i class="fas fa-save"></i>
                             </button>
                         </td>

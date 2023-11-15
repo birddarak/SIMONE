@@ -46,6 +46,9 @@ class Table extends Component
             'pagu_awal' => 0,
             'pagu_akhir' => 0,
         ]);
+
+        session()->flash('message', 'Berhasil menambahkan <b>' . $this->kegiatan . '</b> kedalam Kegiatan');
+        $this->reset(['kode', 'kegiatan', 'pegawai_id']);
     }
 
     public function update($uuid, $field, $value)

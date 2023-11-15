@@ -8,8 +8,9 @@ use Livewire\Component;
 
 class Table extends Component
 {
+    public $kegiatan;
 
-    public $subkegiatan, $kode, $pegawai_id, $kegiatan, $pagu_awal;
+    public $kode, $subkegiatan, $pegawai_id, $pagu_awal;
 
     public function mount($kegiatan)
     {
@@ -43,6 +44,9 @@ class Table extends Component
         ];
 
         Subkegiatan::create($data);
+
+        session()->flash('message','Berhasil menambahkan <b>' . $this->subkegiatan . '</b> kedalam Sub Kegiatan');
+        $this->reset(['kode', 'pegawai_id', 'pagu_awal']);
     }
 
 

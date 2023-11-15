@@ -1,4 +1,9 @@
 <div>
+    @if(session()->has('message'))
+    <div class="alert alert-success">
+        {!! session('message') !!}
+    </div>
+    @endif
     <table class="table table-sm">
         <thead class="thead-dark">
             <tr>
@@ -107,7 +112,7 @@
                                 <i class="ik ik-corner-down-right"></i>
                             </a>
                             <button class="btn btn-sm" onclick="return confirm('Ingin menghapus Kegiatan ini?')"
-                                wire:click='destroy("{{ $kegiatan->uuid }}")'><i class="ik ik-trash-2"></i></button>
+                                wire:click.prevent='destroy("{{ $kegiatan->uuid }}")'><i class="ik ik-trash-2"></i></button>
                         </div>
                     </td>
                 </tr>

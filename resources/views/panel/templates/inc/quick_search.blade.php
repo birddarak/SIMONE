@@ -25,10 +25,10 @@
                             <a href="{{ route('dpa.index') }}"><i class="ik ik-book"></i><span>DPA</span></a>
                         </div>
                         <div class="app-item">
-                            <a href="{{ route('pegawai.index') }}"><i class="ik ik-users"></i><span>Pegawai</span></a>
+                            <a href="{{ route('realisasi.index') }}"><i class="ik ik-book-open"></i><span>Realisasi</span></a>
                         </div>
                         <div class="app-item">
-                            <a href="{{ route('user.index') }}"><i class="ik ik-user"></i><span>User</span></a>
+                            <a href="{{ route('pegawai.index') }}"><i class="ik ik-users"></i><span>Pegawai</span></a>
                         </div>
                         <div class="app-item">
                             <a href="#"><i class="ik ik-printer"></i><span>Laporan</span></a>

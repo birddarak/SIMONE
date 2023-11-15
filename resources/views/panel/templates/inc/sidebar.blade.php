@@ -18,10 +18,6 @@
                 class="nav-item {{ in_array(Route::currentRouteName(), ['pegawai.index', 'pegawai.create', 'pegawai.edit']) ? 'active' : '' }}">
                 <a href="{{ route('pegawai.index') }}"><i class="ik ik-users"></i><span>Pegawai</span></a>
             </div>
-            <div
-                class="nav-item {{ in_array(Route::currentRouteName(), ['user.index', 'user.create', 'user.edit']) ? 'active' : '' }}">
-                <a href="{{ route('user.index') }}"><i class="ik ik-user"></i><span>User</span></a>
-            </div>
             <div class="nav-item">
                 <a href="#"><i class="ik ik-printer"></i><span>Laporan</span></a>
             </div>
