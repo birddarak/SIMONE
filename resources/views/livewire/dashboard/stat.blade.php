@@ -1,4 +1,5 @@
 <div class="container-fluid">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <div class="row mb-4">
         <div class="col-12 col-md-3">
             <select class="form-control" wire:model='tahun_anggaran' wire:change='index()'>
@@ -108,4 +109,44 @@
             </div>
         </div>
     </div>
+
+    <div class="row clearfix">
+        <div class="col-12">
+            <h5 class="m-0">
+                <strong class="text-dark">
+                    Pagu Terserap
+                </strong>
+            </h5>
+            <div id="chart"></div>
+        </div>
+    </div>
+
+    <script>
+        var options = {
+            series: [{
+                data: [50000000, 36200000, 40200000, 80000000]
+            }],
+            chart: {
+                type: 'bar',
+                height: 350
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    horizontal: true,
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September',
+                    'Oktober', 'November', 'Desember'
+                ],
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    </script>
 </div>
