@@ -4,6 +4,7 @@ namespace App\Livewire\Dashboard;
 
 use App\Models\Kegiatan;
 use App\Models\Program;
+use App\Models\RealisasiSubkegiatan;
 use App\Models\Subkegiatan;
 use Livewire\Component;
 
@@ -15,26 +16,58 @@ class Stat extends Component
 
     public function render()
     {
+        // $this->graph();
         return $this->index();
     }
 
     public function index()
     {
-        $data['programs'] = Program::where('tahun_anggaran', $this->tahun_anggaran)->where('apbd', $this->apbd);
-        $data['progs'] = Program::where('tahun_anggaran', $this->tahun_anggaran)->where('apbd', $this->apbd)->get();
-        $kegiatans = Kegiatan::whereHas('program', function ($query) {
+        // Get Program, Kegiatan, Sub Kegiatan
+        $data['programs'] = Program::where('tahun_anggaran', $this->tahun_anggaran)->where('apbd', $this->apbd)->get();
+        $data['kegiatans'] = Kegiatan::whereHas('program', function ($query) {
             return $query->where('tahun_anggaran', $this->tahun_anggaran)->where('apbd', $this->apbd);
-        });
-        $subkegiatans = Subkegiatan::whereHas('kegiatan.program', function ($query) {
+        })->get();
+        $data['subkegiatans'] = Subkegiatan::whereHas('kegiatan.program', function ($query) {
             return $query->where('tahun_anggaran', $this->tahun_anggaran)->where('apbd', $this->apbd);
-        });
+        })->get();
 
+        // Jumlah Program, Kegiatan, Sub Kegiatan
         $data['total_program'] = $data['programs']->count();
-        $data['total_kegiatan'] = $kegiatans->count();
-        $data['total_subkegiatan'] = $subkegiatans->count();
+        $data['total_kegiatan'] = $data['kegiatans']->count();
+        $data['total_subkegiatan'] = $data['subkegiatans']->count();
 
-        $data['total_pagu'] = $subkegiatans->sum('pagu_awal');
+        // Total Pagu Seluruh Sub Kegiatan & Total Pagu Realisasi Sub Kegiatan
+        $data['total_pagu'] = $data['subkegiatans']->sum('pagu_awal');
+        $data['pagu_terserap'] = 0;
+        foreach ($data['subkegiatans'] as $subkegiatan) {
+            $data['pagu_terserap'] += $subkegiatan->realisasi_subkegiatan->sum('pagu');
+        }
+
+        // graph
+        $bulan = [];
+        
+        $data['ta'] = $this->tahun_anggaran;
+        $data['apbd'] = $this->apbd;
+        $realisasi_subkegiatan = RealisasiSubkegiatan::whereHas('subkegiatan.kegiatan.program', function($query) use ($data){
+            return $query->where('tahun_anggaran', $data['ta'])->where('apbd', $data['apbd']);
+        })->get();
+
+        for ($i = 1; $i <= 12; $i++) {
+            $realisasi_subkegiatan = $realisasi_subkegiatan->whereMonth('tanggal',$i)->sum('pagu');
+            $bulan[] = $realisasi_subkegiatan;
+        }
+        $data['bulan'] = json_encode($bulan);
 
         return view('livewire.dashboard.stat', $data);
     }
+
+    // public function graph()
+    // {
+    //     // gunanya function ini adalah untuk mengambil nama bulan pada field tanggal pada tabel realisasi_subkegiatan
+    //     // apabila nama bulan yang diambil sama dengan bulan yg dimaksud maka tampilkan nilainya berupa json
+
+
+      
+    //     // dd($this->char);
+    // }
 }

@@ -2,7 +2,7 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <div class="row mb-4">
         <div class="col-12 col-md-3">
-            <select class="form-control" wire:model='tahun_anggaran' wire:change='index()'>
+            <select class="form-control" wire:model.live='tahun_anggaran'  >
                 @for ($i = 2019; $i <= date('Y'); $i++)
                     <option value="{{ $i }}">
                         {{ $i }}
@@ -11,7 +11,7 @@
             </select>
         </div>
         <div class="col-12 col-md-3">
-            <select class="form-control" wire:model='apbd' wire:change='index()'>
+            <select class="form-control" wire:model.live='apbd' >
                 <option value="murni">MURNI</option>
                 <option value="perubahan">PERUBAHAN</option>
             </select>
@@ -86,20 +86,8 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="state">
-                            @php
-                                $total_terserap = 0;
-                                foreach ($progs as $prog) {
-                                    foreach ($prog->kegiatan as $kegiatan) {
-                                        foreach ($kegiatan->subkegiatan as $subkegiatan) {
-                                            foreach ($subkegiatan->realisasi_subkegiatan as $realisasi_subkegiatan) {
-                                                $total_terserap += $realisasi_subkegiatan->pagu;
-                                            }
-                                        }
-                                    }
-                                }
-                            @endphp
                             <h6>Total Pagu Terserap</h6>
-                            <h2>@currency($total_terserap)</h2>
+                            <h2>@currency($pagu_terserap)</h2>
                         </div>
                         <div class="icon">
                             <i class="ik ik-shopping-cart"></i>
@@ -124,7 +112,7 @@
     <script>
         var options = {
             series: [{
-                data: [50000000, 36200000, 40200000, 80000000]
+                data: {{ $char }}
             }],
             chart: {
                 type: 'bar',
