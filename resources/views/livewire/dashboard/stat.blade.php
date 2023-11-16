@@ -18,7 +18,9 @@
         </div>
         <div class="col-12 col-md-2">
             <button class="btn btn-primary">
-                <i class="fas fa-search fa-fw"></i>
+                Refresh Chart
+                &nbsp;
+                <i class="ik ik-refresh-ccw"></i>
             </button>
         </div>
     </form>

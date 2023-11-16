@@ -2,6 +2,7 @@
 
 namespace App\Livewire\DPA\Subkegiatan;
 
+use App\Models\Kegiatan;
 use App\Models\Pegawai;
 use App\Models\Subkegiatan;
 use Livewire\Component;
@@ -19,8 +20,9 @@ class Table extends Component
 
     public function render()
     {
-        $data['pegawais'] = Pegawai::all();
+        $data['kegiatan'] = Kegiatan::where('uuid', $this->kegiatan->uuid)->first();
         $data['subKegiatans'] = Subkegiatan::where('kegiatan_id', $this->kegiatan->id)->get();
+        $data['pegawais'] = Pegawai::all();
         return view('livewire.d-p-a.subkegiatan.table', $data);
     }
 
