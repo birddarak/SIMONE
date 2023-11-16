@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <div class="row mb-4">
+    <form action="" class="row mb-4">
         <div class="col-12 col-md-3">
-            <select class="form-control" wire:model.live='tahun_anggaran'  >
+            <select class="form-control" wire:model.live='tahun_anggaran' name="tahun">
                 @for ($i = 2019; $i <= date('Y'); $i++)
                     <option value="{{ $i }}">
                         {{ $i }}
@@ -11,12 +11,17 @@
             </select>
         </div>
         <div class="col-12 col-md-3">
-            <select class="form-control" wire:model.live='apbd' >
+            <select class="form-control" wire:model.live='apbd' name="apbd">
                 <option value="murni">MURNI</option>
                 <option value="perubahan">PERUBAHAN</option>
             </select>
         </div>
-    </div>
+        <div class="col-12 col-md-2">
+            <button class="btn btn-primary">
+                <i class="fas fa-search fa-fw"></i>
+            </button>
+        </div>
+    </form>
 
     <div class="row clearfix">
         <div class="col-lg-4 col-md-6 col-sm-12">
@@ -112,7 +117,7 @@
     <script>
         var options = {
             series: [{
-                data: {{ $char }}
+                data: {{ $chartData }}
             }],
             chart: {
                 type: 'bar',

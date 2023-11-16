@@ -12,7 +12,7 @@ class Stat extends Component
 {
 
     // Model Filter
-    public  $tahun_anggaran = '2023', $apbd = 'murni';
+    public  $tahun_anggaran = '2023', $apbd = 'murni', $chartData;
 
     public function render()
     {
@@ -45,29 +45,19 @@ class Stat extends Component
 
         // graph
         $bulan = [];
-        
+
         $data['ta'] = $this->tahun_anggaran;
         $data['apbd'] = $this->apbd;
-        $realisasi_subkegiatan = RealisasiSubkegiatan::whereHas('subkegiatan.kegiatan.program', function($query) use ($data){
-            return $query->where('tahun_anggaran', $data['ta'])->where('apbd', $data['apbd']);
-        })->get();
 
         for ($i = 1; $i <= 12; $i++) {
-            $realisasi_subkegiatan = $realisasi_subkegiatan->whereMonth('tanggal',$i)->sum('pagu');
+            $realisasi_subkegiatan =  RealisasiSubkegiatan::whereHas('subkegiatan.kegiatan.program', function ($query) use ($data) {
+                return $query->where('tahun_anggaran', request()->input('tahun'))->where('apbd', request()->input('apbd'));
+            })
+                ->whereMonth('tanggal', $i)->sum('pagu');
             $bulan[] = $realisasi_subkegiatan;
         }
-        $data['bulan'] = json_encode($bulan);
+        $this->chartData = json_encode($bulan);
 
         return view('livewire.dashboard.stat', $data);
     }
-
-    // public function graph()
-    // {
-    //     // gunanya function ini adalah untuk mengambil nama bulan pada field tanggal pada tabel realisasi_subkegiatan
-    //     // apabila nama bulan yang diambil sama dengan bulan yg dimaksud maka tampilkan nilainya berupa json
-
-
-      
-    //     // dd($this->char);
-    // }
 }
