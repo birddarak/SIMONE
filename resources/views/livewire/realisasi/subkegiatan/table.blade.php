@@ -90,7 +90,7 @@
             <tbody>
 
                 {{-- data --}}
-                @foreach ($subkegiatans as $subkegiatan)
+                @forelse ($subkegiatans as $subkegiatan)
                 <tr class="text-primary">
                     <td>
                         <i class="fas fa-arrow-right"></i>
@@ -254,7 +254,11 @@
                     </td>
                 </tr>
                 @endforeach
-                @endforeach
+                @empty
+                <tr class="">
+                    <td class="text-center" colspan="6">Sub Kegiatan Masih Kosong, Mohon Tambahkan dimenu DPA</td>
+                </tr>
+                @endforelse
 
             </tbody>
         </table>

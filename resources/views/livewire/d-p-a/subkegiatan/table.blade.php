@@ -147,7 +147,7 @@
                 {{-- --}}
 
                 {{-- data --}}
-                @foreach ($subKegiatans as $subkegiatan)
+                @forelse ($subKegiatans as $subkegiatan)
                 <tr>
                     <td>
                         <input type="text" value="{{ $subkegiatan->kode }}"
@@ -192,7 +192,11 @@
                         </div>
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr class="">
+                    <td class="text-center" colspan="5">Sub Kegiatan Masih Kosong</td>
+                </tr>
+                @endforelse
                 {{-- --}}
 
             </tbody>

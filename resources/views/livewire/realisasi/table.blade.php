@@ -30,7 +30,7 @@
         <tbody>
 
             {{-- data --}}
-            @foreach ($programs as $program)
+            @forelse ($programs as $program)
             <tr>
                 <td>
                     {{ $program->kode }}
@@ -80,7 +80,11 @@
                     </div>
                 </td>
             </tr>
-            @endforeach
+            @empty
+            <tr class="">
+                <td class="text-center" colspan="6">Program Masih Kosong, Mohon Tambahkan dimenu DPA</td>
+            </tr>
+            @endforelse
             {{-- --}}
 
         </tbody>
