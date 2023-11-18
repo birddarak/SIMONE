@@ -2,10 +2,10 @@
 
 namespace App\Livewire\DPA\Subkegiatan;
 
-use App\Models\Kegiatan;
 use App\Models\Pegawai;
-use App\Models\Subkegiatan;
 use Livewire\Component;
+use App\Models\Kegiatan;
+use App\Models\Subkegiatan;
 
 class Table extends Component
 {

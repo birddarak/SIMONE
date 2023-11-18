@@ -79,7 +79,7 @@
             <tbody>
 
                 {{-- data --}}
-                @foreach ($kegiatans as $kegiatan)
+                @forelse ($kegiatans as $kegiatan)
                 <tr>
                     <td>
                         {{ $kegiatan->kode }}

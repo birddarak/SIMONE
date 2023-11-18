@@ -8,7 +8,7 @@ use App\Models\Program;
 class RealisasiController extends Controller
 {
     public function index(){
-        return view('panel.pages.realisasi.index');
+        return view('panel.pages.realisasi.program');
     }
 
     public function realisasi_kegiatan(Program $program){

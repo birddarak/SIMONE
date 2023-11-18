@@ -9,7 +9,7 @@ class DpaController extends Controller
 {
     public function index()
     {
-        return view('panel.pages.dpa.index');
+        return view('panel.pages.dpa.program');
     }
 
     public function dpa_kegiatan(Program $program)

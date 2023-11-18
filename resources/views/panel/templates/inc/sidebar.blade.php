@@ -7,10 +7,10 @@
             </div>
 
             <div class="nav-lavel">Perencanaan</div>
-            <div class="nav-item {{ in_array(Route::currentRouteName(), ['dpa.index']) ? 'active' : '' }}">
+            <div class="nav-item {{ in_array(Route::currentRouteName(), ['dpa.index', 'dpa.kegiatan', 'dpa.subkegiatan']) ? 'active' : '' }}">
                 <a href="{{ route('dpa.index') }}"><i class="ik ik-book"></i><span>DPA</span></a>
             </div>
-            <div class="nav-item {{ in_array(Route::currentRouteName(), ['realisasi.index']) ? 'active' : '' }}">
+            <div class="nav-item {{ in_array(Route::currentRouteName(), ['realisasi.index', 'realisasi.kegiatan', 'realisasi.subkegiatan']) ? 'active' : '' }}">
                 <a href="{{ route('realisasi.index') }}"><i class="ik ik-book-open"></i><span>Realisasi</span></a>
             </div>
             <div class="nav-lavel">Master Data</div>

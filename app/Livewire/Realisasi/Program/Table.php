@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Realisasi;
+namespace App\Livewire\Realisasi\Program;
 
 use App\Models\Pegawai;
 use App\Models\Program;
@@ -26,6 +26,6 @@ class Table extends Component
             ->where('tahun_anggaran', $this->tahun_anggaran)->where('apbd', $this->apbd)
             ->get();
         $data['pegawais'] = Pegawai::all();
-        return view('livewire.realisasi.table', $data);
+        return view('livewire.realisasi.program.table', $data);
     }
 }

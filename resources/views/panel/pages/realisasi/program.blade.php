@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
-                        @livewire('realisasi.table')
+                        @livewire('realisasi.program.table')
                     </div>
                 </div>
             </div>
