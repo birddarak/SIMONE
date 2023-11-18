@@ -42,7 +42,8 @@ class Table extends Component
 
         $subkegiatan = Subkegiatan::where('uuid', $uuid)->first();
 
-        $file = $this->file->store('assets/sub-kegiatan/realisasi', 'public');
+        $file = (!is_null($this->file)) ? $this->file->store('assets/sub-kegiatan/realisasi', 'public') : NULL;
+        $rincian = (!is_null($this->rincian)) ? $this->rincian : NULL;
 
         $data = [
             'uuid' => str()->uuid(),
@@ -52,7 +53,7 @@ class Table extends Component
             'target' => $this->target,
             'satuan' => $this->satuan,
             'pagu' => $this->pagu,
-            'rincian' => $this->rincian,
+            'keterangan' => $rincian,
             'file' => $file,
             'satuan' => $this->satuan,
         ];
@@ -60,7 +61,7 @@ class Table extends Component
         RealisasiSubkegiatan::create($data);
 
         session()->flash('message', 'Berhasil menambahkan realisasi triwulan <b>' . $this->triwulan . '</b> kedalam Sub Kegiatan <b>' . $subkegiatan->title .'</b>');
-        $this->reset(['triwulan', 'target',  'pagu', 'rincian', 'file', 'satuan']);
+        $this->reset(['triwulan', 'tanggal', 'target', 'pagu', 'rincian', 'file', 'satuan']);
     }
 
     public function update($uuid, $field, $value)
