@@ -11,9 +11,18 @@ class Program extends Model
 
     protected $guarded = ['id'];
 
+    public function indikator_program(){
+        return $this->hasMany(IndikatorProgram::class);
+    }
+
     public function kegiatan()
     {
         return $this->hasMany(Kegiatan::class);
+    }
+
+    public function realisasi_program()
+    {
+        return $this->hasMany(RealisasiProgram::class);
     }
 
     public function pegawai()

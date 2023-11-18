@@ -11,6 +11,11 @@ class Kegiatan extends Model
 
     protected $guarded = ['id'];
 
+    public function indikator_kegiatan()
+    {
+        return $this->hasMany(IndikatorKegiatan::class);
+    }
+
     public function program()
     {
         return $this->belongsTo(Program::class);

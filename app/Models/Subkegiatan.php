@@ -11,6 +11,11 @@ class Subkegiatan extends Model
 
     protected $guarded = ['id'];
 
+    public function indikator_subkegiatan()
+    {
+        return $this->hasMany(IndikatorSubkegiatan::class);
+    }
+
     public function kegiatan()
     {
         return $this->belongsTo(Kegiatan::class);
