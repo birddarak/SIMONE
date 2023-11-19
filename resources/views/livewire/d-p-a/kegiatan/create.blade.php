@@ -1,8 +1,7 @@
 <tr>
     <td>
-        <input type="text" placeholder="KODE" class="form-control @error('kode')
-    is-invalid
-    @enderror" wire:model="kode">
+        <input type="text" placeholder="KODE" class="form-control @error('kode') is-invalid @enderror"
+            wire:model="kode">
 
         @error('kode')
         <span class="text-danger">
@@ -11,9 +10,8 @@
         @enderror
     </td>
     <td>
-        <input type="text" placeholder="KEGIATAN" class="form-control @error('kegiatan')
-    is-invalid
-@enderror" wire:model='kegiatan'>
+        <input type="text" placeholder="KEGIATAN" class="form-control @error('kegiatan') is-invalid @enderror"
+            wire:model='kegiatan'>
 
         @error('kegiatan')
         <span class="text-danger">
@@ -22,9 +20,8 @@
         @enderror
     </td>
     <td>
-        <select class="form-control @error('pegawai_id')
-        is-invalid
-    @enderror" wire:model="pegawai_id" style="width: 100% !important;">
+        <select class="form-control @error('pegawai_id') is-invalid @enderror" wire:model="pegawai_id"
+            style="width: 100% !important;">
             <option value="">Pilih</option>
             @forelse ($pegawais as $pegawai)
             <option value="{{ $pegawai->uuid }}">{{ $pegawai->nama }}</option>
@@ -40,8 +37,10 @@
     </td>
     <td> </td>
     <td>
-        <button class="btn btn-primary btn-sm btn-block" wire:click='store'>
-            <i class="ik ik-save"></i>
-        </button>
+        <div class="list-actions d-flex justify-content-around form-inline">
+            <button class="btn btn-success btn-icon ml-2 mb-2" wire:click='storeKegiatan'>
+                <i class="ik ik-plus"></i>
+            </button>
+        </div>
     </td>
 </tr>

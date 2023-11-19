@@ -2,6 +2,7 @@
 
 namespace App\Livewire\DPA\Program;
 
+use App\Models\IndikatorProgram;
 use App\Models\Pegawai;
 use App\Models\Program;
 use Livewire\Component;
@@ -13,6 +14,8 @@ class Table extends Component
 
     // Model Form
     public $kode, $program, $pegawai_id;
+
+    public $indikator = [], $target = [], $satuan = [];
 
     public function render()
     {
@@ -29,7 +32,7 @@ class Table extends Component
     }
 
 
-    public function store()
+    public function storeProgram()
     {
         $this->validate([
             'tahun_anggaran' => 'required|string',
@@ -57,7 +60,39 @@ class Table extends Component
         $this->reset(['kode', 'program', 'pegawai_id']);
     }
 
-    public function update($uuid, $field, $value)
+    public function storeIndikator(Program $program)
+    {
+        if (empty($this->indikator)) {
+            $this->indikator[$program->uuid] = null;
+        }
+        if (empty($this->target)) {
+            $this->target[$program->uuid] = null;
+        }
+        if (empty($this->satuan)) {
+            $this->satuan[$program->uuid] = null;
+        }
+
+        $this->validate([
+            'indikator.' . $program->uuid => 'required|string',
+            'target.' . $program->uuid => 'required|string',
+            'satuan.' . $program->uuid => 'required|string',
+        ]);
+
+        $data = [
+            'uuid' => str()->uuid(),
+            'program_id' => $program->id,
+            'title' => $this->indikator[$program->uuid],
+            'target' => $this->target[$program->uuid],
+            'satuan' => $this->satuan[$program->uuid],
+        ];
+
+        IndikatorProgram::create($data);
+
+        session()->flash('message', 'Berhasil menambahkan Indikator <b>' . $this->indikator[$program->uuid] . '</b>');
+        $this->reset(['indikator', 'target', 'satuan']);
+    }
+
+    public function updateProgram($uuid, $field, $value)
     {
         $pegawai = ($field == 'pegawai_id') ? Pegawai::where('uuid', $value)->first() : null;
         Program::where('uuid', $uuid)
@@ -68,8 +103,21 @@ class Table extends Component
             );
     }
 
-    public function destroy($uuid)
+    public function updateIndikator($uuid, $field, $value)
+    {
+        IndikatorProgram::where('uuid', $uuid)
+            ->update([
+                $field => $value
+            ]);
+    }
+
+    public function destroyProgram($uuid)
     {
         Program::where('uuid', $uuid)->delete();
+    }
+
+    public function destroyIndikator($uuid)
+    {
+        IndikatorProgram::where('uuid', $uuid)->delete();
     }
 }

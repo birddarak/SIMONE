@@ -1,8 +1,7 @@
 <tr>
     <td>
-        <input type="text" placeholder="KODE" class="form-control @error('kode')
-    is-invalid
-    @enderror" wire:model="kode">
+        <input type="text" placeholder="KODE" class="form-control @error('kode') is-invalid @enderror"
+            wire:model="kode">
 
         @error('kode')
         <span class="text-danger">
@@ -11,9 +10,8 @@
         @enderror
     </td>
     <td>
-        <input type="text" placeholder="SUB KEGIATAN" class="form-control @error('subkegiatan')
-    is-invalid
-@enderror" wire:model='subkegiatan'>
+        <input type="text" placeholder="SUB KEGIATAN" class="form-control @error('subkegiatan') is-invalid @enderror"
+            wire:model='subkegiatan'>
 
         @error('subkegiatan')
         <span class="text-danger">
@@ -23,8 +21,7 @@
     </td>
     <td>
         <select class="form-control @error('pegawai_id')
-        is-invalid
-    @enderror" wire:model="pegawai_id" style="width: 100% !important;">
+        is-invalid @enderror" wire:model="pegawai_id" style="width: 100% !important;">
             <option value="">Pilih</option>
             @forelse ($pegawais as $pegawai)
             <option value="{{ $pegawai->uuid }}">{{ $pegawai->nama }}</option>
@@ -39,9 +36,8 @@
         @enderror
     </td>
     <td>
-        <input type="text" placeholder="PAGU VALIDASI" class="form-control @error('pagu_awal')
-is-invalid
-@enderror" wire:model='pagu_awal'>
+        <input type="text" placeholder="PAGU VALIDASI" class="form-control @error('pagu_awal') is-invalid @enderror"
+            wire:model='pagu_awal'>
 
         @error('pagu_awal')
         <span class="text-danger">
@@ -50,8 +46,10 @@ is-invalid
         @enderror
     </td>
     <td>
-        <button class="btn btn-primary btn-sm btn-block" wire:click='store'>
-            <i class="ik ik-save"></i>
-        </button>
+        <div class="list-actions d-flex justify-content-around form-inline">
+            <button class="btn btn-success btn-icon ml-2 mb-2" wire:click='storeSubkegiatan'>
+                <i class="ik ik-plus"></i>
+            </button>
+        </div>
     </td>
 </tr>

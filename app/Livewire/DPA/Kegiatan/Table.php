@@ -2,6 +2,7 @@
 
 namespace App\Livewire\DPA\Kegiatan;
 
+use App\Models\IndikatorKegiatan;
 use App\Models\Kegiatan;
 use App\Models\Pegawai;
 use App\Models\Program;
@@ -13,6 +14,8 @@ class Table extends Component
     public $program;
 
     public $kode, $kegiatan, $pegawai_id;
+
+    public $indikator = [], $target = [], $satuan = [];
 
     public function mount($program)
     {
@@ -29,7 +32,7 @@ class Table extends Component
         return view('livewire.d-p-a.kegiatan.table', $data);
     }
 
-    public function store()
+    public function storeKegiatan()
     {
         $this->validate([
             'kode' => 'required|string|max:100',
@@ -53,7 +56,38 @@ class Table extends Component
         $this->reset(['kode', 'kegiatan', 'pegawai_id']);
     }
 
-    public function update($uuid, $field, $value)
+    public function storeIndikator(Kegiatan $kegiatan){
+        if (empty($this->indikator)) {
+            $this->indikator[$kegiatan->uuid] = null;
+        }
+        if (empty($this->target)) {
+            $this->target[$kegiatan->uuid] = null;
+        }
+        if (empty($this->satuan)) {
+            $this->satuan[$kegiatan->uuid] = null;
+        }
+
+        $this->validate([
+            'indikator.' . $kegiatan->uuid => 'required|string',
+            'target.' . $kegiatan->uuid => 'required|string',
+            'satuan.' . $kegiatan->uuid => 'required|string',
+        ]);
+
+        $data = [
+            'uuid' => str()->uuid(),
+            'kegiatan_id' => $kegiatan->id,
+            'title' => $this->indikator[$kegiatan->uuid],
+            'target' => $this->target[$kegiatan->uuid],
+            'satuan' => $this->satuan[$kegiatan->uuid],
+        ];
+
+        IndikatorKegiatan::create($data);
+
+        session()->flash('message', 'Berhasil menambahkan Indikator <b>' . $this->indikator[$kegiatan->uuid] . '</b>');
+        $this->reset(['indikator', 'target', 'satuan']);
+    }
+
+    public function updateKegiatan($uuid, $field, $value)
     {
         $pegawai = ($field == 'pegawai_id') ? Pegawai::where('uuid', $value)->first() : null;
         Kegiatan::where('uuid', $uuid)
@@ -64,8 +98,23 @@ class Table extends Component
             );
     }
 
-    public function destroy($uuid)
+    public function updateIndikator($uuid, $field, $value)
+    {
+        IndikatorKegiatan::where('uuid', $uuid)
+            ->update(
+                [
+                    $field => $value
+                ]
+            );
+    }
+
+    public function destroyKegiatan($uuid)
     {
         Kegiatan::where('uuid', $uuid)->delete();
+    }
+
+    public function destroyIndikator($uuid)
+    {
+        IndikatorKegiatan::where('uuid', $uuid)->delete();
     }
 }
