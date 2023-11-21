@@ -51,7 +51,7 @@ class Table extends Component
         Subkegiatan::create($data);
 
         session()->flash('message', 'Berhasil menambahkan <b>' . $this->subkegiatan . '</b> kedalam Sub Kegiatan');
-        $this->reset(['kode', 'pegawai_id', 'pagu_awal']);
+        $this->reset(['kode', 'subkegiatan', 'pegawai_id', 'pagu_awal']);
     }
 
     public function storeIndikator(Subkegiatan $subkegiatan)

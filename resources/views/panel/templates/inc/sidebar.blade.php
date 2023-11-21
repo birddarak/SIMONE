@@ -19,7 +19,7 @@
                 <a href="{{ route('pegawai.index') }}"><i class="ik ik-users"></i><span>Pegawai</span></a>
             </div>
             <div class="nav-item">
-                <a href="#"><i class="ik ik-printer"></i><span>Laporan</span></a>
+                <a href="{{ route('laporan.monev') }}"><i class="ik ik-printer"></i><span>Laporan</span></a>
             </div>
         </nav>
     </div>

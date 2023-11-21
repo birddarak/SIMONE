@@ -29,4 +29,10 @@ class Program extends Model
     {
         return $this->belongsTo(Pegawai::class);
     }
+
+    public function sumTotalSubKeg(){
+        return $this->kegiatan->flatMap(function ($kegiatan){
+            return $kegiatan->subkegiatan->pluck('pagu_awal');
+        })->sum();
+    }
 }

@@ -16,7 +16,8 @@ class RealisasiSubkegiatan extends Model
         return $this->belongsTo(Subkegiatan::class);
     }
 
-    public function rincian_belanja(){
+    public function rincian_belanja()
+    {
         return $this->hasMany(RincianBelanja::class);
     }
 }
