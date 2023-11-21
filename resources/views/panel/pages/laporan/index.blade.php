@@ -112,7 +112,7 @@
                         @endphp --}}
                         @foreach ($prog->indikator_program as $ip)
                         <tr style="background-color: #F8CBAD">
-                            {!! ($count_ip > 1) ? '<td>' . $prog->kode . ' ' . $prog->title . '</td>' : '<td></td>' !!}
+                            <td>{{ $prog->kode . ' ' . $prog->title }}</td>
                             <td>{{ $ip->title }}</td>
                             <td class="text-center">{{ $ip->target . ' ' . $ip->satuan }}</td>
                             <td class="text-right">
