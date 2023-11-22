@@ -1,6 +1,6 @@
 <tr class=" text-dark" style="background-color: rgb(206, 203, 203);">
     <td>Triwulan</td>
-    <td>Capaian & Satuan</td>
+    <td class="text-center">Capaian & Satuan</td>
     <td>Pagu</td>
     <td>Rincian</td>
     <td>File</td>
@@ -23,12 +23,12 @@
                 <option value="IV">IV</option>
             </select>
             @error('triwulan')
-                <span class="text-danger">{{ $message }}</span>
+            <span class="text-danger">{{ $message }}</span>
             @enderror
             <input type="date" class="form-control" placeholder="Tanggal" wire:model='tanggal'
                 value="{{ date('Y-m-d') }}">
             @error('target')
-                <span class="text-danger">{{ $message }}</span>
+            <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
     </td>
@@ -36,12 +36,12 @@
         <div class="input-group m-0">
             <input type="text" class="form-control" placeholder="Capaian" wire:model='target'>
             @error('target')
-                <span class="text-danger">{{ $message }}</span>
+            <span class="text-danger">{{ $message }}</span>
             @enderror
             /
             <input type="text" class="form-control" placeholder="Satuan" wire:model='satuan'>
             @error('target')
-                <span class="text-danger">{{ $message }}</span>
+            <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
     </td>
@@ -53,19 +53,19 @@
             <input type="number" class="form-control" wire:model='pagu'>
         </div>
         @error('pagu')
-            <span class="text-danger">{{ $message }}</span>
+        <span class="text-danger">{{ $message }}</span>
         @enderror
     </td>
     <td class="border">
         <input type="text" class="form-control" placeholder="RINCIAN" wire:model='rincian'>
         @error('rincian')
-            <span class="text-danger">{{ $message }}</span>
+        <span class="text-danger">{{ $message }}</span>
         @enderror
     </td>
     <td>
         <input type="file" class="form-control" placeholder="FILE" wire:model='file'>
         @error('file')
-            <span class="text-danger">{{ $message }}</span>
+        <span class="text-danger">{{ $message }}</span>
         @enderror
     </td>
     <td class="border">

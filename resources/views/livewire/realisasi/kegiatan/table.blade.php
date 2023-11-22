@@ -6,8 +6,9 @@
                 <tr>
                     <th class="text-center">KODE</th>
                     <th>KEGIATAN</th>
+                    <th>TARGET</th>
                     <th>PENANGGUNG JAWAB</th>
-                    <th>PAGU VALIDASI</th>
+                    <th>PAGU</th>
                     <th>PAGU TERSERAP</th>
                     <th>AKSI</th>
                 </tr>
@@ -24,6 +25,9 @@
                         {{ $kegiatan->title }}
                     </td>
                     <td>
+                        {{ $kegiatan->target . ' ' . $kegiatan->satuan }}
+                    </td>
+                    <td>
                         {{ $kegiatan->pegawai->nama }}
                     </td>
                     <td>
@@ -31,7 +35,7 @@
                         @php
                         $pagu_validasi = 0;
                         foreach ($kegiatan->subkegiatan as $sub) {
-                        $pagu_validasi += $sub->pagu_awal;
+                        $pagu_validasi += $sub->pagu;
                         }
                         @endphp
 
@@ -62,9 +66,15 @@
                         </div>
                     </td>
                 </tr>
+                @foreach ($kegiatan->indikator_kegiatan as $indikator_kegiatan)
+                <tr>
+                    <td></td>
+                    <td colspan="6">{{ $indikator_kegiatan->title }}</td>
+                </tr>
+                @endforeach
                 @empty
                 <tr class="">
-                    <td class="text-center" colspan="6">Kegiatan Masih Kosong, Mohon Tambahkan dimenu DPA</td>
+                    <td class="text-center" colspan="7">Kegiatan Masih Kosong, Mohon Tambahkan dimenu DPA</td>
                 </tr>
                 @endforelse
                 {{-- --}}

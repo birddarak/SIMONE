@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignId('realisasi_subkegiatan_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('rincian');
             $table->date('tanggal');
+            $table->text('file');
+            $table->string('keterangan');
             $table->double('pagu');
             $table->timestamps();
         });

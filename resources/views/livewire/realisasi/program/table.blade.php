@@ -1,12 +1,14 @@
 <div>
+    @include('livewire.partials.filter')
     <div class="table-responsive">
         <table class="table table-sm">
             <thead class="thead-dark">
                 <tr>
                     <th class="text-center">KODE</th>
                     <th>PROGRAM</th>
+                    <th>TARGET</th>
                     <th>PENANGGUNG JAWAB</th>
-                    <th>PAGU VALIDASI</th>
+                    <th>PAGU</th>
                     <th>PAGU TERSERAP</th>
                     <th>AKSI</th>
                 </tr>
@@ -23,6 +25,9 @@
                         {{ $program->title }}
                     </td>
                     <td>
+                        {{ $program->target . ' ' . $program->satuan }}
+                    </td>
+                    <td>
                         {{ $program->pegawai->nama }}
                     </td>
                     <td>
@@ -31,7 +36,7 @@
                         $pagu_validasi = 0;
                         foreach ($program->kegiatan as $keg) {
                         foreach ($keg->subkegiatan as $sub) {
-                        $pagu_validasi += $sub->pagu_awal;
+                        $pagu_validasi += $sub->pagu;
                         }
                         }
                         @endphp
@@ -64,9 +69,15 @@
                         </div>
                     </td>
                 </tr>
+                @foreach ($program->indikator_program as $indikator_program)
+                <tr>
+                    <td></td>
+                    <td colspan="6">{{ $indikator_program->title }}</td>
+                </tr>
+                @endforeach
                 @empty
                 <tr class="">
-                    <td class="text-center" colspan="6">Program Masih Kosong, Mohon Tambahkan dimenu DPA</td>
+                    <td class="text-center" colspan="7">Program Masih Kosong, Mohon Tambahkan dimenu DPA</td>
                 </tr>
                 @endforelse
                 {{-- --}}
