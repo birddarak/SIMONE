@@ -20,9 +20,30 @@
         @enderror
     </td>
     <td>
+        <div class="input-group m-0">
+            <input type="text" placeholder="TARGET" class="form-control @error('target') is-invalid @enderror"
+                wire:model='target'>
+
+            @error('target')
+            <span class="text-danger">
+                Mohon isi Nama Target
+            </span>
+            @enderror
+            /
+            <input type="text" placeholder="SATUAN" class="form-control @error('satuan') is-invalid @enderror"
+                wire:model='satuan'>
+            
+            @error('satuan')
+            <span class="text-danger">
+                Mohon isi Nama Satuan
+            </span>
+            @enderror
+        </div>
+    </td>
+    <td>
         <select class="form-control @error('pegawai_id')
         is-invalid @enderror" wire:model="pegawai_id" style="width: 100% !important;">
-            <option value="">Pilih</option>
+            <option value="">PENANGGUNG JAWAB</option>
             @forelse ($pegawais as $pegawai)
             <option value="{{ $pegawai->uuid }}">{{ $pegawai->nama }}</option>
             @empty
@@ -36,12 +57,12 @@
         @enderror
     </td>
     <td>
-        <input type="text" placeholder="PAGU VALIDASI" class="form-control @error('pagu_awal') is-invalid @enderror"
-            wire:model='pagu_awal'>
+        <input type="text" placeholder="PAGU" class="form-control @error('pagu') is-invalid @enderror"
+            wire:model='pagu'>
 
-        @error('pagu_awal')
+        @error('pagu')
         <span class="text-danger">
-            Mohon isi Nama Pagu
+            Mohon isi Pagu
         </span>
         @enderror
     </td>

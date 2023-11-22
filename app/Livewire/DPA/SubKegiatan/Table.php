@@ -12,9 +12,9 @@ class Table extends Component
 {
     public $kegiatan;
 
-    public $kode, $subkegiatan, $pegawai_id, $pagu_awal;
+    public $pegawai_id, $kode, $subkegiatan, $target, $satuan, $pagu;
 
-    public $indikator = [], $target = [], $satuan = [];
+    public $indikator = [];
 
     public function mount($kegiatan)
     {
@@ -32,26 +32,29 @@ class Table extends Component
     public function storeSubkegiatan()
     {
         $this->validate([
+            'pegawai_id' => 'required|string',
             'kode' => 'required|string',
             'subkegiatan' => 'required|string',
-            'pegawai_id' => 'required|string',
+            'target' => 'required|string',
+            'satuan' => 'required|string',
         ]);
 
         $pegawai = Pegawai::where('uuid', $this->pegawai_id)->first();
         $data = [
-            'uuid' => str()->uuid(),
+            'pegawai_id' => $pegawai->id,
             'kegiatan_id' => $this->kegiatan->id,
+            'uuid' => str()->uuid(),
             'kode' => $this->kode,
             'title' => $this->subkegiatan,
-            'pegawai_id' => $pegawai->id,
-            'pagu_awal' => $this->pagu_awal,
-            'pagu_akhir' => 0
+            'target' => $this->target,
+            'satuan' => $this->satuan,
+            'pagu' => $this->pagu,
         ];
 
         Subkegiatan::create($data);
 
         session()->flash('message', 'Berhasil menambahkan <b>' . $this->subkegiatan . '</b> kedalam Sub Kegiatan');
-        $this->reset(['kode', 'subkegiatan', 'pegawai_id', 'pagu_awal']);
+        $this->reset(['pegawai_id', 'kode', 'subkegiatan', 'target', 'satuan', 'pagu']);
     }
 
     public function storeIndikator(Subkegiatan $subkegiatan)
@@ -59,31 +62,21 @@ class Table extends Component
         if (empty($this->indikator)) {
             $this->indikator[$subkegiatan->uuid] = null;
         }
-        if (empty($this->target)) {
-            $this->target[$subkegiatan->uuid] = null;
-        }
-        if (empty($this->satuan)) {
-            $this->satuan[$subkegiatan->uuid] = null;
-        }
 
         $this->validate([
             'indikator.' . $subkegiatan->uuid => 'required|string',
-            'target.' . $subkegiatan->uuid => 'required|string',
-            'satuan.' . $subkegiatan->uuid => 'required|string',
         ]);
 
         $data = [
             'uuid' => str()->uuid(),
             'subkegiatan_id' => $subkegiatan->id,
             'title' => $this->indikator[$subkegiatan->uuid],
-            'target' => $this->target[$subkegiatan->uuid],
-            'satuan' => $this->satuan[$subkegiatan->uuid],
         ];
 
         IndikatorSubkegiatan::create($data);
 
         session()->flash('message', 'Berhasil menambahkan Indikator <b>' . $this->indikator[$subkegiatan->uuid] . '</b>');
-        $this->reset(['indikator', 'target', 'satuan']);
+        $this->reset(['indikator']);
     }
 
     public function updateSubkegiatan($uuid, $field, $value)

@@ -13,9 +13,9 @@ class Table extends Component
     public  $tahun_anggaran = '2023', $apbd = 'murni';
 
     // Model Form
-    public $kode, $program, $pegawai_id;
+    public $pegawai_id, $kode, $program, $target, $satuan;
 
-    public $indikator = [], $target = [], $satuan = [];
+    public $indikator = [];
 
     public function render()
     {
@@ -35,29 +35,31 @@ class Table extends Component
     public function storeProgram()
     {
         $this->validate([
-            'tahun_anggaran' => 'required|string',
-            'apbd' => 'required|string|in:murni,perubahan',
+            'pegawai_id' => 'required|string',
             'kode' => 'required|string',
             'program' => 'required|string',
-            'pegawai_id' => 'required|string',
+            'tahun_anggaran' => 'required|string',
+            'apbd' => 'required|string|in:murni,perubahan',
+            'target' => 'required|string',
+            'satuan' => 'required|string',
         ]);
 
         $pegawai = Pegawai::where('uuid', $this->pegawai_id)->first();
         $data = [
             'uuid' => str()->uuid(),
+            'pegawai_id' => $pegawai->id,
             'kode' => $this->kode,
             'title' => $this->program,
-            'pegawai_id' => $pegawai->id,
             'tahun_anggaran' => $this->tahun_anggaran,
             'apbd' => $this->apbd,
-            'pagu_awal' => 0,
-            'pagu_akhir' => 0
+            'target' => $this->target,
+            'satuan' => $this->satuan
         ];
 
         Program::create($data);
 
         session()->flash('message', 'Berhasil menambahkan <b>' . $this->program . '</b> kedalam Program');
-        $this->reset(['kode', 'program', 'pegawai_id']);
+        $this->reset(['pegawai_id', 'kode', 'program', 'target', 'satuan']);
     }
 
     public function storeIndikator(Program $program)
@@ -65,31 +67,21 @@ class Table extends Component
         if (empty($this->indikator)) {
             $this->indikator[$program->uuid] = null;
         }
-        if (empty($this->target)) {
-            $this->target[$program->uuid] = null;
-        }
-        if (empty($this->satuan)) {
-            $this->satuan[$program->uuid] = null;
-        }
 
         $this->validate([
             'indikator.' . $program->uuid => 'required|string',
-            'target.' . $program->uuid => 'required|string',
-            'satuan.' . $program->uuid => 'required|string',
         ]);
 
         $data = [
             'uuid' => str()->uuid(),
             'program_id' => $program->id,
             'title' => $this->indikator[$program->uuid],
-            'target' => $this->target[$program->uuid],
-            'satuan' => $this->satuan[$program->uuid],
         ];
 
         IndikatorProgram::create($data);
 
         session()->flash('message', 'Berhasil menambahkan Indikator <b>' . $this->indikator[$program->uuid] . '</b>');
-        $this->reset(['indikator', 'target', 'satuan']);
+        $this->reset(['indikator']);
     }
 
     public function updateProgram($uuid, $field, $value)

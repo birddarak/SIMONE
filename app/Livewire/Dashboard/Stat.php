@@ -5,6 +5,7 @@ namespace App\Livewire\Dashboard;
 use App\Models\Kegiatan;
 use App\Models\Program;
 use App\Models\RealisasiSubkegiatan;
+use App\Models\RincianBelanja;
 use App\Models\Subkegiatan;
 use Livewire\Component;
 
@@ -37,7 +38,7 @@ class Stat extends Component
         $data['total_subkegiatan'] = $data['subkegiatans']->count();
 
         // Total Pagu Seluruh Sub Kegiatan & Total Pagu Realisasi Sub Kegiatan
-        $data['total_pagu'] = $data['subkegiatans']->sum('pagu_awal');
+        $data['total_pagu'] = $data['subkegiatans']->sum('pagu');
         $data['pagu_terserap'] = 0;
         foreach ($data['subkegiatans'] as $subkegiatan) {
             $data['pagu_terserap'] += $subkegiatan->realisasi_subkegiatan->sum('pagu');
@@ -50,11 +51,11 @@ class Stat extends Component
         $data['apbd'] = $this->apbd;
 
         for ($i = 1; $i <= 12; $i++) {
-            $realisasi_subkegiatan =  RealisasiSubkegiatan::whereHas('subkegiatan.kegiatan.program', function ($query) use ($data) {
+            $rincian =  RincianBelanja::whereHas('realisasi_subkegiatan.subkegiatan.kegiatan.program', function ($query) use ($data) {
                 return $query->where('tahun_anggaran', request()->input('tahun'))->where('apbd', request()->input('apbd'));
             })
                 ->whereMonth('tanggal', $i)->sum('pagu');
-            $bulan[] = $realisasi_subkegiatan;
+            $bulan[] = $rincian;
         }
         $this->chartData = json_encode($bulan);
 

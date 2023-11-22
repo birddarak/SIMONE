@@ -20,6 +20,27 @@
         @enderror
     </td>
     <td>
+        <div class="input-group m-0">
+            <input type="text" placeholder="TARGET" class="form-control @error('target') is-invalid @enderror"
+                wire:model='target'>
+
+            @error('target')
+            <span class="text-danger">
+                Mohon isi Nama Target
+            </span>
+            @enderror
+            /
+            <input type="text" placeholder="SATUAN" class="form-control @error('satuan') is-invalid @enderror"
+                wire:model='satuan'>
+            
+            @error('satuan')
+            <span class="text-danger">
+                Mohon isi Nama Satuan
+            </span>
+            @enderror
+        </div>
+    </td>
+    <td>
         <select class="form-control @error('pegawai_id') is-invalid @enderror" wire:model="pegawai_id"
             style="width: 100% !important;">
             <option value="">PENANGGUNG JAWAB</option>

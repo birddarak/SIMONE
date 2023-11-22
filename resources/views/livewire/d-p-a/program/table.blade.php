@@ -7,8 +7,9 @@
                 <tr>
                     <th class="text-center">KODE</th>
                     <th>PROGRAM</th>
+                    <th class="text-center">TARGET</th>
                     <th>PENANGGUNG JAWAB</th>
-                    <th>PAGU VALIDASI</th>
+                    <th>PAGU</th>
                     <th>AKSI</th>
                 </tr>
             </thead>
@@ -21,18 +22,26 @@
                     <td>
                         <input type="text" value="{{ $program->kode }}"
                             wire:blur="updateProgram('{{ $program->uuid }}', 'kode', $event.target.value)"
-                            class="form-control border-left border-right border-primary">
+                            class="form-control border-bottom border-primary">
                     </td>
                     <td>
                         <input type="text" value="{{ $program->title }}"
                             wire:blur="updateProgram('{{ $program->uuid }}', 'title', $event.target.value)"
-                            class="form-control border-left border-right border-primary">
+                            class="form-control border-bottom border-primary">
+                    </td>
+                    <td  class="d-flex justify-content-center">
+                        <input type="text" value="{{ $program->target }}"
+                            wire:blur="updateProgram('{{ $program->uuid }}', 'target', $event.target.value)"
+                            class="form-control border-bottom border-primary">/
+                        <input type="text" value="{{ $program->satuan }}"
+                            wire:blur="updateProgram('{{ $program->uuid }}', 'satuan', $event.target.value)"
+                            class="form-control border-bottom border-primary">
                     </td>
                     <td>
                         <select wire:change="updateProgram('{{ $program->uuid }}', 'pegawai_id', $event.target.value)"
-                            class="form-control border-left border-right border-primary"
+                            class="form-control border-bottom border-primary"
                             style="width: 100% !important;">
-                            <option value="">Pilih</option>
+                            <option value="">PENANGGUNG JAWAB</option>
                             @forelse ($pegawais as $pegawai)
                             <option value="{{ $pegawai->uuid }}" {{ $pegawai->id == $program->pegawai_id ? 'selected' :
                                 ''
@@ -73,7 +82,7 @@
                 @include('livewire.d-p-a.program.indikator')
                 @empty
                 <tr class="">
-                    <td class="text-center" colspan="5">Program Masih Kosong</td>
+                    <td class="text-center" colspan="6">Program Masih Kosong</td>
                 </tr>
                 @endforelse
                 {{-- --}}

@@ -34,7 +34,7 @@
                 $pagu_program = 0;
                 foreach ($program->kegiatan as $keg) {
                 foreach ($keg->subkegiatan as $sub) {
-                $pagu_program += $sub->pagu_awal;
+                $pagu_program += $sub->pagu;
                 }
                 }
                 @endphp

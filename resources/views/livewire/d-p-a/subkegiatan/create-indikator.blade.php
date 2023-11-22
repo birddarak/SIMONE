@@ -1,6 +1,6 @@
 <tr>
     <td></td>
-    <td>
+    <td colspan="4">
         <input type="text" placeholder="INDIKATOR"
             class="form-control @error('indikator.{{ $subkegiatan->uuid }}') is-invalid @enderror"
             wire:model="indikator.{{ $subkegiatan->uuid }}">
@@ -8,28 +8,6 @@
         @error('indikator.{{ $subkegiatan->uuid }}')
         <span class="text-danger">
             Mohon isi Indikator Sub Kegiatan
-        </span>
-        @enderror
-    </td>
-    <td>
-        <input type="text" placeholder="TARGET"
-            class="form-control @error('target.{{ $subkegiatan->uuid }}') is-invalid @enderror"
-            wire:model='target.{{ $subkegiatan->uuid }}'>
-
-        @error('target.{{ $subkegiatan->uuid }}')
-        <span class="text-danger">
-            Mohon isi Target
-        </span>
-        @enderror
-    </td>
-    <td>
-        <input type="text" placeholder="SATUAN"
-            class="form-control @error('satuan.{{ $subkegiatan->uuid }}') is-invalid @enderror"
-            wire:model='satuan.{{ $subkegiatan->uuid }}'>
-
-        @error('satuan.{{ $subkegiatan->uuid }}')
-        <span class="text-danger">
-            Mohon isi Satuan
         </span>
         @enderror
     </td>

@@ -7,8 +7,9 @@
                 <tr>
                     <th class="text-center">KODE</th>
                     <th>KEGIATAN</th>
+                    <th class="text-center">TARGET</th>
                     <th>PENANGGUNG JAWAB</th>
-                    <th>PAGU VALIDASI</th>
+                    <th>PAGU</th>
                     <th>AKSI</th>
                 </tr>
             </thead>
@@ -21,18 +22,26 @@
                     <td>
                         <input type="text" value="{{ $kegiatan->kode }}"
                             wire:blur="updateKegiatan('{{ $kegiatan->uuid }}', 'kode', $event.target.value)"
-                            class="form-control border-left border-right border-primary">
+                            class="form-control border-bottom border-primary">
                     </td>
                     <td>
                         <input type="text" value="{{ $kegiatan->title }}"
                             wire:blur="updateKegiatan('{{ $kegiatan->uuid }}', 'title', $event.target.value)"
-                            class="form-control border-left border-right border-primary">
+                            class="form-control border-bottom border-primary">
+                    </td>
+                    <td  class="d-flex justify-content-center">
+                        <input type="text" value="{{ $kegiatan->target }}"
+                            wire:blur="updateProgram('{{ $kegiatan->uuid }}', 'target', $event.target.value)"
+                            class="form-control border-bottom border-primary">/
+                        <input type="text" value="{{ $kegiatan->satuan }}"
+                            wire:blur="updateProgram('{{ $kegiatan->uuid }}', 'satuan', $event.target.value)"
+                            class="form-control border-bottom border-primary">
                     </td>
                     <td>
                         <select wire:change="updateKegiatan('{{ $kegiatan->uuid }}', 'pegawai_id', $event.target.value)"
-                            class="form-control border-left border-right border-primary"
+                            class="form-control border-bottom border-primary"
                             style="width: 100% !important;">
-                            <option value="">Pilih</option>
+                            <option value="">PENANGGUNG JAWAB</option>
                             @forelse ($pegawais as $pegawai)
                             <option value="{{ $pegawai->uuid }}" {{ $pegawai->id == $kegiatan->pegawai_id ? 'selected' :
                                 '' }}>

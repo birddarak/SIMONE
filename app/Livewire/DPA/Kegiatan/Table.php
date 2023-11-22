@@ -13,9 +13,9 @@ class Table extends Component
 
     public $program;
 
-    public $kode, $kegiatan, $pegawai_id;
+    public $pegawai_id, $kode, $kegiatan, $target, $satuan;
 
-    public $indikator = [], $target = [], $satuan = [];
+    public $indikator = [];
 
     public function mount($program)
     {
@@ -35,56 +35,49 @@ class Table extends Component
     public function storeKegiatan()
     {
         $this->validate([
+            'pegawai_id' => 'required|exists:pegawais,uuid',
             'kode' => 'required|string|max:100',
             'kegiatan' => 'required|string',
-            'pegawai_id' => 'required|exists:pegawais,uuid',
+            'target' => 'required|string',
+            'satuan' => 'required|string',
         ]);
 
         $pegawai = Pegawai::where('uuid', $this->pegawai_id)->first();
 
         Kegiatan::create([
-            'uuid' => str()->uuid(),
             'program_id' => $this->program->id,
             'pegawai_id' => $pegawai->id,
+            'uuid' => str()->uuid(),
             'kode' => $this->kode,
             'title' => $this->kegiatan,
-            'pagu_awal' => 0,
-            'pagu_akhir' => 0,
+            'target' => $this->target,
+            'satuan' => $this->satuan,
         ]);
 
         session()->flash('message', 'Berhasil menambahkan <b>' . $this->kegiatan . '</b> kedalam Kegiatan');
-        $this->reset(['kode', 'kegiatan', 'pegawai_id']);
+        $this->reset(['pegawai_id', 'kode', 'kegiatan', 'target', 'satuan']);
     }
 
-    public function storeIndikator(Kegiatan $kegiatan){
+    public function storeIndikator(Kegiatan $kegiatan)
+    {
         if (empty($this->indikator)) {
             $this->indikator[$kegiatan->uuid] = null;
-        }
-        if (empty($this->target)) {
-            $this->target[$kegiatan->uuid] = null;
-        }
-        if (empty($this->satuan)) {
-            $this->satuan[$kegiatan->uuid] = null;
         }
 
         $this->validate([
             'indikator.' . $kegiatan->uuid => 'required|string',
-            'target.' . $kegiatan->uuid => 'required|string',
-            'satuan.' . $kegiatan->uuid => 'required|string',
         ]);
 
         $data = [
             'uuid' => str()->uuid(),
             'kegiatan_id' => $kegiatan->id,
             'title' => $this->indikator[$kegiatan->uuid],
-            'target' => $this->target[$kegiatan->uuid],
-            'satuan' => $this->satuan[$kegiatan->uuid],
         ];
 
         IndikatorKegiatan::create($data);
 
         session()->flash('message', 'Berhasil menambahkan Indikator <b>' . $this->indikator[$kegiatan->uuid] . '</b>');
-        $this->reset(['indikator', 'target', 'satuan']);
+        $this->reset(['indikator']);
     }
 
     public function updateKegiatan($uuid, $field, $value)
