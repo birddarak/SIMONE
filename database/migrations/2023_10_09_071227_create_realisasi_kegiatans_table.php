@@ -17,11 +17,8 @@ return new class extends Migration
             $table->foreignId('kegiatan_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->date('tanggal');
             $table->enum('triwulan', ['I', 'II', 'III', 'IV']);
-            $table->string('target');
-            $table->string('satuan');
-            $table->double('pagu');
-            $table->text('keterangan')->nullable();
-            $table->text('file')->nullable();
+            $table->string('capaian')->nullable();
+            $table->string('satuan')->nullable();
             $table->timestamps();
         });
     }

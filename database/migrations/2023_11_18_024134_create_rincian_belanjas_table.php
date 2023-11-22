@@ -12,16 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rincian_belanjas', function (Blueprint $table) {
-            // ????????
             $table->id();
             $table->uuid();
             $table->foreignId('realisasi_subkegiatan_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->date('tanggal');
-            $table->enum('triwulan', ['I', 'II', 'III', 'IV']);
             $table->string('rincian');
-            $table->double('jumlah');
-            $table->text('keterangan')->nullable();
-            $table->text('file')->nullable();
+            $table->date('tanggal');
+            $table->double('pagu');
             $table->timestamps();
         });
     }

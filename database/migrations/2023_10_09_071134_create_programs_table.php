@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('tahun_anggaran');
             $table->enum('apbd', ['murni', 'perubahan']);
-            $table->double('pagu_awal');
-            $table->double('pagu_akhir');
+            $table->string('target');
+            $table->string('satuan');
             $table->timestamps();
         });
     }
