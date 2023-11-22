@@ -30,9 +30,17 @@ class Program extends Model
         return $this->belongsTo(Pegawai::class);
     }
 
+    public function triwulan($value){
+        return $this->realisasi_program()->where('triwulan', $value)->get()->first();
+    }
+
     public function sumTotalSubKeg(){
         return $this->kegiatan->flatMap(function ($kegiatan){
             return $kegiatan->subkegiatan->pluck('pagu_awal');
         })->sum();
+    }
+
+    public function total_realisasi($value){
+        return $this->hasManyThrough(RealisasiSubkegiatan::class, Subkegiatan::class)->where('triwulan', $value);
     }
 }

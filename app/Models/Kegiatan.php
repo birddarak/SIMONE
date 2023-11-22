@@ -34,4 +34,13 @@ class Kegiatan extends Model
     public function pegawai() {
         return $this->belongsTo(Pegawai::class);
     }
+
+    public function triwulan($value){
+        return $this->realisasi_kegiatan()->where('triwulan', $value)->get()->first();
+    }
+
+    public function total_realisasi($value)
+    {
+        return $this->hasManyThrough(RealisasiSubkegiatan::class, Subkegiatan::class)->where('triwulan', $value);
+    }
 }
