@@ -1,5 +1,5 @@
 <div>
-    @include('livewire.partials.card-subkegiatan')
+    @include('livewire.partials.card-rincian-belanja')
     <div class="table-responsive">
         @include('livewire.partials.alert')
         <table class="table table-sm">
@@ -87,7 +87,6 @@
                         </div>
                     </td>
                 </tr>
-                @include('livewire.realisasi.subkegiatan.create-rincian')
                 @endforeach
                 @empty
                 <tr class="">

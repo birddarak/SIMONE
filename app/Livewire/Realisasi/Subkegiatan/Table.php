@@ -11,7 +11,7 @@ use Livewire\WithFileUploads;
 
 class Table extends Component
 {
-    use WithFileUploads;
+    // use WithFileUploads;
 
     public $kegiatan;
 
@@ -35,6 +35,7 @@ class Table extends Component
     {
         $this->validate([
             'triwulan' => 'required|string|in:I,II,III,IV',
+            'tanggal' => 'required',
             'capaian' => 'required|string',
             'satuan' => 'required|string',
             'pagu' => 'required|integer',
@@ -42,8 +43,8 @@ class Table extends Component
 
         $subkegiatan = Subkegiatan::where('uuid', $uuid)->first();
 
-        $file = (!is_null($this->file)) ? $this->file->store('assets/sub-kegiatan/realisasi', 'public') : NULL;
-        $rincian = (!is_null($this->rincian)) ? $this->rincian : NULL;
+        // $file = (!is_null($this->file)) ? $this->file->store('assets/sub-kegiatan/realisasi', 'public') : NULL;
+        // $rincian = (!is_null($this->rincian)) ? $this->rincian : NULL;
 
         $data = [
             'subkegiatan_id' => $subkegiatan->id,
@@ -74,7 +75,7 @@ class Table extends Component
     public function destroy($uuid)
     {
         $data = RealisasiSubkegiatan::where('uuid', $uuid)->first();
-        File::delete('storage/' . $data->file);
+        // File::delete('storage/' . $data->file);
         $data->delete();
     }
 }
