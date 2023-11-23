@@ -1,16 +1,50 @@
 <div>
     @include('livewire.partials.filter')
+    @include('livewire.partials.alert')
     <div class="table-responsive">
-        @include('livewire.partials.alert')
-        <table class="table table-sm">
-            <thead class="thead-light">
+
+        <table class="mb-3">
+            <tr>
+                <td>
+                    <i class="fas fa-circle fa-fw text-form-program"></i>
+                </td>
+                <td>:</td>
+                <td>
+                    <i>
+                        Form Penginputan Program (Klik Tombol + di samping kanan tulisan AKSI untuk menampilkan form)
+                    </i>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <i class="fas fa-circle fa-fw text-form-indikator-program"></i>
+                </td>
+                <td>:</td>
+                <td>
+                    <i>
+                        Form Penginputan indikator Program (Klik Tombol + di baris data Program dan di samping tombol
+                        aksi program)
+                    </i>
+                </td>
+            </tr>
+        </table>
+        <table class="table custom-bordered-table">
+            <thead class="thead-dark">
                 <tr>
                     <th class="text-center">KODE</th>
                     <th>PROGRAM</th>
                     <th class="text-center">TARGET</th>
                     <th>PENANGGUNG JAWAB</th>
                     <th>PAGU</th>
-                    <th>AKSI</th>
+                    <th>
+                        AKSI
+                    </th>
+                    <th class="text-center">
+                        <button class="btn btn-success btn-icon btn-sm" data-toggle="collapse" href="#collapse-program"
+                            role="button" aria-expanded="false" aria-controls="collapse-program">
+                            <i class="fas fa-plus fa-fw"></i>
+                        </button>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -18,72 +52,83 @@
 
                 {{-- data --}}
                 @forelse ($programs as $program)
-                <tr class="bg-light">
-                    <td>
-                        <input type="text" value="{{ $program->kode }}"
-                            wire:blur="updateProgram('{{ $program->uuid }}', 'kode', $event.target.value)"
-                            class="form-control border-bottom border-primary">
-                    </td>
-                    <td>
-                        <input type="text" value="{{ $program->title }}"
-                            wire:blur="updateProgram('{{ $program->uuid }}', 'title', $event.target.value)"
-                            class="form-control border-bottom border-primary">
-                    </td>
-                    <td  class="d-flex justify-content-center">
-                        <input type="text" value="{{ $program->target }}"
-                            wire:blur="updateProgram('{{ $program->uuid }}', 'target', $event.target.value)"
-                            class="form-control border-bottom border-primary">/
-                        <input type="text" value="{{ $program->satuan }}"
-                            wire:blur="updateProgram('{{ $program->uuid }}', 'satuan', $event.target.value)"
-                            class="form-control border-bottom border-primary">
-                    </td>
-                    <td>
-                        <select wire:change="updateProgram('{{ $program->uuid }}', 'pegawai_id', $event.target.value)"
-                            class="form-control border-bottom border-primary"
-                            style="width: 100% !important;">
-                            <option value="">PENANGGUNG JAWAB</option>
-                            @forelse ($pegawais as $pegawai)
-                            <option value="{{ $pegawai->uuid }}" {{ $pegawai->id == $program->pegawai_id ? 'selected' :
-                                ''
-                                }}>
-                                {{ $pegawai->nama }}
-                            </option>
-                            @empty
-                            <option value="">Kosong</option>
-                            @endforelse
-                        </select>
-                    </td>
-                    <td>
-                        @php
-                        $pagu_validasi = 0;
-                        foreach ($program->kegiatan as $keg) {
-                        foreach ($keg->subkegiatan as $sub) {
-                        $pagu_validasi += $sub->pagu_awal;
-                        }
-                        }
-                        @endphp
+                    <tr class="">
+                        <td class="p-1">
+                            <input type="text" value="{{ $program->kode }}"
+                                wire:blur="updateProgram('{{ $program->uuid }}', 'kode', $event.target.value)"
+                                class="form-control">
+                        </td>
+                        <td class="p-1">
+                            <input type="text" value="{{ $program->title }}"
+                                wire:blur="updateProgram('{{ $program->uuid }}', 'title', $event.target.value)"
+                                class="form-control">
+                        </td>
+                        <td class="p-1">
+                            <div class="input-group m-0">
+                                <input type="text" value="{{ $program->target }}"
+                                    wire:blur="updateProgram('{{ $program->uuid }}', 'target', $event.target.value)"
+                                    class="form-control">
+                                <div class="btn btn-transparent">
+                                    /
+                                </div>
+                                <input type="text" value="{{ $program->satuan }}"
+                                    wire:blur="updateProgram('{{ $program->uuid }}', 'satuan', $event.target.value)"
+                                    class="form-control">
+                            </div>
+                        </td>
+                        <td class="p-1">
+                            <select
+                                wire:change="updateProgram('{{ $program->uuid }}', 'pegawai_id', $event.target.value)"
+                                class="form-control" style="width: 100% !important;">
+                                <option value="">PENANGGUNG JAWAB</option>
+                                @forelse ($pegawais as $pegawai)
+                                    <option value="{{ $pegawai->uuid }}"
+                                        {{ $pegawai->id == $program->pegawai_id ? 'selected' : '' }}>
+                                        {{ $pegawai->nama }}
+                                    </option>
+                                @empty
+                                    <option value="">Kosong</option>
+                                @endforelse
+                            </select>
+                        </td>
+                        <td class="p-1">
+                            @php
+                                $pagu_validasi = 0;
+                                foreach ($program->kegiatan as $keg) {
+                                    foreach ($keg->subkegiatan as $sub) {
+                                        $pagu_validasi += $sub->pagu;
+                                    }
+                                }
+                            @endphp
 
-                        @currency($pagu_validasi)
-                    </td>
-                    <td>
-                        <div class="list-actions d-flex justify-content-around form-inline">
-                            <a href="{{ route('dpa.kegiatan', $program->uuid) }}"
-                                class="btn btn-warning btn-icon ml-2 mb-2">
-                                <i class="ik ik-corner-down-right"></i>
-                            </a>
-                            <button class="btn btn-danger btn-icon ml-2 mb-2"
-                                onclick="return confirm('Ingin menghapus Program ini?')"
-                                wire:click='destroyProgram("{{ $program->uuid }}")'><i
-                                    class="ik ik-trash-2"></i></button>
-                        </div>
-                    </td>
-                </tr>
-                @include('livewire.d-p-a.program.create-indikator')
-                @include('livewire.d-p-a.program.indikator')
+                            @currency($pagu_validasi)
+                        </td>
+                        <td class="p-1 text-center">
+                            <div class="btn-group">
+                                <a href="{{ route('dpa.kegiatan', $program->uuid) }}"
+                                    class="btn btn-warning btn-icon mr-2">
+                                    <i class="ik ik-corner-down-right"></i>
+                                </a>
+                                <button class="btn btn-danger btn-icon "
+                                    onclick="return confirm('Ingin menghapus Program ini?')"
+                                    wire:click='destroyProgram("{{ $program->uuid }}")'><i
+                                        class="ik ik-trash-2"></i></button>
+                            </div>
+                        </td>
+                        <td class="p-1 text-center">
+                            <button class="btn btn-success btn-icon btn-sm" data-toggle="collapse"
+                                href="#collapse-{{ $program->uuid }}-indikator" role="button" aria-expanded="false"
+                                aria-controls="collapse-{{ $program->uuid }}-indikator">
+                                <i class="fas fa-plus fa-fw"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    @include('livewire.d-p-a.program.create-indikator')
+                    @include('livewire.d-p-a.program.indikator')
                 @empty
-                <tr class="">
-                    <td class="text-center" colspan="6">Program Masih Kosong</td>
-                </tr>
+                    <tr class="">
+                        <td class="text-center" colspan="6">Program Masih Kosong</td>
+                    </tr>
                 @endforelse
                 {{-- --}}
 

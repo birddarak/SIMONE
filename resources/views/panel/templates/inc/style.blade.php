@@ -36,4 +36,67 @@
         border: none;
         background-color: transparent;
     }
+
+    /* bg & text program,kegiatan,sub kegiatan */
+    .bg-form-program {
+        background-color: rgb(115, 255, 120);
+    }
+
+    .text-form-program {
+        color: rgb(115, 255, 120);
+    }
+
+    .bg-form-indikator-program {
+        background-color: rgb(255, 211, 115);
+    }
+
+    .text-form-indikator-program {
+        color: rgb(255, 211, 115);
+    }
+
+    .bg-form-kegiatan {
+        background-color: rgb(255, 182, 143);
+    }
+
+    .text-form-kegiatan {
+        color: rgb(255, 164, 115);
+    }
+
+    .bg-form-indikator-kegiatan {
+        background-color: rgb(129, 236, 255);
+    }
+
+    .text-form-indikator-kegiatan {
+        color: rgb(129, 236, 255);
+    }
+
+    .bg-form-subkegiatan {
+        background-color: rgb(184, 194, 255);
+    }
+
+    .text-form-subkegiatan {
+        color: rgb(143, 158, 255);
+    }
+
+    .bg-form-indikator-subkegiatan {
+        background-color: rgb(184, 255, 129);
+    }
+
+    .text-form-indikator-subkegiatan {
+        color: rgb(184, 255, 129);
+    }
+
+
+
+
+    .custom-bordered-table {
+        border: 1px solid #343a40;
+        /* Warna biru */
+    }
+
+    .custom-bordered-table th,
+    .custom-bordered-table td {
+        border: 1px solid #343a40;
+        /* Warna biru */
+    }
 </style>
