@@ -35,15 +35,12 @@
                 </div>
                 <div class="col-xl-4 col-lg-6 col-md-7 my-auto p-0">
                     <div class="authentication-form mx-auto">
-                        <div class="logo-centered">
-                            <h4>
-                                <a href="{{ url('templates/panel') }}/index.html">
-                                    <strong>
-                                        SIEMON
-                                    </strong>
-                                </a>
-                            </h4>
+                        <div class="text-center">
+                            <a href="{{ url('templates/panel') }}/index.html">
+                                <img src="{{ url('assets/logo.png') }}" width="200" alt="">
+                            </a>
                         </div>
+                        <br>
                         <h3>Sign In to Siemon</h3>
                         <p>Happy to see you again!</p>
 
