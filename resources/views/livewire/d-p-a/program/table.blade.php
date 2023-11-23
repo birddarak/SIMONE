@@ -105,7 +105,7 @@
                         <td class="p-1 text-center">
                             <div class="btn-group">
                                 <a href="{{ route('dpa.kegiatan', $program->uuid) }}"
-                                    class="btn btn-warning btn-icon mr-2">
+                                    class="btn btn-info btn-icon mr-2">
                                     <i class="ik ik-corner-down-right"></i>
                                 </a>
                                 <button class="btn btn-danger btn-icon "

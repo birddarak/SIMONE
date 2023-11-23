@@ -57,7 +57,7 @@
 
                 @endphp
                 <td>
-                    <b class="{{ $pagu_program == $pagu_trsrp ? 'text-success' : 'text-danger' }}">
+                    <b class="{{ $pagu_program >= $pagu_trsrp ? 'text-success' : 'text-danger' }}">
                         @currency($pagu_trsrp)
                     </b>
                 </td>

@@ -55,13 +55,13 @@
                                 }
                             @endphp
 
-                            <b class="{{ $pagu_validasi == $pagu_terserap ? 'text-success' : 'text-danger' }}">
+                            <b class="{{ $pagu_validasi >= $pagu_terserap ? 'text-success' : 'text-danger' }}">
                                 @currency($pagu_terserap)
                             </b>
                         </td>
-                        <td class="p-1">
-                            <div class="list-actions d-flex justify-content-around form-inline">
-                                <a href="{{ route('realisasi.subkegiatan', $kegiatan->uuid) }}" class="btn btn-sm">
+                        <td class="text-center p-1">
+                            <div class="btn-group">
+                                <a href="{{ route('realisasi.subkegiatan', $kegiatan->uuid) }}" class="btn btn-info btn-icon ml-2 mb-2">
                                     <i class="ik ik-corner-down-right"></i>
                                 </a>
                             </div>

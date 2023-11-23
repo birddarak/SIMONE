@@ -47,7 +47,7 @@
                             @endphp
                             <h6 class="m-0">
                                 <strong
-                                    class="{{ $subkegiatan->pagu == $pagu_terserap ? 'text-success' : 'text-danger' }}">
+                                    class="{{ $subkegiatan->pagu >= $pagu_terserap ? 'text-success' : 'text-danger' }}">
                                     @currency($pagu_terserap)
                                 </strong>
                             </h6>
@@ -98,20 +98,19 @@
                             <td class="text-center p-1">
                                 <div class="btn-group">
                                     <a href="{{ route('realisasi.rincian-belanja', $rs->uuid) }}"
-                                        class="btn btn-warning btn-icon ml-2 mb-2">
+                                        class="btn btn-info btn-icon ml-2 mb-2">
                                         <i class="ik ik-corner-down-right"></i>
                                     </a>
                                     @if ($rs->rincian_belanja->count() == 0)
-                                        <button class="btn btn-sm btn-transparent"
+                                        <button class="btn btn-danger btn-icon ml-2 mb-2"
                                             onclick="return confirm('Ingin menghapus Realisasi ini?')"
                                             wire:click='destroy("{{ $rs->uuid }}")'>
-                                            <i class="ik ik-trash text-danger"></i>
+                                            <i class="ik ik-trash"></i>
                                         </button>
                                     @endif
                                 </div>
                             </td>
                         </tr>
-                        @include('livewire.realisasi.subkegiatan.create-rincian')
                     @endforeach
                 @empty
                     <tr class="">
