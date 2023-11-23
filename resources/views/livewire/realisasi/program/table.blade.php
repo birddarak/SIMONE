@@ -1,5 +1,6 @@
 <div>
     @include('livewire.partials.filter')
+    @include('livewire.partials.card-program')
     <div class="table-responsive">
         <table class="table custom-bordered-table">
             <thead class="thead-dark">

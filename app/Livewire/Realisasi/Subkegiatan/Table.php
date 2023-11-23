@@ -23,8 +23,7 @@ class Table extends Component
 
     public function render()
     {
-        $data['kegiatan'] = Kegiatan::where('uuid', $this->kegiatan->uuid)->first();
-        $data['subkegiatans'] = Subkegiatan::where('kegiatan_id', $this->kegiatan->id)->get();
+        $data['subkegiatans'] = Subkegiatan::orderBy('kode', 'ASC')->where('kegiatan_id', $this->kegiatan->id)->get();
         $data['subkegiatan_realisasis'] = RealisasiSubkegiatan::all();
         return view('livewire.realisasi.subkegiatan.table', $data);
     }

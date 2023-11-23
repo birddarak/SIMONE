@@ -31,7 +31,7 @@ class Subkegiatan extends Model
         return $this->belongsTo(Pegawai::class);
     }
 
-    public function triwulan($value){
-        return $this->realisasi_subkegiatan()->where('triwulan', $value)->get()->first();
-    }
+    // public function triwulan($value){
+    //     return $this->realisasi_subkegiatan()->where('triwulan', $value)->get()->first();
+    // }
 }

@@ -5,7 +5,6 @@ namespace App\Livewire\DPA\Kegiatan;
 use App\Models\IndikatorKegiatan;
 use App\Models\Kegiatan;
 use App\Models\Pegawai;
-use App\Models\Program;
 use Livewire\Component;
 
 class Table extends Component
@@ -24,8 +23,7 @@ class Table extends Component
 
     public function render()
     {
-        $data['program'] = Program::where('uuid', $this->program->uuid)->first();
-        $data['kegiatans'] = Kegiatan::orderBy('id', 'DESC')
+        $data['kegiatans'] = Kegiatan::orderBy('kode', 'ASC')
             ->where('program_id', $this->program->id)
             ->get();
         $data['pegawais'] = Pegawai::all();

@@ -30,40 +30,31 @@
             <tr>
                 <td class="col-3">UNIT PENANGGUNG JAWAB</td>
                 <td>:</td>
-                <td><b>{{ $kegiatan->program->pegawai->nama }}</b></td>
+                <td><b>{{ $kegiatan->pegawai->nama }}</b></td>
             </tr>
             <tr>
                 <td class="col-3">PAGU KEGIATAN</td>
                 <td>:</td>
                 @php
-                    $pagu_program = 0;
-                    foreach ($kegiatan->program->kegiatan as $keg) {
-                        foreach ($keg->subkegiatan as $sub) {
-                            $pagu_program += $sub->pagu;
-                        }
-                    }
+                $pagu_kegiatan = $kegiatan->subkegiatan->sum('pagu');
                 @endphp
-                <td><b>@currency($pagu_program)</b></td>
+                <td><b>@currency($pagu_kegiatan)</b></td>
             </tr>
             <tr>
                 <td class="col-3">PAGU TERSERAP</td>
                 <td>:</td>
                 @php
-                    $pagu_program = 0;
-                    $pagu_terserap = 0;
-                    foreach ($kegiatan->program->kegiatan as $keg) {
-                        foreach ($keg->subkegiatan as $sub) {
-                            $pagu_program += $sub->pagu;
-                            foreach ($sub->realisasi_subkegiatan as $rs) {
-                                foreach ($rs->rincian_belanja as $rb) {
-                                    $pagu_terserap += $rb->pagu;
-                                }
-                            }
-                        }
-                    }
+                $pagu_terserap = 0;
+                foreach ($kegiatan->subkegiatan as $sub) {
+                foreach ($sub->realisasi_subkegiatan as $rs) {
+                foreach ($rs->rincian_belanja as $rb) {
+                $pagu_terserap += $rb->pagu;
+                }
+                }
+                }
                 @endphp
                 <td>
-                    <b class="{{ $pagu_program >= $pagu_terserap ? 'text-success' : 'text-danger' }}">
+                    <b class="{{ $pagu_kegiatan >= $pagu_terserap ? 'text-success' : 'text-danger' }}">
                         @currency($pagu_terserap)
                     </b>
                 </td>

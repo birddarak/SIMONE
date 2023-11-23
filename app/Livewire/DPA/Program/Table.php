@@ -24,7 +24,7 @@ class Table extends Component
 
     public function index()
     {
-        $data['programs'] = Program::orderBy('id', 'DESC')
+        $data['programs'] = Program::orderBy('kode', 'ASC')
             ->where('tahun_anggaran', $this->tahun_anggaran)->where('apbd', $this->apbd)
             ->get();
         $data['pegawais'] = Pegawai::all();
