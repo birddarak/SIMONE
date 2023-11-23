@@ -1,76 +1,77 @@
-<tr>
-    <td>
-        <input type="text" placeholder="KODE" class="form-control @error('kode') is-invalid @enderror"
-            wire:model="kode">
+<tr class="bg-form-subkegiatan collapse" id="collapse-subkegiatan" wire:ignore>
+    <td class="p-1">
+        <input type="text" placeholder="KODE" class="form-control @error('kode') is-invalid @enderror" wire:model="kode">
 
         @error('kode')
-        <span class="text-danger">
-            Mohon isi Kode Program
-        </span>
+            <span class="text-danger">
+                Mohon isi Kode Program
+            </span>
         @enderror
     </td>
-    <td>
+    <td class="p-1">
         <input type="text" placeholder="SUB KEGIATAN" class="form-control @error('subkegiatan') is-invalid @enderror"
             wire:model='subkegiatan'>
 
         @error('subkegiatan')
-        <span class="text-danger">
-            Mohon isi Nama subkegiatan
-        </span>
+            <span class="text-danger">
+                Mohon isi Nama subkegiatan
+            </span>
         @enderror
     </td>
-    <td>
+    <td class="p-1">
         <div class="input-group m-0">
             <input type="text" placeholder="TARGET" class="form-control @error('target') is-invalid @enderror"
                 wire:model='target'>
 
             @error('target')
-            <span class="text-danger">
-                Mohon isi Nama Target
-            </span>
+                <span class="text-danger">
+                    Mohon isi Nama Target
+                </span>
             @enderror
-            /
+            <button class="btn btn-sm btn-transparent">
+                /
+            </button>
             <input type="text" placeholder="SATUAN" class="form-control @error('satuan') is-invalid @enderror"
                 wire:model='satuan'>
-            
+
             @error('satuan')
-            <span class="text-danger">
-                Mohon isi Nama Satuan
-            </span>
+                <span class="text-danger">
+                    Mohon isi Nama Satuan
+                </span>
             @enderror
         </div>
     </td>
-    <td>
+    <td class="p-1">
         <select class="form-control @error('pegawai_id')
-        is-invalid @enderror" wire:model="pegawai_id" style="width: 100% !important;">
+        is-invalid @enderror" wire:model="pegawai_id"
+            style="width: 100% !important;">
             <option value="">PENANGGUNG JAWAB</option>
             @forelse ($pegawais as $pegawai)
-            <option value="{{ $pegawai->uuid }}">{{ $pegawai->nama }}</option>
+                <option value="{{ $pegawai->uuid }}">{{ $pegawai->nama }}</option>
             @empty
-            <option value="">Kosong</option>
+                <option value="">Kosong</option>
             @endforelse
         </select>
         @error('pegawai_id')
-        <span class="text-danger">
-            Mohon isi Penanggung Jawab
-        </span>
+            <span class="text-danger">
+                Mohon isi Penanggung Jawab
+            </span>
         @enderror
     </td>
-    <td>
+    <td class="p-1">
         <input type="text" placeholder="PAGU" class="form-control @error('pagu') is-invalid @enderror"
             wire:model='pagu'>
 
         @error('pagu')
-        <span class="text-danger">
-            Mohon isi Pagu
-        </span>
+            <span class="text-danger">
+                Mohon isi Pagu
+            </span>
         @enderror
     </td>
-    <td>
-        <div class="list-actions d-flex justify-content-around form-inline">
-            <button class="btn btn-success btn-icon ml-2 mb-2" wire:click='storeSubkegiatan'>
-                <i class="ik ik-plus"></i>
-            </button>
-        </div>
+    <td class="p-1 text-center">
+        <button class="btn btn-info btn-icon" wire:click='storeSubkegiatan'>
+            <i class="ik ik-save"></i>
+        </button>
     </td>
+    <td></td>
 </tr>
