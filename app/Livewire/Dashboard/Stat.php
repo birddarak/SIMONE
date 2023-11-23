@@ -13,7 +13,7 @@ class Stat extends Component
 {
 
     // Model Filter
-    public  $tahun_anggaran = '2023', $apbd = 'murni', $chartData;
+    public  $tahun_anggaran, $apbd, $chartData;
 
     public function render()
     {
@@ -23,13 +23,19 @@ class Stat extends Component
 
     public function index()
     {
+
+        $data['tahun_anggaran'] = request()->input('tahun') ? request()->input('tahun') : date('Y');
+        $data['apbd'] = request()->input('apbd') ? request()->input('apbd') : 'murni';
+        $this->tahun_anggaran = $data['tahun_anggaran'];
+        $this->apbd = $data['apbd'];
+
         // Get Program, Kegiatan, Sub Kegiatan
-        $data['programs'] = Program::where('tahun_anggaran', $this->tahun_anggaran)->where('apbd', $this->apbd)->get();
-        $data['kegiatans'] = Kegiatan::whereHas('program', function ($query) {
-            return $query->where('tahun_anggaran', $this->tahun_anggaran)->where('apbd', $this->apbd);
+        $data['programs'] = Program::where('tahun_anggaran', $data['tahun_anggaran'])->where('apbd', $data['apbd'])->get();
+        $data['kegiatans'] = Kegiatan::whereHas('program', function ($query) use ($data) {
+            return $query->where('tahun_anggaran', $data['tahun_anggaran'])->where('apbd', $data['apbd']);
         })->get();
-        $data['subkegiatans'] = Subkegiatan::whereHas('kegiatan.program', function ($query) {
-            return $query->where('tahun_anggaran', $this->tahun_anggaran)->where('apbd', $this->apbd);
+        $data['subkegiatans'] = Subkegiatan::whereHas('kegiatan.program', function ($query) use ($data) {
+            return $query->where('tahun_anggaran', $data['tahun_anggaran'])->where('apbd', $data['apbd']);
         })->get();
 
         // Jumlah Program, Kegiatan, Sub Kegiatan
@@ -54,7 +60,7 @@ class Stat extends Component
 
         for ($i = 1; $i <= 12; $i++) {
             $rincian =  RincianBelanja::whereHas('realisasi_subkegiatan.subkegiatan.kegiatan.program', function ($query) use ($data) {
-                return $query->where('tahun_anggaran', request()->input('tahun'))->where('apbd', request()->input('apbd'));
+                return $query->where('tahun_anggaran', $data['tahun_anggaran'])->where('apbd', $data['apbd']);
             })
                 ->whereMonth('tanggal', $i)->sum('pagu');
             $bulan[] = $rincian;

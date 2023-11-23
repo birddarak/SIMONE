@@ -2,7 +2,7 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <form action="" class="row mb-4">
         <div class="col-12 col-md-3">
-            <select class="form-control" wire:model.live='tahun_anggaran' name="tahun">
+            <select class="form-control" wire:model='tahun_anggaran' name="tahun">
                 @for ($i = 2019; $i <= date('Y'); $i++)
                     <option value="{{ $i }}">
                         {{ $i }}
@@ -11,16 +11,16 @@
             </select>
         </div>
         <div class="col-12 col-md-3">
-            <select class="form-control" wire:model.live='apbd' name="apbd">
+            <select class="form-control" wire:model='apbd' name="apbd">
                 <option value="murni">MURNI</option>
                 <option value="perubahan">PERUBAHAN</option>
             </select>
         </div>
         <div class="col-12 col-md-2">
-            <button class="btn btn-primary">
-                Refresh Chart
+            <button class="btn btn-info">
+                Muat
                 &nbsp;
-                <i class="ik ik-refresh-ccw"></i>
+                <i class="fas fa-search fa-fw"></i>
             </button>
         </div>
     </form>
