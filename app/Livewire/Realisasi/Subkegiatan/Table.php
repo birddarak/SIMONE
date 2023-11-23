@@ -7,11 +7,9 @@ use App\Models\Kegiatan;
 use App\Models\Subkegiatan;
 use App\Models\RealisasiSubkegiatan;
 use Illuminate\Support\Facades\File;
-use Livewire\WithFileUploads;
 
 class Table extends Component
 {
-    // use WithFileUploads;
 
     public $kegiatan;
 

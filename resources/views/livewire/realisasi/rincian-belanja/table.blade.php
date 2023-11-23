@@ -5,92 +5,57 @@
         <table class="table table-sm">
             <thead class="thead-dark">
                 <tr>
-                    <th class="text-center">KODE</th>
-                    <th>SUB KEGIATAN</th>
-                    <th>TARGET</th>
-                    <th>PENANGGUNG JAWAB</th>
+                    <th>RINCIAN</th>
+                    <th>TANGGAL</th>
                     <th>PAGU</th>
-                    <th colspan="2">PAGU TERSERAP</th>
+                    <th>KETERANGAN</th>
+                    <th>FILE</th>
+                    <th>AKSI</th>
+                    <th class="text-center">
+                        <button class="btn btn-success btn-icon btn-sm" data-toggle="collapse" href="#collapse-program"
+                            role="button" aria-expanded="false" aria-controls="collapse-program">
+                            <i class="fas fa-plus fa-fw"></i>
+                        </button>
+                    </th>
                 </tr>
             </thead>
             <tbody>
-
+                @include('livewire.realisasi.rincian-belanja.create')
                 {{-- data --}}
-                @forelse ($subkegiatans as $subkegiatan)
+                @forelse ($rincian_belanjas as $rincian_belanja)
                 <tr class=" text-white" style="background-color: rgb(255, 191, 112);">
-                    <td>
-                        <i class="fas fa-arrow-right"></i>
-                        {{ $subkegiatan->kode }}
+                    <td class="p-1">
+                        <input type="text" value="{{ $rincian_belanja->rincian }}"
+                            wire:blur="update('{{ $rincian_belanja->uuid }}', 'rincian', $event.target.value)"
+                            class="form-control">
                     </td>
-                    <td>
-                        {{ $subkegiatan->title }}
+                    <td class="p-1">
+                        <input type="date" value="{{ $rincian_belanja->tanggal }}"
+                            wire:blur="update('{{ $rincian_belanja->uuid }}', 'tanggal', $event.target.value)"
+                            class="form-control">
                     </td>
-                    <td>
-                        {{ $subkegiatan->target . ' ' . $subkegiatan->satuan }}
+                    <td class="p-1">
+                        <input type="number" value="{{ $rincian_belanja->pagu }}"
+                            wire:blur="update('{{ $rincian_belanja->uuid }}', 'pagu', $event.target.value)"
+                            class="form-control">
                     </td>
-                    <td>
-                        {{ $subkegiatan->pegawai->nama }}
+                    <td class="p-1">
+                        <input type="text" value="{{ $rincian_belanja->keterangan }}"
+                            wire:blur="update('{{ $rincian_belanja->uuid }}', 'keterangan', $event.target.value)"
+                            class="form-control">
                     </td>
-                    <td>
-                        @currency($subkegiatan->pagu)
+                    <td class="p-1">
+                        <i class="ik ik-file"></i>
                     </td>
                     <td colspan="2">
-                        @php
-                        $pagu_terserap = 0;
-                        foreach ($subkegiatan->realisasi_subkegiatan as $rs) {
-                        $pagu_terserap += $rs->pagu;
-                        }
-                        @endphp
-                        <h6 class="m-0">
-                            <strong class="{{ $subkegiatan->pagu == $pagu_terserap ? 'text-success' : 'text-danger' }}">
-                                @currency($pagu_terserap)
-                            </strong>
-                        </h6>
+                        <button class="btn btn-danger btn-icon "
+                            onclick="return confirm('Ingin menghapus Rincian ini?')"
+                            wire:click='destroy("{{ $rincian_belanja->uuid }}")'><i class="ik ik-trash-2"></i></button>
                     </td>
                 </tr>
-                @include('livewire.realisasi.subkegiatan.create')
-                @foreach ($subkegiatan->realisasi_subkegiatan()->orderBy('triwulan', 'ASC')->get() as $rs)
-                <tr style="background-color: rgb(218, 218, 218);">
-                    <td colspan="2">
-                        <div class="d-flex">
-                            <select style="width: 100% !important;" class="form-control">
-                                <option value="I" {{ $rs->triwulan == 'I' ? 'selected' : '' }}>I</option>
-                                <option value="II" {{ $rs->triwulan == 'II' ? 'selected' : '' }}>II</option>
-                                <option value="III" {{ $rs->triwulan == 'III' ? 'selected' : '' }}>III
-                                </option>
-                                <option value="IV" {{ $rs->triwulan == 'IV' ? 'selected' : '' }}>IV</option>
-                            </select>
-                            <input type="date" class="form-control" value="{{ $rs->tanggal }}"
-                                wire:blur="update('{{ $rs->uuid }}', 'tanggal', $event.target.value)">
-                        </div>
-                    </td>
-                    <td>
-                        <input type="text" value="{{ $rs->capaian }}"
-                            class="d-inline form-control border-bottom border-primary"
-                            wire:blur="update('{{ $rs->uuid }}', 'capaian', $event.target.value)" maxlength="5"
-                            size="5">
-                        <span class="d-inline"> / {{ $subkegiatan->satuan }}</span>
-                    </td>
-                    <td class="text-right">
-                        <strong>@currency($rs->rincian_belanja->sum('pagu'))</strong>
-                    </td>
-                    <td></td>
-                    <td class="text-center">
-                        <div class="btn-group">
-                            <a href="{{ route('realisasi.rincian-belanja', $rs->uuid) }}"
-                                class="btn btn-warning btn-icon ml-2 mb-2">
-                                <i class="ik ik-corner-down-right"></i>
-                            </a>
-                            <button class="btn btn-sm btn-transparent" onclick="return confirm('Ingin menghapus Realisasi ini?')" wire:click='destroy("{{ $rs->uuid }}")'>
-                                <i class="ik ik-trash text-danger"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-                @endforeach
                 @empty
                 <tr class="">
-                    <td class="text-center" colspan="6">Sub Kegiatan Masih Kosong, Mohon Tambahkan dimenu DPA
+                    <td class="text-center" colspan="6">Rincian Kosong
                     </td>
                 </tr>
                 @endforelse

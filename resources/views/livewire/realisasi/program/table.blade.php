@@ -69,12 +69,6 @@
                         </div>
                     </td>
                 </tr>
-                @foreach ($program->indikator_program as $indikator_program)
-                <tr>
-                    <td></td>
-                    <td colspan="6">{{ $indikator_program->title }}</td>
-                </tr>
-                @endforeach
                 @empty
                 <tr class="">
                     <td class="text-center" colspan="7">Program Masih Kosong, Mohon Tambahkan dimenu DPA</td>

@@ -42,17 +42,7 @@
             @enderror
         </div>
     </td>
-    <td colspan="2" class="border">
-        <div class="input-group m-0">
-            <span class="btn">
-                Rp.
-            </span>
-            <input type="number" class="form-control" wire:model='pagu'>
-        </div>
-        @error('pagu')
-        <span class="text-danger">{{ $message }}</span>
-        @enderror
-    </td>
+    <td colspan="2"></td>
     <td class="text-center border">
         <button class="btn btn-primary" wire:click='store("{{ $subkegiatan->uuid }}")'>
             <i class="fas fa-save"></i>

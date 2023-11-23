@@ -66,12 +66,6 @@
                         </div>
                     </td>
                 </tr>
-                @foreach ($kegiatan->indikator_kegiatan as $indikator_kegiatan)
-                <tr>
-                    <td></td>
-                    <td colspan="6">{{ $indikator_kegiatan->title }}</td>
-                </tr>
-                @endforeach
                 @empty
                 <tr class="">
                     <td class="text-center" colspan="7">Kegiatan Masih Kosong, Mohon Tambahkan dimenu DPA</td>
