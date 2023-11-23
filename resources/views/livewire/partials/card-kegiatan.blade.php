@@ -31,12 +31,12 @@
                 <td class="col-3">PAGU PROGRAM</td>
                 <td>:</td>
                 @php
-                $pagu_program = 0;
-                foreach ($program->kegiatan as $keg) {
-                foreach ($keg->subkegiatan as $sub) {
-                $pagu_program += $sub->pagu;
-                }
-                }
+                    $pagu_program = 0;
+                    foreach ($program->kegiatan as $keg) {
+                        foreach ($keg->subkegiatan as $sub) {
+                            $pagu_program += $sub->pagu;
+                        }
+                    }
                 @endphp
                 <td><b>@currency($pagu_program)</b></td>
             </tr>
@@ -44,14 +44,16 @@
                 <td class="col-3">PAGU TERSERAP</td>
                 <td>:</td>
                 @php
-                $pagu_trsrp = 0;
-                foreach ($program->kegiatan as $keg) {
-                foreach ($keg->subkegiatan as $sub) {
-                foreach ($sub->realisasi_subkegiatan as $rs) {
-                $pagu_trsrp += $rs->pagu;
-                }
-                }
-                }
+                    $pagu_trsrp = 0;
+                    foreach ($program->kegiatan as $keg) {
+                        foreach ($keg->subkegiatan as $sub) {
+                            foreach ($sub->realisasi_subkegiatan as $rs) {
+                                foreach ($rs->rincian_belanja as $rb) {
+                                    $pagu_trsrp += $rb->pagu;
+                                }
+                            }
+                        }
+                    }
 
                 @endphp
                 <td>

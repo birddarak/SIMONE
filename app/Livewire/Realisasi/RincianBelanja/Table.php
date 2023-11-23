@@ -36,12 +36,12 @@ class Table extends Component
             'tanggal' => 'required',
             'pagu' => 'required|string',
             'keterangan' => 'nullable|string',
-            'file' => 'nullable|string',
+            'file' => 'nullable',
         ]);
 
         // $realisasi_subkegiatan = RealisasiSubkegiatan::where('uuid', $this->realisasi_subkegiatan->uuid)->first();
 
-        // $file = (!is_null($this->file)) ? $this->file->store('assets/sub-kegiatan/realisasi', 'public') : NULL;
+        $file = (!is_null($this->file)) ? $this->file->store('assets/sub-kegiatan/realisasi/rincian', 'public') : NULL;
         // $rincian = (!is_null($this->rincian)) ? $this->rincian : NULL;
 
         $data = [
@@ -51,7 +51,7 @@ class Table extends Component
             'tanggal' => $this->tanggal,
             'pagu' => $this->pagu,
             'keterangan' => $this->keterangan,
-            'file' => $this->file,
+            'file' => $file,
         ];
 
         RincianBelanja::create($data);

@@ -35,12 +35,11 @@ class Table extends Component
             'triwulan' => 'required|string|in:I,II,III,IV',
             'tanggal' => 'required',
             'capaian' => 'required|string',
-            'satuan' => 'required|string',
-            'pagu' => 'required|integer',
+            // 'satuan' => 'required|string',
+            // 'pagu' => 'required|integer',
         ]);
 
         $subkegiatan = Subkegiatan::where('uuid', $uuid)->first();
-
         // $file = (!is_null($this->file)) ? $this->file->store('assets/sub-kegiatan/realisasi', 'public') : NULL;
         // $rincian = (!is_null($this->rincian)) ? $this->rincian : NULL;
 
@@ -50,13 +49,13 @@ class Table extends Component
             'tanggal' => $this->tanggal,
             'triwulan' => $this->triwulan,
             'capaian' => $this->capaian,
-            'satuan' => $this->satuan,
+            // 'satuan' => $this->satuan,
             'pagu' => $this->pagu,
         ];
 
         RealisasiSubkegiatan::create($data);
 
-        session()->flash('message', 'Berhasil menambahkan realisasi triwulan <b>' . $this->triwulan . '</b> kedalam Sub Kegiatan <b>' . $subkegiatan->title .'</b>');
+        session()->flash('message', 'Berhasil menambahkan realisasi triwulan <b>' . $this->triwulan . '</b> kedalam Sub Kegiatan <b>' . $subkegiatan->title . '</b>');
         $this->reset(['triwulan', 'tanggal', 'capaian', 'satuan', 'pagu']);
     }
 

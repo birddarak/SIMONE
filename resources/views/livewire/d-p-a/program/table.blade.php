@@ -126,7 +126,7 @@
                     @include('livewire.d-p-a.program.indikator')
                 @empty
                     <tr class="">
-                        <td class="text-center" colspan="6">Program Masih Kosong</td>
+                        <td class="text-center" colspan="7">Program Masih Kosong</td>
                     </tr>
                 @endforelse
                 {{-- --}}

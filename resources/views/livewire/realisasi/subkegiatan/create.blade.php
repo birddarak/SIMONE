@@ -1,17 +1,7 @@
-<tr class="text-dark" style="background-color: rgb(206, 203, 203);">
-    <th colspan="2" class="text-center">Triwulan</th>
-    <th class="text-center">Capaian & Satuan</th>
-    <th colspan="2" class="text-center">Pagu</th>
-    <th class="text-center">
-        <button class="btn btn-sm btn-transparent" data-toggle="collapse" href="#subkegiatan-{{ $subkegiatan->uuid }}"
-            role="button" aria-expanded="false" aria-controls="subkegiatan-{{ $subkegiatan->uuid }}">
-            <i class="fas fa-plus fa-fw"></i>
-        </button>
-    </th>
-</tr>
-<tr style="background-color: rgb(218, 218, 218);" class="collapse" id="subkegiatan-{{ $subkegiatan->uuid }}">
-    {{-- <td colspan="5"></td> --}}
-    <td colspan="2" class="border">
+<tr style="background-color: rgb(218, 218, 218);" class="collapse" id="subkegiatan-{{ $subkegiatan->uuid }}" wire:ignore>
+
+    <td class="p-1"></td>
+    <td class="p-1">
         <div class="input-group m-0">
             <select class="form-control form-control-sm" wire:model='triwulan'>
                 <option>.::PILIH TRIWULAN::.</option>
@@ -21,29 +11,27 @@
                 <option value="IV">IV</option>
             </select>
             @error('triwulan')
-            <span class="text-danger">{{ $message }}</span>
+                <span class="text-danger">{{ $message }}</span>
             @enderror
             <input type="date" class="form-control" placeholder="Tanggal" wire:model='tanggal'>
             @error('tanggal')
-            <span class="text-danger">{{ $message }}</span>
+                <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
     </td>
-    <td class="border">
+    <td class="p-1">
         <div class="input-group m-0">
             <input type="text" class="form-control" placeholder="Capaian" wire:model='capaian'>
             @error('capaian')
-            <span class="text-danger">{{ $message }}</span>
+                <span class="text-danger">{{ $message }}</span>
             @enderror
-            /
-            <input type="text" class="form-control" placeholder="Satuan" wire:model='satuan'>
-            @error('satuan')
-            <span class="text-danger">{{ $message }}</span>
-            @enderror
+            <span class="btn btn-sm btn-transparent"> / {{ $subkegiatan->satuan }}</span>
         </div>
     </td>
-    <td colspan="2"></td>
-    <td class="text-center border">
+    <td class="p-1"></td>
+    <td class="p-1"></td>
+    <td class="p-1"></td>
+    <td class="text-center p-1">
         <button class="btn btn-primary" wire:click='store("{{ $subkegiatan->uuid }}")'>
             <i class="fas fa-save"></i>
         </button>
