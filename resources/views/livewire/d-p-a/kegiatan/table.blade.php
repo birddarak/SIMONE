@@ -56,9 +56,9 @@
                                 class="form-control ">
                         </td>
                         <td class="p-1">
-                            <input type="text" value="{{ $kegiatan->title }}"
-                                wire:blur="updateKegiatan('{{ $kegiatan->uuid }}', 'title', $event.target.value)"
-                                class="form-control ">
+                            <textarea type="text" value="{{ $kegiatan->title }}"
+                                wire:blur="updateKegiatan('{{ $kegiatan->uuid }}', 'title', $event.target.value)" class="form-control "
+                                rows="3">{{ $kegiatan->title }}</textarea>
                         </td>
                         <td class="p-1">
                             <div class="input-group mb-0">

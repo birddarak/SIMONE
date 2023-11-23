@@ -59,9 +59,8 @@
                                 class="form-control">
                         </td>
                         <td class="p-1">
-                            <input type="text" value="{{ $program->title }}"
-                                wire:blur="updateProgram('{{ $program->uuid }}', 'title', $event.target.value)"
-                                class="form-control">
+                            <textarea type="text" value="{{ $program->title }}"
+                                wire:blur="updateProgram('{{ $program->uuid }}', 'title', $event.target.value)" class="form-control" rows="3">{{ $program->title }}</textarea>
                         </td>
                         <td class="p-1">
                             <div class="input-group m-0">
