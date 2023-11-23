@@ -46,49 +46,7 @@
                     </td>
                 </tr>
                 {{-- detail user --}}
-                <tr>
-                    <td class="collapse" id="collapse-{{ $pegawai->uuid }}" colspan="5">
-                        <div class="card card-body">
-                            <form action="" class="form-sample">
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-2 col-form-label">Username</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" value="{{ $pegawai->user->username }}"
-                                            wire:blur="updateUser('{{ $pegawai->user->uuid }}', 'username', $event.target.value)"
-                                            class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-2 col-form-label">Email</label>
-                                    <div class="col-sm-9">
-                                        <input type="email" value="{{ $pegawai->user->email }}"
-                                            wire:blur="updateUser('{{ $pegawai->user->uuid }}', 'email', $event.target.value)"
-                                            class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="" class="col-sm-2 col-form-label">Rule</label>
-                                    <div class="col-sm-2">
-                                        <select
-                                            wire:change="updateUser('{{ $pegawai->user->uuid }}', 'rule', $event.target.value)"
-                                            class="form-control" style="width: 100% !important;">
-                                            <option value="">Pilih</option>
-                                            <option value="kepala dinas" {{ ($pegawai->user->rule == 'kepala dinas') ?
-                                                'selected' :
-                                                '' }}>Kepala Dinas</option>
-                                            <option value="kabid" {{ ($pegawai->user->rule == 'kabid') ? 'selected' : ''
-                                                }}>Kabid
-                                            </option>
-                                            <option value="admin" {{ ($pegawai->user->rule == 'admin') ? 'selected' : ''
-                                                }}>Admin
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
+                @include('livewire.pegawai.user')
                 @empty
                 <tr class="">
                     <td class="text-center" colspan="5">Data Pegawai Masih Kosong, Silahkan Tambahkan .. :D</td>

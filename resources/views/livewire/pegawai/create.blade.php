@@ -40,7 +40,7 @@
 {{-- pegawai --}}
 
 {{-- user --}}
-<tr>
+<tr class="border-bottom border-dark">
     <td>
         <input type="text" placeholder="USERNAME" class="form-control @error('username') is-invalid @enderror"
             wire:model="username">
@@ -64,7 +64,7 @@
     <td>
         <select class="form-control @error('rule') is-invalid @enderror" wire:model="rule"
             style="width: 100% !important">
-            <option value="">Pilih</option>
+            <option value="">PILIH RULE</option>
             <option value="kepala dinas">Kepala Dinas</option>
             <option value="kabid">Kabid</option>
             <option value="admin">Admin</option>
