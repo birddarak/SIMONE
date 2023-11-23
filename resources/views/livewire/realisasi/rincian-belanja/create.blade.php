@@ -1,12 +1,12 @@
-<tr class="bg-form-program collapse" id="collapse-program">
+<tr class="bg-form-program collapse" id="collapse-program" wire:ignore>
     <td class="p-1">
         <input type="text" placeholder="RINCIAN" class="form-control @error('rincian') is-invalid @enderror"
             wire:model="rincian">
 
         @error('rincian')
-        <span class="text-danger">
-            Mohon isi Rincian
-        </span>
+            <span class="text-danger">
+                Mohon isi Rincian
+            </span>
         @enderror
     </td>
     <td class="p-1">
@@ -14,9 +14,9 @@
             wire:model="tanggal">
 
         @error('tanggal')
-        <span class="text-danger">
-            Mohon isi Tanggal
-        </span>
+            <span class="text-danger">
+                Mohon isi Tanggal
+            </span>
         @enderror
     </td>
     <td class="p-1">
@@ -24,9 +24,9 @@
             wire:model='pagu'>
 
         @error('pagu')
-        <span class="text-danger">
-            Mohon isi Pagu
-        </span>
+            <span class="text-danger">
+                Mohon isi Pagu
+            </span>
         @enderror
     </td>
     <td class="p-1">
@@ -34,9 +34,9 @@
             wire:model="keterangan">
 
         @error('keterangan')
-        <span class="text-danger">
-            Mohon isi Keterangan
-        </span>
+            <span class="text-danger">
+                Mohon isi Keterangan
+            </span>
         @enderror
     </td>
     <td class="p-1">
@@ -44,9 +44,9 @@
             wire:model="file">
 
         @error('file')
-        <span class="text-danger">
-            Mohon Tambahkan File
-        </span>
+            <span class="text-danger">
+                Mohon Tambahkan File
+            </span>
         @enderror
     </td>
     <td class="p-1">

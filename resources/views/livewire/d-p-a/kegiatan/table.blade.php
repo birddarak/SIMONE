@@ -121,7 +121,7 @@
                     @include('livewire.d-p-a.kegiatan.indikator')
                 @empty
                     <tr class="">
-                        <td class="text-center" colspan="5">Kegiatan Masih Kosong</td>
+                        <td class="text-center" colspan="7">Kegiatan Masih Kosong</td>
                     </tr>
                 @endforelse
                 {{-- --}}

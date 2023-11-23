@@ -41,7 +41,9 @@ class Stat extends Component
         $data['total_pagu'] = $data['subkegiatans']->sum('pagu');
         $data['pagu_terserap'] = 0;
         foreach ($data['subkegiatans'] as $subkegiatan) {
-            $data['pagu_terserap'] += $subkegiatan->realisasi_subkegiatan->sum('pagu');
+            foreach ($subkegiatan->realisasi_subkegiatan as $rs) {
+                $data['pagu_terserap'] += $rs->rincian_belanja->sum('pagu');
+            }
         }
 
         // graph

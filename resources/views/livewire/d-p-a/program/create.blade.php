@@ -1,4 +1,4 @@
-<tr class="bg-form-program collapse" id="collapse-program">
+<tr class="bg-form-program collapse" id="collapse-program" wire:ignore>
     <td class="p-1">
         <input type="text" placeholder="KODE" class="form-control @error('kode') is-invalid @enderror" wire:model="kode">
 

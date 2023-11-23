@@ -36,12 +36,12 @@
                 <td class="col-3">PAGU KEGIATAN</td>
                 <td>:</td>
                 @php
-                $pagu_program = 0;
-                foreach ($kegiatan->program->kegiatan as $keg) {
-                foreach ($keg->subkegiatan as $sub) {
-                $pagu_program += $sub->pagu;
-                }
-                }
+                    $pagu_program = 0;
+                    foreach ($kegiatan->program->kegiatan as $keg) {
+                        foreach ($keg->subkegiatan as $sub) {
+                            $pagu_program += $sub->pagu;
+                        }
+                    }
                 @endphp
                 <td><b>@currency($pagu_program)</b></td>
             </tr>
@@ -49,16 +49,18 @@
                 <td class="col-3">PAGU TERSERAP</td>
                 <td>:</td>
                 @php
-                $pagu_program = 0;
-                $pagu_terserap = 0;
-                foreach ($kegiatan->program->kegiatan as $keg) {
-                foreach ($keg->subkegiatan as $sub) {
-                $pagu_program += $sub->pagu;
-                foreach ($sub->realisasi_subkegiatan as $rs) {
-                $pagu_terserap += $rs->pagu;
-                }
-                }
-                }
+                    $pagu_program = 0;
+                    $pagu_terserap = 0;
+                    foreach ($kegiatan->program->kegiatan as $keg) {
+                        foreach ($keg->subkegiatan as $sub) {
+                            $pagu_program += $sub->pagu;
+                            foreach ($sub->realisasi_subkegiatan as $rs) {
+                                foreach ($rs->rincian_belanja as $rb) {
+                                    $pagu_terserap += $rb->pagu;
+                                }
+                            }
+                        }
+                    }
                 @endphp
                 <td>
                     <b class="{{ $pagu_program == $pagu_terserap ? 'text-success' : 'text-danger' }}">
