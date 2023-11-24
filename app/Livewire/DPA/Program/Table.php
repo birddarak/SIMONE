@@ -67,7 +67,8 @@ class Table extends Component
 
         Program::create($data);
 
-        session()->flash('message', 'Berhasil menambahkan <b>' . $this->program . '</b> kedalam Program');
+        session()->flash('message', $data['uuid']);
+        // session()->flash('message', 'Berhasil menambahkan <b>' . $this->program . '</b> kedalam Program');
         $this->reset(['pegawai_id', 'kode', 'program', 'target', 'satuan']);
     }
 

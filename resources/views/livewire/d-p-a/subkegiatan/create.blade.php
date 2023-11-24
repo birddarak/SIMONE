@@ -59,7 +59,7 @@
         @enderror
     </td>
     <td class="p-1">
-        <input type="text" placeholder="PAGU" class="form-control @error('pagu') is-invalid @enderror"
+        <input type="number" placeholder="PAGU" class="form-control @error('pagu') is-invalid @enderror"
             wire:model='pagu'>
 
         @error('pagu')
