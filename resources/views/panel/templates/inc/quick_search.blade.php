@@ -22,6 +22,9 @@
                             <a href="{{ route('dashboard') }}"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
                         </div>
                         <div class="app-item">
+                            <a href="{{ route('laporan') }}"><i class="ik ik-printer"></i><span>Laporan</span></a>
+                        </div>
+                        <div class="app-item">
                             <a href="{{ route('dpa.index') }}"><i class="ik ik-book"></i><span>DPA</span></a>
                         </div>
                         <div class="app-item">
@@ -29,9 +32,6 @@
                         </div>
                         <div class="app-item">
                             <a href="{{ route('pegawai.index') }}"><i class="ik ik-users"></i><span>Pegawai</span></a>
-                        </div>
-                        <div class="app-item">
-                            <a href="#"><i class="ik ik-printer"></i><span>Laporan</span></a>
                         </div>
                     </div>
                 </div>

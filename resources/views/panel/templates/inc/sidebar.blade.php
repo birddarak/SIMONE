@@ -5,8 +5,8 @@
             <div class="nav-item {{ Route::currentRouteName() == 'dashboard' ? 'active' : '' }}">
                 <a href="{{ route('dashboard') }}"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
             </div>
-            <div class="nav-item">
-                <a href="{{ route('laporan.monev') }}"><i class="ik ik-printer"></i><span>Laporan</span></a>
+            <div class="nav-item {{ Route::currentRouteName() == 'laporan' ? 'active' : '' }}">
+                <a href="{{ route('laporan') }}"><i class="ik ik-printer"></i><span>Laporan</span></a>
             </div>
 
             <div class="nav-lavel">Perencanaan</div>
