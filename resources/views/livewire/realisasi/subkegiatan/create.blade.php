@@ -13,10 +13,6 @@
             @error('triwulan')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
-            <input type="date" class="form-control" placeholder="Tanggal" wire:model='tanggal'>
-            @error('tanggal')
-                <span class="text-danger">{{ $message }}</span>
-            @enderror
         </div>
     </td>
     <td class="p-1">
@@ -28,9 +24,7 @@
             <span class="btn btn-sm btn-transparent"> / {{ $subkegiatan->satuan }}</span>
         </div>
     </td>
-    <td class="p-1"></td>
-    <td class="p-1"></td>
-    <td class="p-1"></td>
+    <td class="p-1" colspan="3"></td>
     <td class="text-center p-1">
         <button class="btn btn-primary" wire:click='store("{{ $subkegiatan->uuid }}")'>
             <i class="fas fa-save"></i>

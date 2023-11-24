@@ -51,7 +51,22 @@
             <tr>
                 <td class="col-3">TRIWULAN</td>
                 <td>:</td>
-                <td><b>{{ $realisasi_subkegiatan->triwulan }}</b></td>
+                <td><b>
+                    @switch($realisasi_subkegiatan->triwulan)
+                        @case('I')
+                        {{ $realisasi_subkegiatan->triwulan . ' (SATU)' }}
+                        @break
+                        @case('II')
+                        {{ $realisasi_subkegiatan->triwulan . ' (DUA)' }}
+                            @break
+                        @case('III')
+                        {{ $realisasi_subkegiatan->triwulan . ' (TIGA)' }}
+                            @break
+                        @case('IV')
+                        {{ $realisasi_subkegiatan->triwulan . ' (EMPAT)' }}
+                            @break
+                    @endswitch
+                </b></td>
             </tr>
             <tr>
                 <td class="col-3">PAGU TERSERAP</td>

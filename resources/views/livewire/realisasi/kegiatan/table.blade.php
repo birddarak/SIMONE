@@ -30,7 +30,7 @@
                         <td class="p-1">
                             {{ $kegiatan->pegawai->nama }}
                         </td>
-                        <td class="p-1">
+                        <td class="p-1 text-right">
 
                             @php
                                 $pagu_validasi = 0;
@@ -43,7 +43,7 @@
                                 @currency($pagu_validasi)
                             </b>
                         </td>
-                        <td class="p-1">
+                        <td class="p-1 text-right">
                             @php
                                 $pagu_terserap = 0;
                                 foreach ($kegiatan->subkegiatan as $sub) {

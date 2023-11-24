@@ -34,15 +34,19 @@
                             wire:blur="update('{{ $rincian_belanja->uuid }}', 'tanggal', $event.target.value)"
                             class="form-control">
                     </td>
-                    <td class="p-1">
-                        <input type="number" value="{{ $rincian_belanja->pagu }}"
-                            wire:blur="update('{{ $rincian_belanja->uuid }}', 'pagu', $event.target.value)"
-                            class="form-control">
+                    <td class="p-1 text-right">
+                        <div class="list-actions d-flex justify-content-start form-inline">
+                            <input type="number" value="{{ $rincian_belanja->pagu }}"
+                                wire:blur="update('{{ $rincian_belanja->uuid }}', 'pagu', $event.target.value)"
+                                class="form-control">
+                            <span class="ml-2">
+                                <strong>(@currency($rincian_belanja->pagu))</strong>
+                            </span>
+                        </div>
                     </td>
                     <td class="p-1">
-                        <input type="text" value="{{ $rincian_belanja->keterangan }}"
-                            wire:blur="update('{{ $rincian_belanja->uuid }}', 'keterangan', $event.target.value)"
-                            class="form-control">
+                        <textarea rows="3" type="text"                         wire:blur="update('{{ $rincian_belanja->uuid }}', 'keterangan', $event.target.value)"
+                            class="form-control">{{ $rincian_belanja->keterangan }}</textarea>
                     </td>
                     <td class="p-1 text-center">
                         @if ($rincian_belanja->file != '')

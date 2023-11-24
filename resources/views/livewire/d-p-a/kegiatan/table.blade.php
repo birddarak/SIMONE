@@ -60,17 +60,17 @@
                                 wire:blur="updateKegiatan('{{ $kegiatan->uuid }}', 'title', $event.target.value)" class="form-control "
                                 rows="3">{{ $kegiatan->title }}</textarea>
                         </td>
-                        <td class="p-1">
+                        <td class="p-1 col-2">
                             <div class="input-group mb-0">
                                 <input type="text" value="{{ $kegiatan->target }}"
                                     wire:blur="updateProgram('{{ $kegiatan->uuid }}', 'target', $event.target.value)"
-                                    class="form-control ">
+                                    class="form-control col-3">
                                 <div class="btn btn-transparent">
                                     /
                                 </div>
                                 <input type="text" value="{{ $kegiatan->satuan }}"
                                     wire:blur="updateProgram('{{ $kegiatan->uuid }}', 'satuan', $event.target.value)"
-                                    class="form-control ">
+                                    class="form-control col-9">
                             </div>
                         </td>
                         <td class="p-1">
@@ -88,7 +88,7 @@
                                 @endforelse
                             </select>
                         </td>
-                        <td class="p-1">
+                        <td class="p-1 text-right">
                             @php
                                 $pagu_validasi = 0;
                                 foreach ($kegiatan->subkegiatan as $sub) {

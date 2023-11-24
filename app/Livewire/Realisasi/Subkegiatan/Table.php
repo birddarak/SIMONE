@@ -14,7 +14,7 @@ class Table extends Component
     public $kegiatan;
 
     // FORM REALISASI
-    public $triwulan, $tanggal, $capaian, $satuan, $pagu;
+    public $triwulan, $capaian, $satuan, $pagu;
 
     public function mount($kegiatan)
     {
@@ -32,7 +32,6 @@ class Table extends Component
     {
         $this->validate([
             'triwulan' => 'required|string|in:I,II,III,IV',
-            'tanggal' => 'required',
             'capaian' => 'required|string',
             // 'satuan' => 'required|string',
             // 'pagu' => 'required|integer',
@@ -45,7 +44,6 @@ class Table extends Component
         $data = [
             'subkegiatan_id' => $subkegiatan->id,
             'uuid' => str()->uuid(),
-            'tanggal' => $this->tanggal,
             'triwulan' => $this->triwulan,
             'capaian' => $this->capaian,
             // 'satuan' => $this->satuan,
@@ -55,7 +53,7 @@ class Table extends Component
         RealisasiSubkegiatan::create($data);
 
         session()->flash('message', 'Berhasil menambahkan realisasi triwulan <b>' . $this->triwulan . '</b> kedalam Sub Kegiatan <b>' . $subkegiatan->title . '</b>');
-        $this->reset(['triwulan', 'tanggal', 'capaian', 'satuan', 'pagu']);
+        $this->reset(['triwulan', 'capaian', 'satuan', 'pagu']);
     }
 
     public function update($uuid, $field, $value)

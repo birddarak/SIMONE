@@ -33,10 +33,10 @@
                         <td class="p-1">
                             {{ $subkegiatan->pegawai->nama }}
                         </td>
-                        <td class="p-1">
+                        <td class="p-1 text-right">
                             @currency($subkegiatan->pagu)
                         </td>
-                        <td class="p-1">
+                        <td class="p-1 text-right">
                             @php
                                 $pagu_terserap = 0;
                                 foreach ($subkegiatan->realisasi_subkegiatan as $rs) {
@@ -78,21 +78,16 @@
                                         <option value="IV" {{ $rs->triwulan == 'IV' ? 'selected' : '' }}>IV
                                         </option>
                                     </select>
-                                    <input type="date" class="form-control" value="{{ $rs->tanggal }}"
-                                        wire:blur="update('{{ $rs->uuid }}', 'tanggal', $event.target.value)">
                                 </div>
                             </td>
-                            <td class="p-1">
+                            <td class="p-1 col-2">
                                 <div class="input-group m-0">
-                                    <input type="text" value="{{ $rs->capaian }}" class="form-control"
-                                        wire:blur="update('{{ $rs->uuid }}', 'capaian', $event.target.value)"
-                                        maxlength="5" size="5">
-                                    <span class="btn btn-sm btn-transparent"> / {{ $subkegiatan->satuan }}</span>
+                                    <input type="text" value="{{ $rs->capaian }}" class="form-control col-3"
+                                        wire:blur="update('{{ $rs->uuid }}', 'capaian', $event.target.value)">
+                                    <span class="text-left btn btn-transparent col-9"> / {{ $subkegiatan->satuan }}</span>
                                 </div>
                             </td>
-                            <td class="p-1"></td>
-                            <td class="p-1"></td>
-                            <td class="pv-1">
+                            <td class="p-1 text-right" colspan="3">
                                 <strong class="m-0">@currency($rs->rincian_belanja->sum('pagu'))</strong>
                             </td>
                             <td class="text-center p-1">
@@ -114,7 +109,7 @@
                     @endforeach
                 @empty
                     <tr class="">
-                        <td class="text-center" colspan="6">Sub Kegiatan Masih Kosong, Mohon Tambahkan dimenu DPA
+                        <td class="text-center" colspan="7">Sub Kegiatan Masih Kosong, Mohon Tambahkan dimenu DPA
                         </td>
                     </tr>
                 @endforelse
