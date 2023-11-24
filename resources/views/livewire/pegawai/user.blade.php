@@ -1,7 +1,7 @@
-<tr class="">
-    <td class="collapse" id="collapse-{{ $pegawai->uuid }}" colspan="5">
+<tr class="" wire:ignore style="background-color: rgb(214, 214, 214);">
+    <td class="collapse" id="collapse-{{ $pegawai->uuid }}" colspan="8">
         <div class="container">
-            <div class="card card-body border-top border-dark">
+            <div class="card card-body m-0">
                 <div class="row">
                     <form action="" class="col-6">
                         <div class="form-group row">
@@ -30,17 +30,14 @@
                                     wire:change="updateUser('{{ $pegawai->user->uuid }}', 'rule', $event.target.value)"
                                     class="form-control" style="width: 100% !important;">
                                     <option value="">Pilih</option>
-                                    <option value="kepala dinas" {{ ($pegawai->user->rule == 'kepala dinas')
-                                        ?
-                                        'selected' :
-                                        '' }}>Kepala Dinas</option>
-                                    <option value="kabid" {{ ($pegawai->user->rule == 'kabid') ? 'selected'
-                                        : ''
-                                        }}>Kabid
+                                    <option value="kepala dinas"
+                                        {{ $pegawai->user->rule == 'kepala dinas' ? 'selected' : '' }}>
+                                        Kepala Dinas</option>
+                                    <option value="kabid" {{ $pegawai->user->rule == 'kabid' ? 'selected' : '' }}>
+                                        Kabid
                                     </option>
-                                    <option value="admin" {{ ($pegawai->user->rule == 'admin') ? 'selected'
-                                        : ''
-                                        }}>Admin
+                                    <option value="admin" {{ $pegawai->user->rule == 'admin' ? 'selected' : '' }}>
+                                        Admin
                                     </option>
                                 </select>
                             </div>
@@ -51,16 +48,16 @@
                             <label for="" class="col-sm-4 col-form-label">Tanggal dibuat</label>
                             <label for="" class="col-form-label">:</label>
                             <div class="col-sm-7">
-                                <input type="text" value="{{ $pegawai->user->created_at }}" class="form-control text-secondary"
-                                    readonly>
+                                <input type="text" value="{{ $pegawai->user->created_at }}"
+                                    class="form-control text-secondary" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="" class="col-sm-4 col-form-label">Tanggal diperbaharui</label>
                             <label for="" class="col-form-label">:</label>
                             <div class="col-sm-7">
-                                <input type="text" value="{{ $pegawai->user->updated_at }}" class="form-control text-secondary"
-                                    readonly>
+                                <input type="text" value="{{ $pegawai->user->updated_at }}"
+                                    class="form-control text-secondary" readonly>
                             </div>
                         </div>
                     </form>

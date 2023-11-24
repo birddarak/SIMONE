@@ -100,10 +100,12 @@
                             </div>
                         </td>
                         <td class="p-1 text-center">
-                            <button class="btn btn-danger btn-icon"
-                                onclick="return confirm('Ingin menghapus Sub Kegiatan ini?')"
-                                wire:click.prevent='destroySubkegiatan("{{ $subkegiatan->uuid }}")'><i
-                                    class="ik ik-trash-2"></i></button>
+                            @if ($subkegiatan->realisasi_subkegiatan->count() == 0)
+                                <button class="btn btn-danger btn-icon"
+                                    onclick="return confirm('Ingin menghapus Sub Kegiatan ini?')"
+                                    wire:click.prevent='destroySubkegiatan("{{ $subkegiatan->uuid }}")'><i
+                                        class="ik ik-trash-2"></i></button>
+                            @endif
                         </td>
                         <td>
                             <button class="btn btn-success btn-icon btn-sm" data-toggle="collapse"

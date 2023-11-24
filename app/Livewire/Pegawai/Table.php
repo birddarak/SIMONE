@@ -10,7 +10,7 @@ use Livewire\Component;
 class Table extends Component
 {
     public $nama, $nip, $jabatan;
-    
+
     public $username, $email, $rule;
 
     public function render()
@@ -20,7 +20,8 @@ class Table extends Component
         return view('livewire.pegawai.table', $data);
     }
 
-    public function store(){
+    public function store()
+    {
         $this->validate([
             'nama' => 'required|string',
             'nip' => 'required|string|unique:pegawais,nip',
@@ -32,7 +33,7 @@ class Table extends Component
 
         $user = User::create([
             'uuid' => str()->uuid(),
-            'username' => $this->nama,
+            'username' => $this->username,
             'email' => $this->email,
             'email_verified_at' => now(),
             'password' => Hash::make('password', [
@@ -50,13 +51,14 @@ class Table extends Component
             'jabatan' => $this->jabatan
         ]);
 
-        session()->flash('message', 'Berhasil menambahkan <b>'.$this->nama . '</b> sebagai rule <b>' . $this->rule .'</b>');
+        session()->flash('message', 'Berhasil menambahkan <b>' . $this->nama . '</b> sebagai rule <b>' . $this->rule . '</b>');
         $this->reset(['nama', 'nip', 'jabatan', 'username', 'email', 'rule']);
     }
 
     // Pegawai
 
-    public function updatePegawai($uuid, $field, $value){
+    public function updatePegawai($uuid, $field, $value)
+    {
         Pegawai::where('uuid', $uuid)->update([
             $field => $value
         ]);
@@ -64,13 +66,18 @@ class Table extends Component
 
     // User
 
-    public function updateUser($uuid, $field, $value){
+    public function updateUser($uuid, $field, $value)
+    {
         User::where('uuid', $uuid)->update([
             $field => $value
         ]);
     }
 
-    public function destroy($uuid){
-        Pegawai::where('uuid', $uuid)->delete();
+    public function destroy($uuid)
+    {
+        $pegawai = Pegawai::where('uuid', $uuid)->first();
+        $user = User::find($pegawai->user_id);
+        $user->delete();
+        $pegawai->delete();
     }
 }
