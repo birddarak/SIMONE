@@ -14,11 +14,21 @@ class DpaController extends Controller
 
     public function dpa_kegiatan(Program $program)
     {
+        if (auth()->user()->rule == 'kabid') {
+            if ($program->pegawai_id != auth()->user()->pegawai->id) {
+                return abort(403);
+            }
+        }
         return view('panel.pages.dpa.kegiatan', ['program' => $program]);
     }
 
     public function dpa_subkegiatan(Kegiatan $kegiatan)
     {
+        if (auth()->user()->rule == 'kabid') {
+            if ($kegiatan->program->pegawai_id != auth()->user()->pegawai->id) {
+                return abort(403);
+            }
+        }
         return view('panel.pages.dpa.subkegiatan', ['kegiatan' => $kegiatan]);
     }
 }
