@@ -9,7 +9,8 @@ class LaporanController extends Controller
 {
     public function index()
     {
-        return view('panel.pages.laporan.index');
+        $data['programs'] = Program::orderBy('kode', 'ASC')->where('apbd', 'murni')->where('tahun_anggaran', date('Y'))->get();
+        return view('panel.pages.laporan.index', $data);
     }
 
     public function print(Request $request)

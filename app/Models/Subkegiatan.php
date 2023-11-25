@@ -31,7 +31,20 @@ class Subkegiatan extends Model
         return $this->belongsTo(Pegawai::class);
     }
 
-    // public function triwulan($value){
-    //     return $this->realisasi_subkegiatan()->where('triwulan', $value)->get()->first();
-    // }
+    public function triwulan($value)
+    {
+        return $this->realisasi_subkegiatan()->where('triwulan', $value)->get()->first();
+    }
+
+    public function countTotalCapaian($value)
+    {
+        return $this->realisasi_subkegiatan->where('triwulan', $value)->sum('capaian');
+    }
+
+    public function sumTotalRincian($value)
+    {
+        return $this->realisasi_subkegiatan->where('triwulan', $value)->flatMap(function ($realisasi_subkegiatan) {
+            return $realisasi_subkegiatan->rincian_belanja->pluck('pagu');
+        })->sum();
+    }
 }
