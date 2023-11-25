@@ -12,25 +12,41 @@ $jumlah_ik = $keg->indikator_kegiatan->count();
         <td class="text-right" style="vertical-align: middle;">
             @currency($keg->subkegiatan->sum('pagu'))
         </td>
-        <td></td>
-        <td></td>
-        <td>
-            @currency($keg->total_realisasi('I'))
+        <td class="text-center">
+            -
         </td>
-        <td></td>
-        <td></td>
-        <td>
-            @currency($keg->total_realisasi('II'))
+        <td class="text-center">
+            {{ number_format(($keg->sumTotalRincian('I') / $keg->subkegiatan->sum('pagu')) * 100, 1, ',', '') . ' %' }}
         </td>
-        <td></td>
-        <td></td>
-        <td>
-            @currency($keg->total_realisasi('III'))
+        <td class="text-center">
+            @currency($keg->sumTotalRincian('I'))
         </td>
-        <td></td>
-        <td></td>
-        <td>
-            @currency($keg->total_realisasi('IV'))
+        <td class="text-center">
+            -
+        </td>
+        <td class="text-center">
+            {{ number_format(($keg->sumTotalRincian('II') / $keg->subkegiatan->sum('pagu')) * 100, 1, ',', '') . ' %' }}
+        </td>
+        <td class="text-center">
+            @currency($keg->sumTotalRincian('II'))
+        </td>
+        <td class="text-center">
+            -
+        </td>
+        <td class="text-center">
+            {{ number_format(($keg->sumTotalRincian('III') / $keg->subkegiatan->sum('pagu')) * 100, 1, ',', '') . ' %' }}
+        </td>
+        <td class="text-center">
+            @currency($keg->sumTotalRincian('III'))
+        </td>
+        <td class="text-center">
+            -
+        </td>
+        <td class="text-center">
+            {{ number_format(($keg->sumTotalRincian('IV') / $keg->subkegiatan->sum('pagu')) * 100, 1, ',', '') . ' %' }}
+        </td>
+        <td class="text-center">
+            @currency($keg->sumTotalRincian('IV'))
         </td>
     </tr>
 

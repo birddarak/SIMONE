@@ -17,7 +17,7 @@ $jumlah_ik = $keg->indikator_kegiatan->count();
             {{ $sub->countTotalCapaian('I') . ' ' . $sub->satuan }}
         </td>
         <td class="text-center">
-            {{ ($sub->sumTotalRincian('I') / $sub->pagu) * 100 . ' %' }}
+            {{ number_format(($sub->sumTotalRincian('I') / $sub->pagu) * 100, 1, ',', '') . ' %' }}
         </td>
         <td class="text-center">
             @currency($sub->sumTotalRincian('I'))
@@ -26,7 +26,7 @@ $jumlah_ik = $keg->indikator_kegiatan->count();
             {{ $sub->countTotalCapaian('II') . ' ' . $sub->satuan }}
         </td>
         <td class="text-center">
-            {{ ($sub->sumTotalRincian('II') / $sub->pagu) * 100 . ' %' }}
+            {{ number_format(($sub->sumTotalRincian('II') / $sub->pagu) * 100, 1, ',', '') . ' %' }}
         </td>
         <td class="text-center">
             @currency($sub->sumTotalRincian('II'))
@@ -35,7 +35,7 @@ $jumlah_ik = $keg->indikator_kegiatan->count();
             {{ $sub->countTotalCapaian('III') . ' ' . $sub->satuan }}
         </td>
         <td class="text-center">
-            {{ ($sub->sumTotalRincian('III') / $sub->pagu) * 100 . ' %' }}
+            {{ number_format(($sub->sumTotalRincian('III') / $sub->pagu) * 100, 1, ',', '') . ' %' }}
         </td>
         <td class="text-center">
             @currency($sub->sumTotalRincian('III'))
@@ -44,7 +44,7 @@ $jumlah_ik = $keg->indikator_kegiatan->count();
             {{ $sub->countTotalCapaian('IV') . ' ' . $sub->satuan }}
         </td>
         <td class="text-center">
-            {{ ($sub->sumTotalRincian('IV') / $sub->pagu) * 100 . ' %' }}
+            {{ number_format(($sub->sumTotalRincian('IV') / $sub->pagu) * 100, 1, ',', '') . ' %' }}
         </td>
         <td class="text-center">
             @currency($sub->sumTotalRincian('IV'))

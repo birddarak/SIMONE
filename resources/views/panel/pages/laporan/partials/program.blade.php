@@ -12,18 +12,42 @@ $jumlah_ip = $prog->indikator_program->count();
         <td class="text-right" style="vertical-align: middle;">
             @currency($prog->sumTotalSubKeg())
         </td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td class="text-center">
+            -
+        </td>
+        <td class="text-center">
+            {{ number_format(($prog->sumTotalRincian('I') / $prog->sumTotalSubKeg()) * 100, 1, ',', '') . ' %' }}
+        </td>
+        <td class="text-center">
+            @currency($prog->sumTotalRincian('I'))
+        </td>
+        <td class="text-center">
+            -
+        </td>
+        <td class="text-center">
+            {{ number_format(($prog->sumTotalRincian('II') / $prog->sumTotalSubKeg()) * 100, 1, ',', '') . ' %' }}
+        </td>
+        <td class="text-center">
+            @currency($prog->sumTotalRincian('II'))
+        </td>
+        <td class="text-center">
+            -
+        </td>
+        <td class="text-center">
+            {{ number_format(($prog->sumTotalRincian('III') / $prog->sumTotalSubKeg()) * 100, 1, ',', '') . ' %' }}
+        </td>
+        <td class="text-center">
+            @currency($prog->sumTotalRincian('III'))
+        </td>
+        <td class="text-center">
+            -
+        </td>
+        <td class="text-center">
+            {{ number_format(($prog->sumTotalRincian('IV') / $prog->sumTotalSubKeg()) * 100, 1, ',', '') . ' %' }}
+        </td>
+        <td class="text-center">
+            @currency($prog->sumTotalRincian('IV'))
+        </td>
     </tr>
 
     @include('panel.pages.laporan.partials.kegiatan')

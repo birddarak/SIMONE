@@ -11,7 +11,8 @@ class Program extends Model
 
     protected $guarded = ['id'];
 
-    public function indikator_program(){
+    public function indikator_program()
+    {
         return $this->hasMany(IndikatorProgram::class);
     }
 
@@ -30,17 +31,31 @@ class Program extends Model
         return $this->belongsTo(Pegawai::class);
     }
 
-    public function triwulan($value){
+    public function triwulan($value)
+    {
         return $this->realisasi_program()->where('triwulan', $value)->get()->first();
     }
 
-    public function sumTotalSubKeg(){
-        return $this->kegiatan->flatMap(function ($kegiatan){
-            return $kegiatan->subkegiatan->pluck('pagu_awal');
+    public function sumTotalSubKeg()
+    {
+        return $this->kegiatan->flatMap(function ($kegiatan) {
+            return $kegiatan->subkegiatan->pluck('pagu');
         })->sum();
     }
 
-    public function total_realisasi($value){
+    public function total_realisasi($value)
+    {
         return $this->hasManyThrough(RealisasiSubkegiatan::class, Subkegiatan::class)->where('triwulan', $value);
+    }
+
+    public function sumTotalRincian($value)
+    {
+        return $this->kegiatan->flatMap(function ($kegiatan) use ($value) {
+            return $kegiatan->subkegiatan->flatMap(function ($subkegiatan) use ($value) {
+                return $subkegiatan->realisasi_subkegiatan->where('triwulan', $value)->flatMap(function ($realisasi_program) {
+                    return $realisasi_program->rincian_belanja->pluck('pagu');
+                });
+            });
+        })->sum();
     }
 }

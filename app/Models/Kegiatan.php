@@ -41,13 +41,12 @@ class Kegiatan extends Model
         return $this->realisasi_kegiatan()->where('triwulan', $value)->get()->first();
     }
 
-    public function total_realisasi($value)
+    public function sumTotalRincian($value)
     {
         return $this->subkegiatan->flatMap(function ($subkegiatan) use ($value) {
             return $subkegiatan->realisasi_subkegiatan->where('triwulan', $value)->flatMap(function ($realisasi_subkegiatan) use ($value) {
                 return $realisasi_subkegiatan->rincian_belanja->pluck('pagu');
             });
         })->sum();
-        // return $this->hasManyThrough(RealisasiSubkegiatan::class, Subkegiatan::class)->where('triwulan', $value);
     }
 }
