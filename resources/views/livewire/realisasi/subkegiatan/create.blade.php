@@ -17,7 +17,7 @@
     </td>
     <td class="p-1">
         <div class="input-group m-0">
-            <input type="text" class="form-control" placeholder="Capaian" wire:model='capaian'>
+            <input type="number" class="form-control" placeholder="Capaian" wire:model='capaian'>
             @error('capaian')
                 <span class="text-danger">{{ $message }}</span>
             @enderror

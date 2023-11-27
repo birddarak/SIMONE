@@ -6,8 +6,8 @@
             <thead class="thead-dark">
                 <tr>
                     <th class="text-center">KODE</th>
-                    <th>SUB KEGIATAN</th>
-                    <th>TARGET</th>
+                    <th>SUB KEGIATAN / TRIWULAN</th>
+                    <th>TARGET / CAPAIAN</th>
                     <th>PENANGGUNG JAWAB</th>
                     <th>PAGU</th>
                     <th>PAGU TERSERAP</th>
@@ -82,9 +82,9 @@
                             </td>
                             <td class="p-1 col-2">
                                 <div class="input-group m-0">
-                                    <input type="text" value="{{ $rs->capaian }}" class="form-control col-3"
+                                    <input type="number" value="{{ $rs->capaian }}" class="form-control col-5"
                                         wire:blur="update('{{ $rs->uuid }}', 'capaian', $event.target.value)">
-                                    <span class="text-left btn btn-transparent col-9"> / {{ $subkegiatan->satuan }}</span>
+                                    <span class="text-left btn btn-transparent col-7"> / {{ $subkegiatan->satuan }}</span>
                                 </div>
                             </td>
                             <td class="p-1 text-right" colspan="3">

@@ -92,9 +92,9 @@
                             <th scope="col" class="text-center" style="vertical-align: middle" rowspan="3">
                                 PROGRAM / KEGIATAN / SUB KEGIATAN
                             </th>
-                            {{-- <th scope="col" class="text-center" style="vertical-align: middle" rowspan="3">
+                            <th scope="col" class="text-center" style="vertical-align: middle" rowspan="3">
                                 INDIKATOR
-                            </th> --}}
+                            </th>
                             <th scope="col" class="text-center" style="vertical-align: middle" rowspan="2" colspan="2">
                                 TARGET KINERJA DAN ANGGARAN
                             </th>

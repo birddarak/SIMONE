@@ -63,13 +63,13 @@
                         <td class="p-1 col-2">
                             <div class="input-group mb-0">
                                 <input type="text" value="{{ $kegiatan->target }}"
-                                    wire:blur="updateProgram('{{ $kegiatan->uuid }}', 'target', $event.target.value)"
+                                    wire:blur="updateKegiatan('{{ $kegiatan->uuid }}', 'target', $event.target.value)"
                                     class="form-control col-3">
                                 <div class="btn btn-transparent">
                                     /
                                 </div>
                                 <input type="text" value="{{ $kegiatan->satuan }}"
-                                    wire:blur="updateProgram('{{ $kegiatan->uuid }}', 'satuan', $event.target.value)"
+                                    wire:blur="updateKegiatan('{{ $kegiatan->uuid }}', 'satuan', $event.target.value)"
                                     class="form-control col-9">
                             </div>
                         </td>
