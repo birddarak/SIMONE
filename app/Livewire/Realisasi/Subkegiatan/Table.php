@@ -6,7 +6,6 @@ use Livewire\Component;
 use App\Models\Kegiatan;
 use App\Models\Subkegiatan;
 use App\Models\RealisasiSubkegiatan;
-use Illuminate\Support\Facades\File;
 
 class Table extends Component
 {
@@ -33,20 +32,15 @@ class Table extends Component
         $this->validate([
             'triwulan' => 'required|string|in:I,II,III,IV',
             'capaian' => 'required|string',
-            // 'satuan' => 'required|string',
-            // 'pagu' => 'required|integer',
         ]);
 
         $subkegiatan = Subkegiatan::where('uuid', $uuid)->first();
-        // $file = (!is_null($this->file)) ? $this->file->store('assets/sub-kegiatan/realisasi', 'public') : NULL;
-        // $rincian = (!is_null($this->rincian)) ? $this->rincian : NULL;
 
         $data = [
             'subkegiatan_id' => $subkegiatan->id,
             'uuid' => str()->uuid(),
             'triwulan' => $this->triwulan,
             'capaian' => $this->capaian,
-            // 'satuan' => $this->satuan,
             'pagu' => $this->pagu,
         ];
 
@@ -69,7 +63,6 @@ class Table extends Component
     public function destroy($uuid)
     {
         $data = RealisasiSubkegiatan::where('uuid', $uuid)->first();
-        // File::delete('storage/' . $data->file);
         $data->delete();
     }
 }
