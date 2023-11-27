@@ -6,7 +6,10 @@ $jumlah_ik = $keg->indikator_kegiatan->count();
     <tr class="subkegiatan">
         <td style="vertical-align: middle;">
             {{ $sub->kode . ' ' . $sub->title }}</td>
-        <td class="text-right" style="vertical-align: middle;">
+        <td>
+            --
+        </td>
+        <td class="text-center" style="vertical-align: middle;">
             {{ $sub->target . ' ' . $sub->satuan }}
         </td>
         <td class="text-right" class="text-right" style="vertical-align: middle;">
