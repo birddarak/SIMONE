@@ -8,8 +8,8 @@
                     <th class="text-center">KODE</th>
                     <th>SUB KEGIATAN</th>
                     <th>PENANGGUNG JAWAB</th>
-                    <th colspan="2" class="text-center">TARGET</th>
-                    <th colspan="2" class="text-center">PAGU</th>
+                    <th class="text-center">TARGET</th>
+                    <th class="text-center">PAGU</th>
                     <th class="text-center">
                         <i class="fas fa-cog fa-fw"></i>
                     </th>
@@ -20,22 +20,22 @@
                 {{-- data --}}
                 @forelse ($subkegiatans as $subkegiatan)
                 <tr>
-                    <td>
+                    <th>
                         {{ $subkegiatan->kode }}
-                    </td>
-                    <td>
+                    </th>
+                    <th class="col-2">
                         {{ $subkegiatan->title }}
-                    </td>
-                    <td>
+                    </th>
+                    <th>
                         {{ $subkegiatan->pegawai->nama }}
-                    </td>
-                    <td class="text-center" colspan="2">
+                    </th>
+                    <th class="text-center">
                         {{ $subkegiatan->target . ' ' . $subkegiatan->satuan }}
-                    </td>
-                    <td colspan="2" class="text-right">
+                    </th>
+                    <th class="text-right">
                         @currency($subkegiatan->pagu)
-                    </td>
-                    <td class="text-center ">
+                    </th>
+                    <th class="text-center ">
                         @if ($subkegiatan->realisasi_subkegiatan->count() < 4) <button
                             class="btn btn-sm btn-transparent" data-toggle="collapse"
                             href="#subkegiatan-{{ $subkegiatan->uuid }}" role="button" aria-expanded="false"
@@ -53,58 +53,9 @@
                     {{-- tampilan realisasi --}}
                     @include('livewire.realisasi.subkegiatan.realisasi') 
                     {{-- /. tampilan realisasi --}}
-                    
-                    {{-- TOTAL KINERJA & KEUANGAN & TERSERAP--}}
-                    @if ($subkegiatan->realisasi_subkegiatan->count() >= 1)
-                    <tr>
-                        <td class="" colspan="2"></td>
-                        <td class="bg-dark text-white">TOTAL KINERJA & KEUANGAN</td>
-                        <td class="text-center">
-                            <h6 class="m-0">
-                                <strong
-                                    class="{{ $subkegiatan->realisasi_subkegiatan->sum('capaian') >= $subkegiatan->target ? 'text-success' : 'text-dark' }}">
-                                    {{ number_format(($subkegiatan->realisasi_subkegiatan->sum('capaian') /
-                                    $subkegiatan->target * 100), 1, ',', '') . ' %' }}
-                                </strong>
-                            </h6>
-                        </td>
-                        <td class="text-center col-1">
-                            @php
-                            $total_kinerja = $subkegiatan->sumTotalRincian("I") +
-                            $subkegiatan->sumTotalRincian("II") + $subkegiatan->sumTotalRincian("III") +
-                            $subkegiatan->sumTotalRincian("IV");
-                            @endphp
-                            <h6 class="m-0">
-                                <strong
-                                    class="{{ $total_kinerja >= $subkegiatan->pagu ? 'text-success' : 'text-dark' }}">
-                                    {{ number_format(($subkegiatan->pagu != 0 ? $total_kinerja /
-                                    ($subkegiatan->pagu) : 0) * 100, 1, ',', '') . ' %' }}
-                                </strong>
-                            </h6>
-
-                        </td>
-                        <td class="bg-dark text-white">TOTAL TERSERAP</td>
-                        <td class="text-right">
-                            @php
-                            $pagu_terserap = 0;
-                            foreach ($subkegiatan->realisasi_subkegiatan as $rs) {
-                            foreach ($rs->rincian_belanja as $rb) {
-                            $pagu_terserap += $rb->pagu;
-                            }
-                            }
-                            @endphp
-                            <h6 class="m-0">
-                                <strong
-                                    class="{{ $subkegiatan->pagu >= $pagu_terserap ? 'text-success' : 'text-danger' }}">
-                                    @currency($pagu_terserap)
-                                </strong>
-                            </h6>
-                        </td>
-                    </tr>
-                    @endif
                     @empty
                     <tr class="">
-                        <td class="text-center" colspan="7">Sub Kegiatan Masih Kosong, Mohon Tambahkan dimenu DPA
+                        <td class="text-center" colspan="6">Sub Kegiatan Masih Kosong, Mohon Tambahkan dimenu DPA
                         </td>
                     </tr>
                     @endforelse
