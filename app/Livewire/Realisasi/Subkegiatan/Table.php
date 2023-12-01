@@ -13,7 +13,7 @@ class Table extends Component
     public $kegiatan;
 
     // FORM REALISASI
-    public $triwulan, $capaian, $satuan, $pagu;
+    public $triwulan, $capaian, $satuan;
 
     public function mount($kegiatan)
     {
@@ -41,13 +41,12 @@ class Table extends Component
             'uuid' => str()->uuid(),
             'triwulan' => $this->triwulan,
             'capaian' => $this->capaian,
-            'pagu' => $this->pagu,
         ];
 
         RealisasiSubkegiatan::create($data);
 
         session()->flash('message', 'Berhasil menambahkan realisasi triwulan <b>' . $this->triwulan . '</b> kedalam Sub Kegiatan <b>' . $subkegiatan->title . '</b>');
-        $this->reset(['triwulan', 'capaian', 'satuan', 'pagu']);
+        $this->reset(['triwulan', 'capaian', 'satuan']);
     }
 
     public function update($uuid, $field, $value)

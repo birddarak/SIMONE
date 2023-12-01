@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->uuid();
             $table->foreignId('kegiatan_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->date('tanggal');
             $table->enum('triwulan', ['I', 'II', 'III', 'IV']);
             $table->string('capaian')->nullable();
             $table->string('satuan')->nullable();

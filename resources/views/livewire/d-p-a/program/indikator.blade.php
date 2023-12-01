@@ -3,7 +3,7 @@
         <td></td>
         <td colspan="4" class="p-1">
             <input type="text" value="{{ $indikator_program->title }}"
-                wire:blur="updateIndikator('{{ $indikator_program->uuid }}', 'title', $event.target.value)"
+                wire:blur="updateIndikator('{{ $indikator_program->uuid }}', 'title', $event.target.value)" wire:keydown.enter="updateIndikator('{{ $indikator_program->uuid }}', 'title', $event.target.value)"
                 class="form-control">
         </td>
         <td class="text-center">

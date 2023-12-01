@@ -9,7 +9,7 @@
                             <label for="" class="col-form-label">:</label>
                             <div class="col-sm-8">
                                 <input type="text" value="{{ $pegawai->user->username }}"
-                                    wire:blur="updateUser('{{ $pegawai->user->uuid }}', 'username', $event.target.value)"
+                                    wire:blur="updateUser('{{ $pegawai->user->uuid }}', 'username', $event.target.value)" wire:keydown.enter="updateUser('{{ $pegawai->user->uuid }}', 'username', $event.target.value)"
                                     class="form-control">
                             </div>
                         </div>
@@ -18,7 +18,7 @@
                             <label for="" class="col-form-label">:</label>
                             <div class="col-sm-8">
                                 <input type="email" value="{{ $pegawai->user->email }}"
-                                    wire:blur="updateUser('{{ $pegawai->user->uuid }}', 'email', $event.target.value)"
+                                    wire:blur="updateUser('{{ $pegawai->user->uuid }}', 'email', $event.target.value)" wire:keydown.enter="updateUser('{{ $pegawai->user->uuid }}', 'email', $event.target.value)"
                                     class="form-control">
                             </div>
                         </div>

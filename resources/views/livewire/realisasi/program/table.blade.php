@@ -11,14 +11,14 @@
                     <th>PENANGGUNG JAWAB</th>
                     <th>PAGU</th>
                     <th>PAGU TERSERAP</th>
-                    <th>AKSI</th>
+                    <th colspan="2">AKSI</th>
                 </tr>
             </thead>
             <tbody>
 
                 {{-- data --}}
                 @forelse ($programs as $program)
-                    <tr>
+                    <tr style="background-color: #FFD966">
                         <td class="p-1">
                             {{ $program->kode }}
                         </td>
@@ -34,16 +34,16 @@
                         <td class="p-1 text-right">
 
                             @php
-                                $pagu_validasi = 0;
+                                $pagu = 0;
                                 foreach ($program->kegiatan as $keg) {
                                     foreach ($keg->subkegiatan as $sub) {
-                                        $pagu_validasi += $sub->pagu;
+                                        $pagu += $sub->pagu;
                                     }
                                 }
                             @endphp
 
                             <b>
-                                @currency($pagu_validasi)
+                                @currency($pagu)
                             </b>
                         </td>
                         <td class="p-1 text-right">
@@ -60,7 +60,7 @@
                                 }
                             @endphp
 
-                            <b class="{{ $pagu_validasi >= $pagu_terserap ? 'text-success' : 'text-danger' }}">
+                            <b class="{{ $pagu < $pagu_terserap ? 'text-danger' : 'text-dark' }}">
                                 @currency($pagu_terserap)
                             </b>
                         </td>
@@ -70,11 +70,28 @@
                                     <i class="ik ik-corner-down-right"></i>
                                 </a>
                             </div>
+                            <div class="btn-group">
+                                @if ($program->realisasi_program->count() < 4) <button
+                                class="btn btn-sm btn-success btn-icon mb-2" data-toggle="collapse"
+                                href="#program-{{ $program->uuid }}" role="button" aria-expanded="false"
+                                aria-controls="program-{{ $program->uuid }}">
+                                <i class="fas fa-plus fa-fw"></i>
+                                </button>
+                                @endif
+                            </div>
                         </td>
                     </tr>
+                @if ($program->realisasi_program->count() < 4) 
+                {{-- tombol create --}}
+                    @include('livewire.realisasi.program.create')
+                {{-- /. tombol create --}}
+                @endif
+                {{-- tampilan realisasi --}}
+                    @include('livewire.realisasi.program.realisasi') 
+                {{-- /. tampilan realisasi --}}
                 @empty
                     <tr class="">
-                        <td class="p-1" class="text-center" colspan="7">Program Masih Kosong, Mohon Tambahkan
+                        <td class="text-center" colspan="7">Program Masih Kosong, Mohon Tambahkan
                             dimenu DPA</td>
                     </tr>
                 @endforelse

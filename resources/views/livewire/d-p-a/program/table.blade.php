@@ -57,22 +57,26 @@
                         <td class="p-1">
                             <input type="text" value="{{ $program->kode }}"
                                 wire:blur="updateProgram('{{ $program->uuid }}', 'kode', $event.target.value)"
+                                wire:keydown.enter="updateProgram('{{ $program->uuid }}', 'kode', $event.target.value)"
                                 class="form-control">
                         </td>
                         <td class="p-1">
                             <textarea type="text" value="{{ $program->title }}"
-                                wire:blur="updateProgram('{{ $program->uuid }}', 'title', $event.target.value)" class="form-control" rows="3">{{ $program->title }}</textarea>
+                                wire:blur="updateProgram('{{ $program->uuid }}', 'title', $event.target.value)"
+                                wire:keydown.enter="updateProgram('{{ $program->uuid }}', 'title', $event.target.value)" class="form-control" rows="3">{{ $program->title }}</textarea>
                         </td>
                         <td class="p-1 col-2">
                             <div class="input-group m-0">
                                 <input type="text" value="{{ $program->target }}"
                                     wire:blur="updateProgram('{{ $program->uuid }}', 'target', $event.target.value)"
+                                    wire:keydown.enter="updateProgram('{{ $program->uuid }}', 'target', $event.target.value)"
                                     class="form-control col-3">
                                 <span class="btn btn-transparent">
                                     /
                                 </span>
                                 <input type="text" value="{{ $program->satuan }}"
                                     wire:blur="updateProgram('{{ $program->uuid }}', 'satuan', $event.target.value)"
+                                    wire:keydown.enter="updateProgram('{{ $program->uuid }}', 'satuan', $event.target.value)"
                                     class="form-control col-9">
                             </div>
                         </td>

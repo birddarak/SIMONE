@@ -3,7 +3,7 @@
     <td class="p-1" colspan="4">
         <input type="text" placeholder="INDIKATOR"
             class="form-control @error('indikator.{{ $subkegiatan->uuid }}') is-invalid @enderror"
-            wire:model="indikator.{{ $subkegiatan->uuid }}">
+            wire:model="indikator.{{ $subkegiatan->uuid }}" wire:keydown.enter='storeIndikator({{ $subkegiatan }})'>
 
         @error('indikator.{{ $subkegiatan->uuid }}')
             <span class="text-danger">

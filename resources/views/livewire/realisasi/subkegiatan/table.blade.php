@@ -19,7 +19,7 @@
 
                 {{-- data --}}
                 @forelse ($subkegiatans as $subkegiatan)
-                <tr>
+                <tr style="background-color: #FFD966">
                     <th>
                         {{ $subkegiatan->kode }}
                     </th>
@@ -47,18 +47,18 @@
                 </tr>
                 @if ($subkegiatan->realisasi_subkegiatan->count() < 4) 
                 {{-- tombol create --}}
-                @include('livewire.realisasi.subkegiatan.create')
+                    @include('livewire.realisasi.subkegiatan.create')
                 {{-- /. tombol create --}}
-                    @endif
+                @endif
                     {{-- tampilan realisasi --}}
                     @include('livewire.realisasi.subkegiatan.realisasi') 
                     {{-- /. tampilan realisasi --}}
-                    @empty
+                @empty
                     <tr class="">
                         <td class="text-center" colspan="6">Sub Kegiatan Masih Kosong, Mohon Tambahkan dimenu DPA
                         </td>
                     </tr>
-                    @endforelse
+                @endforelse
 
             </tbody>
         </table>

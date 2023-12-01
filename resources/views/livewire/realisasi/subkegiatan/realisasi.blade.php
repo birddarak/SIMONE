@@ -17,7 +17,7 @@
     <td></td>
     <td class="p-1">
         <div class="input-group m-0">
-            <select class="form-control">
+            <select class="form-control" wire:change="update('{{ $rs->uuid }}', 'triwulan', $event.target.value)">
                 <option value="I" {{ $rs->triwulan == 'I' ? 'selected' : '' }}>I</option>
                 <option value="II" {{ $rs->triwulan == 'II' ? 'selected' : '' }}>II</option>
                 <option value="III" {{ $rs->triwulan == 'III' ? 'selected' : '' }}>III
@@ -30,7 +30,7 @@
     <td class="p-1 col-2">
         <div class="input-group m-0">
             <input type="number" value="{{ $rs->capaian }}" class="form-control col-5"
-                wire:blur="update('{{ $rs->uuid }}', 'capaian', $event.target.value)">
+                wire:blur="update('{{ $rs->uuid }}', 'capaian', $event.target.value)" wire:keydown.enter="update('{{ $rs->uuid }}', 'capaian', $event.target.value)">
             <span class="text-left btn btn-transparent col-7"> / {{ $subkegiatan->satuan }}</span>
         </div>
     </td>
@@ -73,12 +73,12 @@
     <td class="text-center">
         {{-- capaian keuangan --}}
         @php
-        $total_kinerja = $subkegiatan->sumTotalRincian("I") +
+        $total_keuangan = $subkegiatan->sumTotalRincian("I") +
         $subkegiatan->sumTotalRincian("II") + $subkegiatan->sumTotalRincian("III") +
         $subkegiatan->sumTotalRincian("IV");
         @endphp
-            <strong class="{{ $subkegiatan->pagu < $total_kinerja ? 'text-danger' : 'text-dark' }}">
-                {{ number_format(($subkegiatan->pagu != 0 ? $total_kinerja /
+            <strong class="{{ $subkegiatan->pagu < $total_keuangan ? 'text-danger' : 'text-dark' }}">
+                {{ number_format(($subkegiatan->pagu != 0 ? $total_keuangan /
                 ($subkegiatan->pagu) : 0) * 100, 1, ',', '') . ' %' }}
             </strong>
     </td>

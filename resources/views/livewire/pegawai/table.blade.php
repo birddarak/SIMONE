@@ -24,17 +24,17 @@
                         </td>
                         <td>
                             <input type="text" value="{{ $pegawai->nama }}"
-                                wire:blur="updatePegawai('{{ $pegawai->uuid }}', 'nama', $event.target.value)"
+                                wire:blur="updatePegawai('{{ $pegawai->uuid }}', 'nama', $event.target.value)" wire:keydown.enter="updatePegawai('{{ $pegawai->uuid }}', 'nama', $event.target.value)"
                                 class="form-control">
                         </td>
                         <td>
                             <input type="text" value="{{ $pegawai->nip }}"
-                                wire:blur="updatePegawai('{{ $pegawai->uuid }}', 'nip', $event.target.value)"
+                                wire:blur="updatePegawai('{{ $pegawai->uuid }}', 'nip', $event.target.value)" wire:keydown.enter="updatePegawai('{{ $pegawai->uuid }}', 'nip', $event.target.value)"
                                 class="form-control">
                         </td>
                         <td>
                             <input type="text" value="{{ $pegawai->jabatan }}"
-                                wire:blur="updatePegawai('{{ $pegawai->uuid }}', 'jabatan', $event.target.value)"
+                                wire:blur="updatePegawai('{{ $pegawai->uuid }}', 'jabatan', $event.target.value)" wire:keydown.enter="updatePegawai('{{ $pegawai->uuid }}', 'jabatan', $event.target.value)"
                                 class="form-control">
                         </td>
                         <td>
