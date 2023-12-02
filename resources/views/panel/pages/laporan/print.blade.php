@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>MONEV</title>
 </head>
 
 <body>
@@ -76,15 +76,14 @@
 
     <body>
         <h6 class="text-center"><b>MONITORING DAN EVALUASI CAPAIAN KINERJA ATAS RENCANA AKSI</b></h6>
-        <h6 class="text-center"><b>DINAS KOMUNIKASI INFORMASI DAN INFORMATIKA TAHUN </b></h6>
+        <h6 class="text-center"><b>DINAS KOMUNIKASI INFORMASI DAN INFORMATIKA </b></h6>
+        <h6 class="text-center"><b>APBD {{ strtoupper($apbd) }} TAHUN {{ $tahun_anggaran }}</b></h6>
         <div class="wrapper mt-4">
-            <div class="text-bold mb-3">
-                <span>NAMA SKPD : DINAS KOMUNIKASI INFORMASI DAN INFORMATIKA</span>
+            {{-- <div class="text-bold mb-3">
+                <span>APBD : {{ ucfirst($apbd) }}</span>
                 <br>
-                {{-- <span>STATUS : {{ ucfirst($status) }}</span>
-                <br>
-                <span>TAHUN : {{ $tahun }}</span> --}}
-            </div>
+                <span>TAHUN : {{ $tahun_anggaran }}</span>
+            </div> --}}
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
@@ -100,6 +99,9 @@
                             </th>
                             <th scope="col" class="text-center" style="vertical-align: middle" colspan="12">
                                 REALISASI TRIWULAN
+                            </th>
+                            <th scope="col" class="text-center" style="vertical-align: middle" rowspan="3">
+                                PENANGGUNG JAWAB
                             </th>
                         </tr>
                         <tr class="header">

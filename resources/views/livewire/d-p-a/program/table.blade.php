@@ -1,7 +1,7 @@
 <div>
     @include('livewire.partials.filter')
     @include('livewire.partials.card-program')
-    {{-- @include('livewire.partials.alert') --}}
+    @include('livewire.partials.alert')
     <div class="table-responsive">
 
         <table class="mb-3">
@@ -53,7 +53,8 @@
 
                 {{-- data --}}
                 @forelse ($programs as $program)
-                    <tr class="@if (session()->has('message')) {!! session('message') == $program->uuid ? 'bg-success' : '' !!} @endif">
+                <tr>
+                    {{-- <tr class="@if (session()->has('message')) {!! session('message') == $program->uuid ? 'bg-success' : '' !!} @endif"> --}}
                         <td class="p-1">
                             <input type="text" value="{{ $program->kode }}"
                                 wire:blur="updateProgram('{{ $program->uuid }}', 'kode', $event.target.value)"

@@ -1,7 +1,7 @@
 @extends('panel.templates.index')
 
 @section('content')
-    <style>
+    {{-- <style>
         table {
             border-collapse: collapse;
             border: 1px solid black;
@@ -42,7 +42,7 @@
             float: right;
             margin-right: 50px
         }
-    </style>
+    </style> --}}
     <div>
         <div class="main-content">
             <div class="container-fluid">
@@ -76,7 +76,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                {{-- <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered">
@@ -129,7 +129,7 @@
                             </table>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

@@ -1,17 +1,17 @@
 @forelse ($programs as $prog)
 <tr class="program">
-    <td style="vertical-align: middle;"
+    <td
         rowspan="{{ $prog->indikator_program->count() != 0 ? $prog->indikator_program->count() : '1' }}">
         {{ $prog->kode . ' ' . $prog->title }}
     </td>
     <td>
         {{ $prog->indikator_program->count() != 0 ? $prog->indikator_program->first()->title : '-' }}
     </td>
-    <td class="text-center" style="vertical-align: middle;"
+    <td class="text-center"
         rowspan="{{ $prog->indikator_program->count() != 0 ? $prog->indikator_program->count() : '1' }}">
         {{ $prog->target . ' ' . $prog->satuan }}
     </td>
-    <td class="text-right" style="vertical-align: middle;"
+    <td class="text-right"
         rowspan="{{ $prog->indikator_program->count() != 0 ? $prog->indikator_program->count() : '1' }}">
         @currency($prog->sumTotalSubKeg())
     </td>
@@ -48,8 +48,8 @@
         rowspan="{{ $prog->indikator_program->count() != 0 ? $prog->indikator_program->count() : '1' }}">
         @currency($prog->sumTotalRincian('II'))
     </td>
-        {{-- kinerja --}}
-        <td class="text-center"
+    {{-- kinerja --}}
+    <td class="text-center"
         rowspan="{{ $prog->indikator_program->count() != 0 ? $prog->indikator_program->count() : '1' }}">
         -
     </td>
@@ -64,8 +64,8 @@
         rowspan="{{ $prog->indikator_program->count() != 0 ? $prog->indikator_program->count() : '1' }}">
         @currency($prog->sumTotalRincian('III'))
     </td>
-        {{-- kinerja --}}
-        <td class="text-center"
+    {{-- kinerja --}}
+    <td class="text-center"
         rowspan="{{ $prog->indikator_program->count() != 0 ? $prog->indikator_program->count() : '1' }}">
         -
     </td>
@@ -81,6 +81,10 @@
         @currency($prog->sumTotalRincian('IV'))
     </td>
     {{-- /. triwulan --}}
+    <td class="text-center"
+        rowspan="{{ $prog->indikator_program->count() != 0 ? $prog->indikator_program->count() : '1' }}">
+        {{ $prog->pegawai->nama }}
+    </td>
 </tr>
 @foreach ($prog->indikator_program as $ip)
 @if ($prog->indikator_program->first()->id != $ip->id)
@@ -94,6 +98,6 @@
 
 @empty
 <tr>
-    <td class="text-center" colspan="16">DATA KOSONG</td>
+    <td class="text-center" colspan="17">DATA KOSONG</td>
 </tr>
 @endforelse

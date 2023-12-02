@@ -1,19 +1,17 @@
 {{-- baris sub kegiatan --}}
 @forelse ($keg->subkegiatan as $sub)
 <tr class="subkegiatan">
-    <td style="vertical-align: middle;"
-        rowspan="{{ $sub->indikator_subkegiatan->count() != 0 ? $sub->indikator_subkegiatan->count() : '1' }}">
+    <td rowspan="{{ $sub->indikator_subkegiatan->count() != 0 ? $sub->indikator_subkegiatan->count() : '1' }}">
         {{ $sub->kode . ' ' . $sub->title }}</td>
     <td>
         {{ $sub->indikator_subkegiatan->count() != 0 ? $sub->indikator_subkegiatan->first()->title : '-' }}
     </td>
     <td class="text-center"
         rowspan="{{ $sub->indikator_subkegiatan->count() != 0 ? $sub->indikator_subkegiatan->count() : '1' }}"
-        style="vertical-align: middle;"
         rowspan="{{ $sub->indikator_subkegiatan->count() != 0 ? $sub->indikator_subkegiatan->count() : '1' }}">
         {{ $sub->target . ' ' . $sub->satuan }}
     </td>
-    <td class="text-right" class="text-right" style="vertical-align: middle;"
+    <td class="text-right" class="text-right"
         rowspan="{{ $sub->indikator_subkegiatan->count() != 0 ? $sub->indikator_subkegiatan->count() : '1' }}">
         @currency($sub->pagu)
     </td>
@@ -83,6 +81,10 @@
         @currency($sub->sumTotalRincian('IV'))
     </td>
     {{-- /. triwulan --}}
+    <td class="text-center"
+        rowspan="{{ $sub->indikator_subkegiatan->count() != 0 ? $sub->indikator_subkegiatan->count() : '1' }}">
+        {{ $sub->pegawai->nama }}
+    </td>
 </tr>
 @foreach ($sub->indikator_subkegiatan as $isk)
 @if ($sub->indikator_subkegiatan->first()->id != $isk->id)

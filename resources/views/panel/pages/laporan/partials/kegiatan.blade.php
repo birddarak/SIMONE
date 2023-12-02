@@ -1,18 +1,15 @@
 {{-- baris kegiatan --}}
 @forelse ($prog->kegiatan as $keg)
 <tr class="kegiatan">
-    <td style="vertical-align: middle;"
-        rowspan="{{ $keg->indikator_kegiatan->count() != 0 ? $keg->indikator_kegiatan->count() : '1' }}">
+    <td rowspan="{{ $keg->indikator_kegiatan->count() != 0 ? $keg->indikator_kegiatan->count() : '1' }}">
         {{ $keg->kode . ' ' . $keg->title }}</td>
     <td>
         {{ $keg->indikator_kegiatan->count() != 0 ? $keg->indikator_kegiatan->first()->title : '-' }}
     </td>
-    <td class="text-center" style="vertical-align: middle;"
-        rowspan="{{ $keg->indikator_kegiatan->count() != 0 ? $keg->indikator_kegiatan->count() : '1' }}">
+    <td class="text-center" rowspan="{{ $keg->indikator_kegiatan->count() != 0 ? $keg->indikator_kegiatan->count() : '1' }}">
         {{ $keg->target . ' ' . $keg->satuan }}
     </td>
-    <td class="text-right" style="vertical-align: middle;"
-        rowspan="{{ $keg->indikator_kegiatan->count() != 0 ? $keg->indikator_kegiatan->count() : '1' }}">
+    <td class="text-right" rowspan="{{ $keg->indikator_kegiatan->count() != 0 ? $keg->indikator_kegiatan->count() : '1' }}">
         @currency($keg->subkegiatan->sum('pagu'))
     </td>
     {{-- triwulan --}}
@@ -81,6 +78,10 @@
         @currency($keg->sumTotalRincian('IV'))
     </td>
     {{-- /. triwulan --}}
+    <td class="text-center"
+    rowspan="{{ $keg->indikator_kegiatan->count() != 0 ? $keg->indikator_kegiatan->count() : '1' }}">
+    {{ $keg->pegawai->nama }}
+</td>
 </tr>
 @foreach ($keg->indikator_kegiatan as $ik)
 @if ($keg->indikator_kegiatan->first()->id != $ik->id)
