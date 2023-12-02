@@ -83,16 +83,8 @@
             </strong>
     </td>
     <td class="text-right">
-        @php
-        $pagu_terserap = 0;
-        foreach ($subkegiatan->realisasi_subkegiatan as $rs) {
-        foreach ($rs->rincian_belanja as $rb) {
-        $pagu_terserap += $rb->pagu;
-        }
-        }
-        @endphp
-            <strong class="{{ $subkegiatan->pagu < $pagu_terserap ? 'text-danger' : 'text-dark' }}">
-                @currency($pagu_terserap)
+            <strong class="{{ $subkegiatan->pagu < $total_keuangan ? 'text-danger' : 'text-dark' }}">
+                @currency($total_keuangan)
             </strong>
     </td>
     <td></td>

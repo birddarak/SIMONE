@@ -43,6 +43,11 @@ class Program extends Model
         })->sum();
     }
 
+    public function countTotalCapaian($value)
+    {
+        return $this->realisasi_program->where('triwulan', $value)->sum('capaian');
+    }
+
     public function total_realisasi($value)
     {
         return $this->hasManyThrough(RealisasiSubkegiatan::class, Subkegiatan::class)->where('triwulan', $value);

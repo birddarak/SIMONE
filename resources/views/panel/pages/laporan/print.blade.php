@@ -97,8 +97,11 @@
                             <th scope="col" class="text-center" style="vertical-align: middle" rowspan="2" colspan="2">
                                 TARGET KINERJA DAN ANGGARAN
                             </th>
+                            <th scope="col" class="text-center" style="vertical-align: middle" rowspan="2" colspan="3">
+                                REALISASI TOTAL
+                            </th>
                             <th scope="col" class="text-center" style="vertical-align: middle" colspan="12">
-                                REALISASI TRIWULAN
+                                REALISASI PER TRIWULAN
                             </th>
                             <th scope="col" class="text-center" style="vertical-align: middle" rowspan="3">
                                 PENANGGUNG JAWAB
@@ -123,6 +126,10 @@
                             <th>Kinerja</th>
                             <th>Keuangan</th>
                             <th>Rp.</th>
+                            <th>Kinerja</th>
+                            <th>Keuangan</th>
+                            <th>Rp.</th>
+
                             <th>Kinerja</th>
                             <th>Keuangan</th>
                             <th>Rp.</th>
