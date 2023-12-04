@@ -1,8 +1,8 @@
 @forelse ($programs as $prog)
+@php
+$rows = $prog->indikator_program->count() != 0 ? $prog->indikator_program->count() : '1';
+@endphp
 <tr class="program">
-    @php
-    $rows = $prog->indikator_program->count() != 0 ? $prog->indikator_program->count() : '1';
-    @endphp
     <td rowspan="{{ $rows }}">
         {{ $prog->kode . ' ' . $prog->title }}
     </td>

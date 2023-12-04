@@ -1,18 +1,18 @@
 {{-- baris sub kegiatan --}}
 @forelse ($keg->subkegiatan as $sub)
+@php
+$rows = $sub->indikator_subkegiatan->count() != 0 ? $sub->indikator_subkegiatan->count() : '1';
+@endphp
 <tr class="subkegiatan">
-    @php
-    $rows = $sub->indikator_subkegiatan->count() != 0 ? $sub->indikator_subkegiatan->count() : '1';
-    @endphp
     <td rowspan="{{ $rows }}">
         {{ $sub->kode . ' ' . $sub->title }}</td>
     <td>
         {{ $sub->indikator_subkegiatan->count() != 0 ? $sub->indikator_subkegiatan->first()->title : '-' }}
     </td>
-    <td class="text-center" rowspan="{{ $rows }}" rowspan="{{ $rows }}">
+    <td class="text-center" rowspan="{{ $rows }}">
         {{ $sub->target . ' ' . $sub->satuan }}
     </td>
-    <td class="text-right" class="text-right" rowspan="{{ $rows }}">
+    <td class="text-right" rowspan="{{ $rows }}">
         @currency($sub->pagu)
     </td>
 
@@ -22,17 +22,17 @@
     $sub->sumTotalRincian("II") + $sub->sumTotalRincian("III") +
     $sub->sumTotalRincian("IV");
     @endphp
-    {{-- kinerja --}}
+    {{-- total kinerja --}}
     <td class="text-center" rowspan="{{ $rows }}">
         {{ number_format(($sub->realisasi_subkegiatan->sum('capaian') /
         $sub->target * 100), 1, ',', '') . ' %' }}
     </td>
-    {{-- keuangan --}}
+    {{-- total keuangan --}}
     <td class="text-center" rowspan="{{ $rows }}">
         {{ number_format(($sub->pagu != 0 ? $total_sub /
         ($sub->pagu) : 0) * 100, 1, ',', '') . ' %' }}
     </td>
-    {{-- RP --}}
+    {{-- total RP --}}
     <td class="text-center" rowspan="{{ $rows }}">
         @currency($total_sub)
     </td>
