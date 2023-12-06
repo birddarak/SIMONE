@@ -48,11 +48,6 @@ class Program extends Model
         return $this->realisasi_program->where('triwulan', $value)->sum('capaian');
     }
 
-    public function total_realisasi($value)
-    {
-        return $this->hasManyThrough(RealisasiSubkegiatan::class, Subkegiatan::class)->where('triwulan', $value);
-    }
-
     public function sumTotalRincian($value)
     {
         return $this->kegiatan->flatMap(function ($kegiatan) use ($value) {
@@ -62,5 +57,12 @@ class Program extends Model
                 });
             });
         })->sum();
+    }
+
+    public function sumTotal()
+    {
+        return ($this->sumTotalRincian("I") +
+            $this->sumTotalRincian("II") + $this->sumTotalRincian("III") +
+            $this->sumTotalRincian("IV"));
     }
 }

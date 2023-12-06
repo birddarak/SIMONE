@@ -10,8 +10,9 @@
                     <th>PENANGGUNG JAWAB</th>
                     <th class="text-center">TARGET</th>
                     <th class="text-center">PAGU</th>
+                    <th class="text-center">PAGU TERSERAP</th>
                     <th class="text-center">
-                        <i class="fas fa-cog fa-fw"></i>
+                        <i class="fas fa-cog fa-fw"><i>
                     </th>
                 </tr>
             </thead>
@@ -33,7 +34,14 @@
                         {{ $subkegiatan->target . ' ' . $subkegiatan->satuan }}
                     </th>
                     <th class="text-right">
-                        @currency($subkegiatan->pagu)
+                        <b>
+                            @currency($subkegiatan->pagu)
+                        </b>
+                    </th>
+                    <th class="text-right">
+                        <b class="{{ $subkegiatan->pagu < $subkegiatan->sumTotal() ? 'text-danger' : 'text-dark' }}">
+                            @currency($subkegiatan->sumTotal())
+                        </b>
                     </th>
                     <th class="text-center ">
                         @if ($subkegiatan->realisasi_subkegiatan->count() < 4) <button
@@ -43,21 +51,20 @@
                             <i class="fas fa-plus fa-fw"></i>
                             </button>
                             @endif
-                    </td>
+                            </td>
                 </tr>
                 @if ($subkegiatan->realisasi_subkegiatan->count() < 4) 
                 {{-- tombol create --}}
-                    @include('livewire.realisasi.subkegiatan.create')
-                {{-- /. tombol create --}}
-                @endif
-                    {{-- tampilan realisasi --}}
+                    @include('livewire.realisasi.subkegiatan.create') 
+                {{-- /. tombol create --}} 
+                @endif 
+                {{-- tampilan realisasi --}} 
                     @include('livewire.realisasi.subkegiatan.realisasi') 
-                    {{-- /. tampilan realisasi --}}
+                {{-- /. tampilan realisasi --}}
                 @empty
-                    <tr class="">
-                        <td class="text-center" colspan="6">Sub Kegiatan Masih Kosong, Mohon Tambahkan dimenu DPA
-                        </td>
-                    </tr>
+                <tr class="">
+                    <td class="text-center" colspan="7">Sub Kegiatan Masih Kosong, Mohon Tambahkan dimenu DPA</td>
+                </tr>
                 @endforelse
 
             </tbody>

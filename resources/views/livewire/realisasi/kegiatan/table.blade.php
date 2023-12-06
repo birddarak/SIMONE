@@ -31,32 +31,13 @@
                         {{ $kegiatan->pegawai->nama }}
                     </td>
                     <td class="p-1 text-right">
-
-                        @php
-                        $pagu = 0;
-                        foreach ($kegiatan->subkegiatan as $sub) {
-                        $pagu += $sub->pagu;
-                        }
-                        @endphp
-
                         <b>
-                            @currency($pagu)
+                            @currency($kegiatan->subkegiatan->sum('pagu'))
                         </b>
                     </td>
                     <td class="p-1 text-right">
-                        @php
-                        $pagu_terserap = 0;
-                        foreach ($kegiatan->subkegiatan as $sub) {
-                        foreach ($sub->realisasi_subkegiatan as $rs) {
-                        foreach ($rs->rincian_belanja as $rb) {
-                        $pagu_terserap += $rb->pagu;
-                        }
-                        }
-                        }
-                        @endphp
-
-                        <b class="{{ $pagu < $pagu_terserap ? 'text-danger' : 'text-dark' }}">
-                            @currency($pagu_terserap)
+                        <b class="{{ $kegiatan->subkegiatan->sum('pagu') < $kegiatan->sumTotal() ? 'text-danger' : 'text-dark' }}">
+                            @currency($kegiatan->sumTotal())
                         </b>
                     </td>
                     <td class="text-center p-1">
@@ -68,26 +49,26 @@
                         </div>
                         <div class="btn-group">
                             @if ($kegiatan->realisasi_kegiatan->count() < 4) <button
-                            class="btn btn-sm btn-success btn-icon mb-2" data-toggle="collapse"
-                            href="#kegiatan-{{ $kegiatan->uuid }}" role="button" aria-expanded="false"
-                            aria-controls="kegiatan-{{ $kegiatan->uuid }}">
-                            <i class="fas fa-plus fa-fw"></i>
-                            </button>
-                            @endif
+                                class="btn btn-sm btn-success btn-icon mb-2" data-toggle="collapse"
+                                href="#kegiatan-{{ $kegiatan->uuid }}" role="button" aria-expanded="false"
+                                aria-controls="kegiatan-{{ $kegiatan->uuid }}">
+                                <i class="fas fa-plus fa-fw"></i>
+                                </button>
+                                @endif
                         </div>
                     </td>
                 </tr>
                 @if ($kegiatan->realisasi_kegiatan->count() < 4) 
                 {{-- tombol create --}}
-                    @include('livewire.realisasi.kegiatan.create')
-                {{-- /. tombol create --}}
-                @endif
-                {{-- tampilan realisasi --}}
+                    @include('livewire.realisasi.kegiatan.create') 
+                {{-- /. tombol create --}} 
+                @endif 
+                {{-- tampilan realisasi --}} 
                     @include('livewire.realisasi.kegiatan.realisasi') 
                 {{-- /. tampilan realisasi --}}
-                @empty
+                @empty 
                 <tr class="">
-                    <td class="text-center" colspan="7">Kegiatan Masih Kosong, Mohon Tambahkan dimenu DPA</td>
+                <td class="text-center" colspan="7">Kegiatan Masih Kosong, Mohon Tambahkan dimenu DPA</td>
                 </tr>
                 @endforelse
                 {{-- --}}

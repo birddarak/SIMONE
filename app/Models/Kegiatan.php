@@ -54,4 +54,11 @@ class Kegiatan extends Model
             });
         })->sum();
     }
+
+    public function sumTotal()
+    {
+        return ($this->sumTotalRincian("I") +
+            $this->sumTotalRincian("II") + $this->sumTotalRincian("III") +
+            $this->sumTotalRincian("IV"));
+    }
 }

@@ -47,4 +47,11 @@ class Subkegiatan extends Model
             return $realisasi_subkegiatan->rincian_belanja->pluck('pagu');
         })->sum();
     }
+
+    public function sumTotal()
+    {
+        return ($this->sumTotalRincian("I") +
+            $this->sumTotalRincian("II") + $this->sumTotalRincian("III") +
+            $this->sumTotalRincian("IV"));
+    }
 }

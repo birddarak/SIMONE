@@ -32,36 +32,13 @@
                             {{ $program->pegawai->nama }}
                         </td>
                         <td class="p-1 text-right">
-
-                            @php
-                                $pagu = 0;
-                                foreach ($program->kegiatan as $keg) {
-                                    foreach ($keg->subkegiatan as $sub) {
-                                        $pagu += $sub->pagu;
-                                    }
-                                }
-                            @endphp
-
                             <b>
-                                @currency($pagu)
+                                @currency($program->sumTotalSubKeg())
                             </b>
                         </td>
                         <td class="p-1 text-right">
-                            @php
-                                $pagu_terserap = 0;
-                                foreach ($program->kegiatan as $keg) {
-                                    foreach ($keg->subkegiatan as $sub) {
-                                        foreach ($sub->realisasi_subkegiatan as $rs) {
-                                            foreach ($rs->rincian_belanja as $rb) {
-                                                $pagu_terserap += $rb->pagu;
-                                            }
-                                        }
-                                    }
-                                }
-                            @endphp
-
-                            <b class="{{ $pagu < $pagu_terserap ? 'text-danger' : 'text-dark' }}">
-                                @currency($pagu_terserap)
+                            <b class="{{ $program->sumTotalSubKeg() < $program->sumTotal() ? 'text-danger' : 'text-dark' }}">
+                                @currency($program->sumTotal())
                             </b>
                         </td>
                         <td class="text-center p-1">

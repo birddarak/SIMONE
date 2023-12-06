@@ -2,17 +2,30 @@
 <tr class="bg-secondary text-white text-center">
     <th rowspan="2"></th>
     <th rowspan="2">TRIWULAN</th>
-    <th colspan="2">CAPAIAN</th>
-    <th rowspan="2">TERSERAP</th>
+    <th colspan="4">CAPAIAN KINERJA & KEUANGAN</th>
     <th rowspan="2" class="text-center">
         <i class="fas fa-cog fa-fw"></i>
     </th>
 </tr>
 <tr class="bg-secondary text-white text-center">
     <th>KINERJA</th>
+    <th>%</th>
+
     <th>KEUANGAN</th>
+    <th>%</th>
 </tr>
-@foreach ($subkegiatan->realisasi_subkegiatan()->orderBy('triwulan', 'ASC')->get() as $rs)
+@php
+$total_keuangan = 0;
+
+$realisasi_subkegiatan = $subkegiatan->realisasi_subkegiatan()->orderBy('triwulan', 'ASC')->get();
+@endphp
+
+@foreach ($realisasi_subkegiatan as $rs)
+
+@php
+$total_keuangan += $rs->rincian_belanja->sum('pagu');
+@endphp
+
 <tr>
     <td></td>
     <td class="p-1">
@@ -27,22 +40,31 @@
             </select>
         </div>
     </td>
+    {{-- capaian kinerja --}}
     <td class="p-1 col-2">
         <div class="input-group m-0">
             <input type="number" value="{{ $rs->capaian }}" class="form-control col-5"
-                wire:blur="update('{{ $rs->uuid }}', 'capaian', $event.target.value)" wire:keydown.enter="update('{{ $rs->uuid }}', 'capaian', $event.target.value)">
+                wire:blur="update('{{ $rs->uuid }}', 'capaian', $event.target.value)"
+                wire:keydown.enter="update('{{ $rs->uuid }}', 'capaian', $event.target.value)">
             <span class="text-left btn btn-transparent col-7"> / {{ $subkegiatan->satuan }}</span>
         </div>
     </td>
-    <td class="p-1 text-center col-2">
+    {{-- capaian kinerja % --}}
+    <td class="p-1 text-center">
+        {{ number_format(($rs->subkegiatan->target != 0 ?
+        $rs->capaian / $rs->subkegiatan->target : 0) * 100, 1, ',', '') . ' %' }}
+    </td>
+    {{-- capaian keuangan --}}
+    <td class="p-1 text-right">
+        @currency($total_keuangan)
+    </td>
+    {{-- capaian keuangan % --}}
+    <td class="p-1 text-center">
         {{ number_format(($rs->subkegiatan->pagu != 0 ?
-        $rs->subkegiatan->sumTotalRincian($rs->triwulan) /
-        $rs->subkegiatan->pagu : 0) * 100, 1, ',', '') . ' %'
+        $total_keuangan / $rs->subkegiatan->pagu : 0) * 100, 1, ',', '') . ' %'
         }}
     </td>
-    <td class="p-1 text-right">
-        @currency($rs->rincian_belanja->sum('pagu'))
-    </td>
+    {{-- aksi --}}
     <td class="text-center p-1">
         <div class="btn-group">
             <a href="{{ route('realisasi.rincian-belanja', $rs->uuid) }}" class="btn btn-info btn-icon ml-2 mb-2">
@@ -58,35 +80,42 @@
     </td>
 </tr>
 @endforeach
+
 <tr>
     <td></td>
-    <th>TOTAL</th>
+    <th>TOTAL CAPAIAN</th>
     {{-- total --}}
     <td class="text-center">
         {{-- capaian kinerja --}}
-            <strong
-                class="{{ $subkegiatan->realisasi_subkegiatan->sum('capaian') >= $subkegiatan->target ? 'text-success' : 'text-dark' }}">
-                {{ number_format(($subkegiatan->realisasi_subkegiatan->sum('capaian') /
-                $subkegiatan->target * 100), 1, ',', '') . ' %' }}
-            </strong>
+        <strong
+            class="{{ $realisasi_subkegiatan->last()->capaian >= $subkegiatan->target ? 'text-success' : 'text-dark' }}">
+            {{ $realisasi_subkegiatan->last()->capaian . ' ' . $realisasi_subkegiatan->last()->subkegiatan->satuan }}
+        </strong>
+    </td>
+    <td class="text-center">
+        {{-- capaian kinerja --}}
+        <strong
+            class="{{ $realisasi_subkegiatan->last()->capaian >= $subkegiatan->target ? 'text-success' : 'text-dark' }}">
+            {{ number_format(($realisasi_subkegiatan->last()->capaian /
+            $subkegiatan->target * 100), 1, ',', '') . ' %' }}
+        </strong>
+    </td>
+    {{-- capaian keuangan --}}
+    <td class="text-right">
+        <strong
+            class="{{ $subkegiatan->pagu < $total_keuangan ? 'text-danger' : 'text-dark' }}">
+            @currency($total_keuangan)
+        </strong>
     </td>
     <td class="text-center">
         {{-- capaian keuangan --}}
-        @php
-        $total_keuangan = $subkegiatan->sumTotalRincian("I") +
-        $subkegiatan->sumTotalRincian("II") + $subkegiatan->sumTotalRincian("III") +
-        $subkegiatan->sumTotalRincian("IV");
-        @endphp
-            <strong class="{{ $subkegiatan->pagu < $total_keuangan ? 'text-danger' : 'text-dark' }}">
-                {{ number_format(($subkegiatan->pagu != 0 ? $total_keuangan /
-                ($subkegiatan->pagu) : 0) * 100, 1, ',', '') . ' %' }}
-            </strong>
-    </td>
-    <td class="text-right">
-            <strong class="{{ $subkegiatan->pagu < $total_keuangan ? 'text-danger' : 'text-dark' }}">
-                @currency($total_keuangan)
-            </strong>
+        <strong
+            class="{{ $subkegiatan->pagu < $total_keuangan ? 'text-danger' : 'text-dark' }}">
+            {{ number_format(($subkegiatan->pagu != 0 ? $total_keuangan /
+            $subkegiatan->pagu : 0) * 100, 1, ',', '') . ' %' }}
+        </strong>
     </td>
     <td></td>
 </tr>
+
 @endif
