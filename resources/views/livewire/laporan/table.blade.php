@@ -1,7 +1,7 @@
 <div>
     <div class="card">
         <div class="card-body">
-            <form id="print" class="form-material" action="{{ route('print') }}" method="GET" target="_blank">
+            <form id="print" class="form-material" action="{{ route('exportPDF') }}" method="GET" target="_blank">
                 <div>
                     @include('livewire.partials.filter')
                     <input type="text" value="{{ $apbd }}" name="apbd" hidden>

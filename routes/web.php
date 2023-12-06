@@ -45,6 +45,6 @@ Route::middleware([
     Route::get('realisasi/{realisasi_subkegiatan:uuid}/rincian-belanja', [RealisasiController::class, 'rincian_belanja'])->name('realisasi.rincian-belanja');
 
     Route::get('index', [LaporanController::class, 'index'])->name('laporan');
-    Route::get('print', [LaporanController::class, 'print'])->name('print');
+    Route::get('exportPDF', [LaporanController::class, 'exportPDF'])->name('exportPDF');
     
 });
