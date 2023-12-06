@@ -11,13 +11,17 @@ class Table extends Component
 {
 
     // Model Filter
-    public $tahun_anggaran = '2023', $apbd = 'murni';
+    public $tahun_anggaran, $apbd = 'murni';
 
     // FORM REALISASI
     public $triwulan, $capaian, $satuan;
 
     // Model Form
     public $kode, $program, $pegawai_id;
+
+    public function mount() {
+        $this->tahun_anggaran = date("Y");
+    }
 
     public function render()
     {

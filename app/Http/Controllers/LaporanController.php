@@ -7,13 +7,11 @@ use App\Models\Program;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use \Mpdf\Mpdf as PDF; 
-use Illuminate\Support\Facades\Storage;
 
 class LaporanController extends Controller
 {
     public function index()
     {
-        // $data['programs'] = Program::orderBy('kode', 'ASC')->where('apbd', 'murni')->where('tahun_anggaran', date('Y'))->get();
         return view('panel.pages.laporan.index');
     }
 

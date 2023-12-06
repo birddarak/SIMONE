@@ -10,12 +10,16 @@ use Livewire\Component;
 class Table extends Component
 {
     // Model Filter
-    public  $tahun_anggaran = '2023', $apbd = 'murni';
+    public  $tahun_anggaran, $apbd = 'murni';
 
     // Model Form
     public $pegawai_id, $kode, $program, $target, $satuan;
 
     public $indikator = [];
+
+    public function mount() {
+        $this->tahun_anggaran = date("Y");
+    }
 
     public function render()
     {
