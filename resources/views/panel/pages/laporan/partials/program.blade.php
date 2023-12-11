@@ -7,7 +7,7 @@ $rows = $prog->indikator_program->count() != 0 ? $prog->indikator_program->count
         {{ $prog->kode . ' ' . $prog->title }}
     </td>
     <td>
-        {{ $prog->indikator_program->count() != 0 ? $prog->indikator_program->first()->title : '-' }}
+        {{ $prog->indikator_program->count() != 0 ? $prog->indikator_program->first()->title : '' }}
     </td>
     <td class="text-center" rowspan="{{ $rows }}">
         {{ $prog->target . ' ' . $prog->satuan }}

@@ -1,9 +1,13 @@
 <style>
-    table {
+    .table {
         /* border-collapse: collapse;
-        border: 1px solid black; */
+        width: 100%;
         white-space: nowrap;
-        overflow-x: auto;
+        overflow-x: auto; */
+        width: 100%;
+        overflow: wrap;
+        font-size: 12px;
+        margin: auto;
     }
 
     .text-middle {
@@ -37,6 +41,7 @@
     td,
     th {
         border: 1px solid black;
+        padding: 5px;
     }
 
     th,
@@ -49,8 +54,22 @@
         background-color: #92D050;
     }
 
+    /* .relative {
+        position: relative;
+    }
+
+    .ttd2 {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 10px;
+    } */
+
     .ttd {
         float: right;
-        margin-right: 50px
+        margin-right: 50px;
+        position: relative;
+        right: 70px;
+        bottom: 10%;
     }
 </style>

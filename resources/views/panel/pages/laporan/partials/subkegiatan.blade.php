@@ -7,7 +7,7 @@ $rows = $sub->indikator_subkegiatan->count() != 0 ? $sub->indikator_subkegiatan-
     <td rowspan="{{ $rows }}">
         {{ $sub->kode . ' ' . $sub->title }}</td>
     <td>
-        {{ $sub->indikator_subkegiatan->count() != 0 ? $sub->indikator_subkegiatan->first()->title : '-' }}
+        {{ $sub->indikator_subkegiatan->count() != 0 ? $sub->indikator_subkegiatan->first()->title : '' }}
     </td>
     <td class="text-center" rowspan="{{ $rows }}">
         {{ $sub->target . ' ' . $sub->satuan }}

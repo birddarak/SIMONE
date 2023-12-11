@@ -7,7 +7,7 @@ $rows = $keg->indikator_kegiatan->count() != 0 ? $keg->indikator_kegiatan->count
     <td rowspan="{{ $rows }}">
         {{ $keg->kode . ' ' . $keg->title }}</td>
     <td>
-        {{ $keg->indikator_kegiatan->count() != 0 ? $keg->indikator_kegiatan->first()->title : '-' }}
+        {{ $keg->indikator_kegiatan->count() != 0 ? $keg->indikator_kegiatan->first()->title : '' }}
     </td>
     <td class="text-center" rowspan="{{ $rows }}">
         {{ $keg->target . ' ' . $keg->satuan }}
