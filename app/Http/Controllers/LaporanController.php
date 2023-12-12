@@ -42,7 +42,7 @@ class LaporanController extends Controller
 
         $mpdf = new Mpdf(['mode' => 'utf-8', 'format' => 'legal-L']);
         $mpdf->WriteHTML($css, \Mpdf\HTMLParserMode::HEADER_CSS);
-        $mpdf->WriteHTML($htmlContent, \Mpdf\HTMLParserMode::HTML_BODY);
+        $mpdf->WriteHTML($htmlContent);
         $mpdf->Output('monev-' . Carbon::now()->timestamp . '.pdf', 'I');
 
     }

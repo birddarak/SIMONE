@@ -46,6 +46,11 @@ class Kegiatan extends Model
         return $this->realisasi_kegiatan->where('triwulan', $value)->sum('capaian');
     }
 
+    public function sumTotalSubKeg()
+    {
+        return $this->subkegiatan->sum('pagu');
+    }
+
     public function sumTotalRincian($value)
     {
         return $this->subkegiatan->flatMap(function ($subkegiatan) use ($value) {

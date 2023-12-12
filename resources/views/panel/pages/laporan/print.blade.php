@@ -15,10 +15,10 @@
                     <th scope="col" rowspan="2" colspan="2">
                         TARGET KINERJA DAN ANGGARAN
                     </th>
-                    <th scope="col" rowspan="2" colspan="3">
+                    <th scope="col" rowspan="2" colspan="4">
                         REALISASI TOTAL
                     </th>
-                    <th scope="col" colspan="12">
+                    <th scope="col" colspan="16">
                         REALISASI PER TRIWULAN
                     </th>
                     <th scope="col" rowspan="3">
@@ -26,31 +26,39 @@
                     </th>
                 </tr>
                 <tr class="header text-middle text-center">
-                    <th colspan="3">TW I</th>
-                    <th colspan="3">TW II</th>
-                    <th colspan="3">TW III</th>
-                    <th colspan="3">TW IV</th>
+                    <th colspan="4">TW I</th>
+                    <th colspan="4">TW II</th>
+                    <th colspan="4">TW III</th>
+                    <th colspan="4">TW IV</th>
                 </tr>
                 <tr class="header text-middle text-center">
                     <th>Target</th>
                     <th>Pagu</th>
-
+                    {{-- total --}}
                     <th>Kinerja</th>
+                    <th>%</th>
                     <th>Keuangan</th>
-                    <th>Rp.</th>
+                    <th>%</th>
+                    {{-- tw i --}}
                     <th>Kinerja</th>
+                    <th>%</th>
                     <th>Keuangan</th>
-                    <th>Rp.</th>
+                    <th>%</th>
+                    {{-- tw ii --}}
                     <th>Kinerja</th>
+                    <th>%</th>
                     <th>Keuangan</th>
-                    <th>Rp.</th>
+                    <th>%</th>
+                    {{-- tw iii --}}
                     <th>Kinerja</th>
+                    <th>%</th>
                     <th>Keuangan</th>
-                    <th>Rp.</th>
-
+                    <th>%</th>
+                    {{-- tw iv --}}
                     <th>Kinerja</th>
+                    <th>%</th>
                     <th>Keuangan</th>
-                    <th>Rp.</th>
+                    <th>%</th>
                 </tr>
             </thead>
             <tbody>

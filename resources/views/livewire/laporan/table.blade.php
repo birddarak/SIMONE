@@ -33,11 +33,11 @@
                                 TARGET KINERJA DAN ANGGARAN
                             </th>
                             <th class="text-dark" scope="col" style="vertical-align: middle; text-align: center;"
-                                rowspan="2" colspan="3">
+                                rowspan="2" colspan="4">
                                 REALISASI TOTAL
                             </th>
                             <th class="text-dark" scope="col" style="vertical-align: middle; text-align: center;"
-                                colspan="12">
+                                colspan="16">
                                 REALISASI PER TRIWULAN
                             </th>
                             <th class="text-dark" scope="col" style="vertical-align: middle; text-align: center;"
@@ -46,35 +46,43 @@
                             </th>
                         </tr>
                         <tr class="header">
-                            <th class="text-dark" style="vertical-align: middle; text-align: center;" colspan="3">TW I
+                            <th class="text-dark" style="vertical-align: middle; text-align: center;" colspan="4">TW I
                             </th>
-                            <th class="text-dark" style="vertical-align: middle; text-align: center;" colspan="3">TW II
+                            <th class="text-dark" style="vertical-align: middle; text-align: center;" colspan="4">TW II
                             </th>
-                            <th class="text-dark" style="vertical-align: middle; text-align: center;" colspan="3">TW III
+                            <th class="text-dark" style="vertical-align: middle; text-align: center;" colspan="4">TW III
                             </th>
-                            <th class="text-dark" style="vertical-align: middle; text-align: center;" colspan="3">TW IV
+                            <th class="text-dark" style="vertical-align: middle; text-align: center;" colspan="4">TW IV
                             </th>
                         </tr>
                         <tr class="header text-center">
                             <th class="text-dark">Target</th>
                             <th class="text-dark">Pagu</th>
-
+                            {{-- total --}}
                             <th class="text-dark">Kinerja</th>
+                            <th class="text-dark">%</th>
                             <th class="text-dark">Keuangan</th>
-                            <th class="text-dark">Rp.</th>
+                            <th class="text-dark">%</th>
+                            {{-- tw i --}}
                             <th class="text-dark">Kinerja</th>
+                            <th class="text-dark">%</th>
                             <th class="text-dark">Keuangan</th>
-                            <th class="text-dark">Rp.</th>
+                            <th class="text-dark">%</th>
+                            {{-- tw ii --}}
                             <th class="text-dark">Kinerja</th>
+                            <th class="text-dark">%</th>
                             <th class="text-dark">Keuangan</th>
-                            <th class="text-dark">Rp.</th>
+                            <th class="text-dark">%</th>
+                            {{-- tw iii --}}
                             <th class="text-dark">Kinerja</th>
+                            <th class="text-dark">%</th>
                             <th class="text-dark">Keuangan</th>
-                            <th class="text-dark">Rp.</th>
-
+                            <th class="text-dark">%</th>
+                            {{-- tw iv --}}
                             <th class="text-dark">Kinerja</th>
+                            <th class="text-dark">%</th>
                             <th class="text-dark">Keuangan</th>
-                            <th class="text-dark">Rp.</th>
+                            <th class="text-dark">%</th>
                         </tr>
                     </thead>
                     <tbody>

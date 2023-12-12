@@ -1,7 +1,23 @@
 {{-- baris kegiatan --}}
 @forelse ($prog->kegiatan as $keg)
 @php
+// menghitung baris row
 $rows = $keg->indikator_kegiatan->count() != 0 ? $keg->indikator_kegiatan->count() : '1';
+
+// total realisasi
+$rk = $keg->realisasi_kegiatan()->orderBy('triwulan', 'ASC')->get();
+
+// menghitung total capaian & pagu tw i-iv
+$capaian_kinerja = number_format((!is_null($rk->last()) ? $rk->last()->capaian / $keg->target : 0) * 100, 1, ',', '') .
+' %';
+$capaian_pagu = number_format(($keg->sumTotalSubKeg() != 0 ? $keg->sumTotal() /
+$keg->sumTotalSubKeg() : 0) * 100, 1, ',', '') . ' %';
+
+// untuk menghitung total pagu masing-masing triwulan
+$pagu_triwulan = 0;
+
+// untuk td triwulan dinamis
+$triwulan = ['I', 'II', 'III', 'IV'];
 @endphp
 <tr class="kegiatan">
     <td rowspan="{{ $rows }}">
@@ -13,86 +29,51 @@ $rows = $keg->indikator_kegiatan->count() != 0 ? $keg->indikator_kegiatan->count
         {{ $keg->target . ' ' . $keg->satuan }}
     </td>
     <td class="text-right" rowspan="{{ $rows }}">
-        @currency($keg->subkegiatan->sum('pagu'))
+        @currency($keg->sumTotalSubKeg())
     </td>
 
     {{-- total triwulan --}}
-    @php
-    $total_keg = $keg->sumTotalRincian("I") +
-    $keg->sumTotalRincian("II") + $keg->sumTotalRincian("III") +
-    $keg->sumTotalRincian("IV");
-    @endphp
     {{-- total kinerja --}}
     <td class="text-center" rowspan="{{ $rows }}">
-        {{ number_format(($keg->realisasi_kegiatan->sum('capaian') /
-        $keg->target * 100), 1, ',', '') . ' %' }}
+        {{ (!is_null($rk->last()) ? $rk->last()->capaian : 0) . ' ' . $keg->satuan }}
+    </td>
+    {{-- total kinerja % --}}
+    <td class="text-center" rowspan="{{ $rows }}">
+        {{ $capaian_kinerja }}
     </td>
     {{-- total keuangan --}}
     <td class="text-center" rowspan="{{ $rows }}">
-        {{ number_format(($keg->subkegiatan->sum('pagu') != 0 ? $total_keg /
-        ($keg->subkegiatan->sum('pagu')) : 0) * 100, 1, ',', '') . ' %' }}
+        @currency($keg->sumTotal())
     </td>
-    {{-- total RP --}}
+    {{-- total keuangan % --}}
     <td class="text-center" rowspan="{{ $rows }}">
-        @currency($total_keg)
+        {{ $capaian_pagu }}
     </td>
     {{-- /. total triwulan --}}
 
-    {{-- triwulan --}}
+    {{-- triwulan I-IV --}}
+    @foreach ($triwulan as $tw)
     {{-- kinerja --}}
     <td class="text-center" rowspan="{{ $rows }}">
-        {{ $keg->countTotalCapaian('I') . ' ' . $keg->satuan }}
+        {{ $keg->countTotalCapaian($tw) . ' ' . $keg->satuan }}
+    </td>
+    {{-- kinerja % --}}
+    <td class="text-center" rowspan="{{ $rows }}">
+        {{ number_format((!is_null($rk->last()) ? $keg->countTotalCapaian($tw) /
+        $keg->target : 0) * 100, 1, ',', '') . ' %' }}
     </td>
     {{-- keuangan --}}
     <td class="text-center" rowspan="{{ $rows }}">
-        {{ number_format(($keg->subkegiatan->sum('pagu') != 0 ? $keg->sumTotalRincian('I') /
-        $keg->subkegiatan->sum('pagu') : 0) * 100, 1, ',', '') . ' %' }}
+        @currency($pagu_triwulan)
     </td>
-    {{-- RP --}}
+    {{-- keuangan % --}}
     <td class="text-center" rowspan="{{ $rows }}">
-        @currency($keg->sumTotalRincian('I'))
+        {{ number_format(($keg->sumTotalSubKeg() != 0 ? ($pagu_triwulan += $keg->sumTotalRincian($tw)) /
+        $keg->sumTotalSubKeg() : 0) * 100, 1, ',', '') . ' %' }}
     </td>
-    {{-- kinerja --}}
-    <td class="text-center" rowspan="{{ $rows }}">
-        {{ $keg->countTotalCapaian('II') . ' ' . $keg->satuan }}
-    </td>
-    {{-- keuangan --}}
-    <td class="text-center" rowspan="{{ $rows }}">
-        {{ number_format(($keg->subkegiatan->sum('pagu') != 0 ? $keg->sumTotalRincian('II') /
-        $keg->subkegiatan->sum('pagu') : 0) * 100, 1, ',', '') . ' %' }}
-    </td>
-    {{-- RP --}}
-    <td class="text-center" rowspan="{{ $rows }}">
-        @currency($keg->sumTotalRincian('II'))
-    </td>
-    {{-- kinerja --}}
-    <td class="text-center" rowspan="{{ $rows }}">
-        {{ $keg->countTotalCapaian('III') . ' ' . $keg->satuan }}
-    </td>
-    {{-- keuangan --}}
-    <td class="text-center" rowspan="{{ $rows }}">
-        {{ number_format(($keg->subkegiatan->sum('pagu') != 0 ? $keg->sumTotalRincian('III') /
-        $keg->subkegiatan->sum('pagu') : 0) * 100, 1, ',', '') . ' %' }}
-    </td>
-    {{-- RP --}}
-    <td class="text-center" rowspan="{{ $rows }}">
-        @currency($keg->sumTotalRincian('III'))
-    </td>
-    {{-- kinerja --}}
-    <td class="text-center" rowspan="{{ $rows }}">
-        {{ $keg->countTotalCapaian('IV') . ' ' . $keg->satuan }}
-    </td>
-    {{-- keuangan --}}
-    <td class="text-center" rowspan="{{ $rows }}">
-        {{ number_format(($keg->subkegiatan->sum('pagu') != 0 ? $keg->sumTotalRincian('IV') /
-        $keg->subkegiatan->sum('pagu') : 0) * 100, 1, ',', '') . ' %' }}
-    </td>
-    {{-- RP --}}
-    <td class="text-center" rowspan="{{ $rows }}">
-        @currency($keg->sumTotalRincian('IV'))
-    </td>
-    {{-- /. triwulan --}}
+    @endforeach
 
+    {{-- penanggung jawab --}}
     <td class="text-center" rowspan="{{ $rows }}">
         {{ $keg->pegawai->nama }}
     </td>
