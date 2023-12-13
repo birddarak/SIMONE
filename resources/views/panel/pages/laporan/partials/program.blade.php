@@ -66,11 +66,11 @@ $triwulan = ['I', 'II', 'III', 'IV'];
     </td>
     {{-- keuangan --}}
     <td class="text-center" rowspan="{{ $rows }}">
-        @currency($pagu_triwulan)
+        @currency($pagu_triwulan += $prog->sumTotalRincian($tw))
     </td>
     {{-- keuangan % --}}
     <td class="text-center" rowspan="{{ $rows }}">
-        {{ number_format(($prog->sumTotalSubKeg() != 0 ? ($pagu_triwulan += $prog->sumTotalRincian($tw)) /
+        {{ number_format(($prog->sumTotalSubKeg() != 0 ? ($pagu_triwulan) /
         $prog->sumTotalSubKeg() : 0) * 100, 1, ',', '') . ' %' }}
     </td>
     @endforeach
