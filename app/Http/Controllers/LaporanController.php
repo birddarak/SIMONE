@@ -35,15 +35,19 @@ class LaporanController extends Controller
         $data['tahun_anggaran'] = $request->tahun_anggaran;
         $data['programs'] = Program::orderBy('kode', 'ASC')->where('apbd', $request->apbd)->where('tahun_anggaran', $request->tahun_anggaran)->get();
 
-        
+
         // Baca isi file HTML
         $css = view('panel.pages.laporan.partials.style')->render();
         $htmlContent = view('panel.pages.laporan.print', $data)->render();
 
         $mpdf = new Mpdf(['mode' => 'utf-8', 'format' => 'legal-L']);
+        // Set margin
+        $mpdf->SetMargins(0, 0, 10);
+        // css
         $mpdf->WriteHTML($css, \Mpdf\HTMLParserMode::HEADER_CSS);
+        // content
         $mpdf->WriteHTML($htmlContent);
+        // output
         $mpdf->Output('monev-' . Carbon::now()->timestamp . '.pdf', 'I');
-
     }
 }

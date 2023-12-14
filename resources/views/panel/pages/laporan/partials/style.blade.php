@@ -54,16 +54,14 @@
         background-color: #92D050;
     }
 
-    /* .relative {
-        position: relative;
+    .nowrap {
+        white-space: nowrap;
     }
 
-    .ttd2 {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        padding: 10px;
-    } */
+    .wrap {
+        width: 50px;
+        overflow-wrap: break-word;
+    }
 
     .ttd {
         float: right;

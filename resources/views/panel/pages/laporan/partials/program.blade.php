@@ -21,34 +21,34 @@ $pagu_triwulan = 0;
 $triwulan = ['I', 'II', 'III', 'IV'];
 @endphp
 <tr class="program">
-    <td rowspan="{{ $rows }}">
+    <td class="wrap" rowspan="{{ $rows }}">
         {{ $prog->kode . ' ' . $prog->title }}
     </td>
-    <td>
+    <td class="wrap">
         {{ $prog->indikator_program->count() != 0 ? $prog->indikator_program->first()->title : '' }}
     </td>
-    <td class="text-center" rowspan="{{ $rows }}">
+    <td class="text-center nowrap" rowspan="{{ $rows }}">
         {{ $prog->target . ' ' . $prog->satuan }}
     </td>
-    <td class="text-right" rowspan="{{ $rows }}">
+    <td class="text-right nowrap" rowspan="{{ $rows }}">
         @currency($prog->sumTotalSubKeg())
     </td>
 
     {{-- total triwulan --}}
     {{-- total kinerja --}}
-    <td class="text-center" rowspan="{{ $rows }}">
+    <td class="text-center nowrap" rowspan="{{ $rows }}">
         {{ (!is_null($rp->last()) ? $rp->last()->capaian : 0) . ' ' . $prog->satuan }}
     </td>
     {{-- total kinerja % --}}
-    <td class="text-center" rowspan="{{ $rows }}">
+    <td class="text-center nowrap" rowspan="{{ $rows }}">
         {{ $persentase_kinerja }}
     </td>
     {{-- total keuangan --}}
-    <td class="text-center" rowspan="{{ $rows }}">
+    <td class="text-center nowrap" rowspan="{{ $rows }}">
         @currency($prog->sumTotal())
     </td>
     {{-- total keuangan % --}}
-    <td class="text-center" rowspan="{{ $rows }}">
+    <td class="text-center nowrap" rowspan="{{ $rows }}">
         {{ $persentase_pagu }}
     </td>
     {{-- /. total triwulan --}}
@@ -56,33 +56,33 @@ $triwulan = ['I', 'II', 'III', 'IV'];
     {{-- triwulan I-IV --}}
     @foreach ($triwulan as $tw)
     {{-- kinerja --}}
-    <td class="text-center" rowspan="{{ $rows }}">
+    <td class="text-center nowrap" rowspan="{{ $rows }}">
         {{ $prog->countTotalCapaian($tw) . ' ' . $prog->satuan }}
     </td>
     {{-- kinerja % --}}
-    <td class="text-center" rowspan="{{ $rows }}">
+    <td class="text-center nowrap" rowspan="{{ $rows }}">
         {{ number_format((!is_null($rp->last()) ? $prog->countTotalCapaian($tw) /
         $prog->target : 0) * 100, 1, ',', '') . ' %' }}
     </td>
     {{-- keuangan --}}
-    <td class="text-center" rowspan="{{ $rows }}">
+    <td class="text-center nowrap" rowspan="{{ $rows }}">
         @currency($pagu_triwulan += $prog->sumTotalRincian($tw))
     </td>
     {{-- keuangan % --}}
-    <td class="text-center" rowspan="{{ $rows }}">
+    <td class="text-center nowrap" rowspan="{{ $rows }}">
         {{ number_format(($prog->sumTotalSubKeg() != 0 ? ($pagu_triwulan) /
         $prog->sumTotalSubKeg() : 0) * 100, 1, ',', '') . ' %' }}
     </td>
     @endforeach
 
     {{-- penanggung jawab --}}
-    <td class="text-center" rowspan="{{ $rows }}">
+    <td class="text-center wrap" rowspan="{{ $rows }}">
         {{ $prog->pegawai->nama }}
     </td>
 </tr>
 @foreach ($prog->indikator_program as $ip)
 @if ($prog->indikator_program->first()->id != $ip->id)
-<tr class="program">
+<tr class="program wrap">
     <td>{{ $ip->title }}</td>
 </tr>
 @endif
