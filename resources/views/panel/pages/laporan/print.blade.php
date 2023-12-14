@@ -67,13 +67,13 @@
         </table>
     </div>
 
-    <div class="ttd">
-        <h4><b>Kepala Dinas</b></h4>
+    <div class="text-center ttd">
+        <h4><b>Kepala Dinas Komunikasi dan Informatika</b></h4>
         <br>
         <br>
         <br>
         <br>
-        <h4><u><b>Wahyudi Pranoto, S.Sos, MT</b></u></h4>
+        <h3><u><b>Wahyudi Pranoto, S.Sos, MT</b></u></h3>
         <span>Pembina Tk I/ IV/b</span><br>
         <span>NIP. 19710130 199903 1 005</span>
     </div>

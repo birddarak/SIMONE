@@ -1,9 +1,5 @@
 <style>
     .table {
-        /* border-collapse: collapse;
-        width: 100%;
-        white-space: nowrap;
-        overflow-x: auto; */
         width: 100%;
         overflow: wrap;
         font-size: 12px;
@@ -65,9 +61,7 @@
 
     .ttd {
         float: right;
-        margin-right: 50px;
-        position: relative;
-        right: 70px;
-        bottom: 10%;
+        display: inline-block;
+        width: 300px;
     }
 </style>
