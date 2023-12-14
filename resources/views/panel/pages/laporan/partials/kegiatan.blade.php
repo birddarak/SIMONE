@@ -20,9 +20,9 @@ $pagu_triwulan = 0;
 $triwulan = ['I', 'II', 'III', 'IV'];
 @endphp
 <tr class="kegiatan">
-    <td class="wrap" rowspan="{{ $rows }}">
+    <td rowspan="{{ $rows }}">
         {{ $keg->kode . ' ' . $keg->title }}</td>
-    <td class="wrap">
+    <td>
         {{ $keg->indikator_kegiatan->count() != 0 ? $keg->indikator_kegiatan->first()->title : '' }}
     </td>
     <td class="text-center nowrap" rowspan="{{ $rows }}">
@@ -74,13 +74,13 @@ $triwulan = ['I', 'II', 'III', 'IV'];
     @endforeach
 
     {{-- penanggung jawab --}}
-    <td class="text-center wrap" rowspan="{{ $rows }}">
+    <td class="text-center" rowspan="{{ $rows }}">
         {{ $keg->pegawai->nama }}
     </td>
 </tr>
 @foreach ($keg->indikator_kegiatan as $ik)
 @if ($keg->indikator_kegiatan->first()->id != $ik->id)
-<tr class="kegiatan wrap">
+<tr class="kegiatan">
     <td>{{ $ik->title }}</td>
 </tr>
 @endif

@@ -20,15 +20,15 @@ $pagu_triwulan = 0;
 $triwulan = ['I', 'II', 'III', 'IV'];
 @endphp
 <tr class="subkegiatan">
-    <td class="wrap" rowspan="{{ $rows }}">
+    <td rowspan="{{ $rows }}">
         {{ $sub->kode . ' ' . $sub->title }}</td>
-    <td class="wrap">
+    <td>
         {{ $sub->indikator_subkegiatan->count() != 0 ? $sub->indikator_subkegiatan->first()->title : '' }}
     </td>
     <td class="text-center nowrap" rowspan="{{ $rows }}">
         {{ $sub->target . ' ' . $sub->satuan }}
     </td>
-    <td class="text-right wrap" rowspan="{{ $rows }}">
+    <td class="text-right nowrap" rowspan="{{ $rows }}">
         @currency($sub->pagu)
     </td>
 
@@ -74,13 +74,13 @@ $triwulan = ['I', 'II', 'III', 'IV'];
     @endforeach
 
     {{-- penanggung jawab --}}
-    <td class="text-center wrap" rowspan="{{ $rows }}">
+    <td class="text-center" rowspan="{{ $rows }}">
         {{ $sub->pegawai->nama }}
     </td>
 </tr>
 @foreach ($sub->indikator_subkegiatan as $isk)
 @if ($sub->indikator_subkegiatan->first()->id != $isk->id)
-<tr class="subkegiatan wrap">
+<tr class="subkegiatan">
     <td>{{ $isk->title }}</td>
 </tr>
 @endif

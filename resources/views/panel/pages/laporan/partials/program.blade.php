@@ -21,10 +21,10 @@ $pagu_triwulan = 0;
 $triwulan = ['I', 'II', 'III', 'IV'];
 @endphp
 <tr class="program">
-    <td class="wrap" rowspan="{{ $rows }}">
+    <td rowspan="{{ $rows }}">
         {{ $prog->kode . ' ' . $prog->title }}
     </td>
-    <td class="wrap">
+    <td>
         {{ $prog->indikator_program->count() != 0 ? $prog->indikator_program->first()->title : '' }}
     </td>
     <td class="text-center nowrap" rowspan="{{ $rows }}">
@@ -76,13 +76,13 @@ $triwulan = ['I', 'II', 'III', 'IV'];
     @endforeach
 
     {{-- penanggung jawab --}}
-    <td class="text-center wrap" rowspan="{{ $rows }}">
+    <td class="text-center" rowspan="{{ $rows }}">
         {{ $prog->pegawai->nama }}
     </td>
 </tr>
 @foreach ($prog->indikator_program as $ip)
 @if ($prog->indikator_program->first()->id != $ip->id)
-<tr class="program wrap">
+<tr class="program">
     <td>{{ $ip->title }}</td>
 </tr>
 @endif
