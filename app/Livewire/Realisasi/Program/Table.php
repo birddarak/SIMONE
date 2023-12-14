@@ -50,7 +50,7 @@ class Table extends Component
     {
         $this->validate([
             'triwulan' => 'required|string|in:I,II,III,IV',
-            'capaian' => 'required|string',
+            'capaian' => 'required|integer',
         ]);
 
         $program = Program::where('uuid', $uuid)->first();

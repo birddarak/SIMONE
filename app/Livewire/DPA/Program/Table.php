@@ -53,7 +53,7 @@ class Table extends Component
             'program' => 'required|string',
             'tahun_anggaran' => 'required|string',
             'apbd' => 'required|string|in:murni,perubahan',
-            'target' => 'required|string',
+            'target' => 'required|integer',
             'satuan' => 'required|string',
         ]);
 

@@ -46,7 +46,7 @@ $total_keuangan += $rs->rincian_belanja->sum('pagu');
             <input type="number" value="{{ $rs->capaian }}" class="form-control col-5"
                 wire:blur="update('{{ $rs->uuid }}', 'capaian', $event.target.value)"
                 wire:keydown.enter="update('{{ $rs->uuid }}', 'capaian', $event.target.value)">
-            <span class="text-left btn btn-transparent col-7"> / {{ $subkegiatan->satuan }}</span>
+            <div class="btn btn-transparent col-7"> / {{ $subkegiatan->satuan }}</div>
         </div>
     </td>
     {{-- capaian kinerja % --}}

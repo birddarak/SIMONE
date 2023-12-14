@@ -33,7 +33,7 @@ class Table extends Component
             'pegawai_id' => 'required|string',
             'kode' => 'required|string',
             'subkegiatan' => 'required|string',
-            'target' => 'required|string',
+            'target' => 'required|integer',
             'satuan' => 'required|string',
         ]);
 

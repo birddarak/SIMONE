@@ -34,7 +34,7 @@ class Table extends Component
         $this->validate([
             'rincian' => 'required|string',
             'tanggal' => 'required',
-            'pagu' => 'required|string',
+            'pagu' => 'required|integer',
             'keterangan' => 'nullable|string',
             'file' => 'nullable',
         ]);

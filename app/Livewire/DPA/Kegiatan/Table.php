@@ -36,7 +36,7 @@ class Table extends Component
             'pegawai_id' => 'required|exists:pegawais,uuid',
             'kode' => 'required|string|max:100',
             'kegiatan' => 'required|string',
-            'target' => 'required|string',
+            'target' => 'required|integer',
             'satuan' => 'required|string',
         ]);
 
