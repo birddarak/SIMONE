@@ -1,6 +1,6 @@
 <h6 class="text-center"><b>MONITORING DAN EVALUASI CAPAIAN KINERJA ATAS RENCANA AKSI</b></h6>
 <h6 class="text-center"><b>DINAS KOMUNIKASI INFORMASI DAN INFORMATIKA </b></h6>
-<h6 class="text-center"><b>APBD {{ strtoupper($apbd) }} TAHUN {{ $tahun_anggaran }}</b></h6>
+<h6 class="text-center"><b>APBD{{ ($apbd == 'perubahan') ? ' ' . strtoupper($apbd) : '' }} TAHUN {{ $tahun_anggaran }}</b></h6>
 <div class="content">
     <div class="table">
         <table cellspacing="0">
@@ -16,7 +16,7 @@
                         TARGET KINERJA DAN ANGGARAN
                     </th>
                     <th scope="col" rowspan="2" colspan="4">
-                        REALISASI TOTAL
+                        REALISASI TAHUN {{ $tahun_anggaran }}
                     </th>
                     <th scope="col" colspan="16">
                         REALISASI PER TRIWULAN

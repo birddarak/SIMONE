@@ -34,7 +34,7 @@
                             </th>
                             <th class="text-dark" scope="col" style="vertical-align: middle; text-align: center;"
                                 rowspan="2" colspan="4">
-                                REALISASI TOTAL
+                                REALISASI TAHUN {{ $tahun_anggaran }}
                             </th>
                             <th class="text-dark" scope="col" style="vertical-align: middle; text-align: center;"
                                 colspan="16">

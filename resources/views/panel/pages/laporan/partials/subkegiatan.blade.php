@@ -8,16 +8,12 @@ $rows = $sub->indikator_subkegiatan->count() != 0 ? $sub->indikator_subkegiatan-
 $rs = $sub->realisasi_subkegiatan()->orderBy('triwulan', 'ASC')->get();
 
 // menghitung total capaian & pagu tw i-iv
-$capaian_kinerja = !is_null($rs->last()) ? number_format(($rs->last()->capaian / $sub->target * 100), 1, ',', '') .
-' %' : '0%';
-$capaian_pagu = number_format(($sub->pagu != 0 ? ($sub->sumTotal() /
-$sub->pagu) : 0) * 100, 1, ',', '') . ' %';
+$persentase_kinerja = !is_null($rs->last()) ? number_format(($rs->last()->capaian / $sub->target * 100), 1, ',', '') : 0;
+$persentase_pagu = $sub->pagu != 0 ? number_format($sub->sumTotal() / $sub->pagu * 100, 1, ',', '') : 0;
 
 // untuk menghitung total pagu masing-masing triwulan
 $pagu_triwulan = 0;
 
-// untuk td triwulan dinamis
-$triwulan = ['I', 'II', 'III', 'IV'];
 @endphp
 <tr class="subkegiatan">
     <td rowspan="{{ $rows }}">
@@ -39,7 +35,7 @@ $triwulan = ['I', 'II', 'III', 'IV'];
     </td>
     {{-- total kinerja % --}}
     <td class="text-center nowrap" rowspan="{{ $rows }}">
-        {{ $capaian_kinerja }}
+        {{ $persentase_kinerja }} %
     </td>
     {{-- total keuangan --}}
     <td class="text-center nowrap" rowspan="{{ $rows }}">
@@ -47,7 +43,7 @@ $triwulan = ['I', 'II', 'III', 'IV'];
     </td>
     {{-- total keuangan % --}}
     <td class="text-center nowrap" rowspan="{{ $rows }}">
-        {{ $capaian_pagu }}
+        {{ $persentase_pagu }} %
     </td>
     {{-- /. total triwulan --}}
 
@@ -59,17 +55,19 @@ $triwulan = ['I', 'II', 'III', 'IV'];
     </td>
     {{-- kinerja % --}}
     <td class="text-center nowrap" rowspan="{{ $rows }}">
-        {{ number_format((!is_null($rs->last()) ? $sub->countTotalCapaian($tw) /
-        $sub->target : 0) * 100, 1, ',', '') . ' %' }}
+        {{ $rs->where('triwulan', $tw)->isNotEmpty() ? number_format($sub->countTotalCapaian($tw) /
+        $sub->target * 100, 1, ',', '') : 0 }} %
     </td>
     {{-- keuangan --}}
     <td class="text-center nowrap" rowspan="{{ $rows }}">
-        @currency($pagu_triwulan += $sub->sumTotalRincian($tw))
+        Rp. {{ $rs->where('triwulan', $tw)->isNotEmpty() ? number_format($pagu_triwulan += $sub->sumTotalRincian($tw),
+        0, ',', '.') : 0 }}
     </td>
     {{-- keuangan % --}}
     <td class="text-center nowrap" rowspan="{{ $rows }}">
-        {{ number_format(($sub->pagu != 0 ? ($pagu_triwulan) /
-        $sub->pagu : 0) * 100, 1, ',', '') . ' %' }}
+        {{ ($rs->where('triwulan', $tw)->isNotEmpty() && $sub->pagu !== 0 && $pagu_triwulan) ? number_format(
+        $pagu_triwulan / $sub->pagu
+        * 100, 1, ',', '') : 0 }} %
     </td>
     @endforeach
 
