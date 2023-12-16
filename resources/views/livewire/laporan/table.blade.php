@@ -33,12 +33,12 @@
                                 TARGET KINERJA DAN ANGGARAN
                             </th>
                             <th class="text-dark" scope="col" style="vertical-align: middle; text-align: center;"
-                                rowspan="2" colspan="4">
-                                REALISASI TAHUN {{ $tahun_anggaran }}
-                            </th>
-                            <th class="text-dark" scope="col" style="vertical-align: middle; text-align: center;"
                                 colspan="16">
                                 REALISASI PER TRIWULAN
+                            </th>
+                            <th class="text-dark" scope="col" style="vertical-align: middle; text-align: center;"
+                                rowspan="2" colspan="4">
+                                REALISASI TAHUN {{ $tahun_anggaran }}
                             </th>
                             <th class="text-dark" scope="col" style="vertical-align: middle; text-align: center;"
                                 rowspan="3">
@@ -58,11 +58,6 @@
                         <tr class="header text-center">
                             <th class="text-dark">Target</th>
                             <th class="text-dark">Pagu</th>
-                            {{-- total --}}
-                            <th class="text-dark">Kinerja</th>
-                            <th class="text-dark">%</th>
-                            <th class="text-dark">Keuangan</th>
-                            <th class="text-dark">%</th>
                             {{-- tw i --}}
                             <th class="text-dark">Kinerja</th>
                             <th class="text-dark">%</th>
@@ -79,6 +74,11 @@
                             <th class="text-dark">Keuangan</th>
                             <th class="text-dark">%</th>
                             {{-- tw iv --}}
+                            <th class="text-dark">Kinerja</th>
+                            <th class="text-dark">%</th>
+                            <th class="text-dark">Keuangan</th>
+                            <th class="text-dark">%</th>
+                            {{-- total --}}
                             <th class="text-dark">Kinerja</th>
                             <th class="text-dark">%</th>
                             <th class="text-dark">Keuangan</th>

@@ -32,25 +32,6 @@ $triwulan = ['I', 'II', 'III', 'IV'];
         @currency($prog->sumTotalSubKeg())
     </td>
 
-    {{-- total triwulan --}}
-    {{-- total kinerja --}}
-    <td class="text-center nowrap" rowspan="{{ $rows }}">
-        {{ (!is_null($rp->last()) ? $rp->last()->capaian : 0) . ' ' . $prog->satuan }}
-    </td>
-    {{-- total kinerja % --}}
-    <td class="text-center nowrap" rowspan="{{ $rows }}">
-        {{ $persentase_kinerja }} %
-    </td>
-    {{-- total keuangan --}}
-    <td class="text-center nowrap" rowspan="{{ $rows }}">
-        @currency($prog->sumTotal())
-    </td>
-    {{-- total keuangan % --}}
-    <td class="text-center nowrap" rowspan="{{ $rows }}">
-        {{ $persentase_pagu }} %
-    </td>
-    {{-- /. total triwulan --}}
-
     {{-- triwulan I-IV --}}
     @foreach ($triwulan as $tw)
     {{-- kinerja --}}
@@ -74,6 +55,25 @@ $triwulan = ['I', 'II', 'III', 'IV'];
         * 100, 1, ',', '') : 0 }} %
     </td>
     @endforeach
+
+        {{-- total triwulan --}}
+    {{-- total kinerja --}}
+    <td class="text-center nowrap" rowspan="{{ $rows }}">
+        {{ (!is_null($rp->last()) ? $rp->last()->capaian : 0) . ' ' . $prog->satuan }}
+    </td>
+    {{-- total kinerja % --}}
+    <td class="text-center nowrap" rowspan="{{ $rows }}">
+        {{ $persentase_kinerja }} %
+    </td>
+    {{-- total keuangan --}}
+    <td class="text-center nowrap" rowspan="{{ $rows }}">
+        @currency($prog->sumTotal())
+    </td>
+    {{-- total keuangan % --}}
+    <td class="text-center nowrap" rowspan="{{ $rows }}">
+        {{ $persentase_pagu }} %
+    </td>
+    {{-- /. total triwulan --}}
 
     {{-- penanggung jawab --}}
     <td class="text-center" rowspan="{{ $rows }}">

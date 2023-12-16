@@ -1,6 +1,7 @@
 <h6 class="text-center"><b>MONITORING DAN EVALUASI CAPAIAN KINERJA ATAS RENCANA AKSI</b></h6>
 <h6 class="text-center"><b>DINAS KOMUNIKASI INFORMASI DAN INFORMATIKA </b></h6>
-<h6 class="text-center"><b>APBD{{ ($apbd == 'perubahan') ? ' ' . strtoupper($apbd) : '' }} TAHUN {{ $tahun_anggaran }}</b></h6>
+<h6 class="text-center"><b>APBD{{ ($apbd == 'perubahan') ? ' ' . strtoupper($apbd) : '' }} TAHUN {{ $tahun_anggaran
+        }}</b></h6>
 <div class="content">
     <div class="table">
         <table cellspacing="0">
@@ -15,11 +16,11 @@
                     <th scope="col" rowspan="2" colspan="2">
                         TARGET KINERJA DAN ANGGARAN
                     </th>
-                    <th scope="col" rowspan="2" colspan="4">
-                        REALISASI TAHUN {{ $tahun_anggaran }}
-                    </th>
                     <th scope="col" colspan="16">
                         REALISASI PER TRIWULAN
+                    </th>
+                    <th scope="col" rowspan="2" colspan="4">
+                        REALISASI TAHUN {{ $tahun_anggaran }}
                     </th>
                     <th scope="col" rowspan="3">
                         PENANGGUNG JAWAB
@@ -34,11 +35,6 @@
                 <tr class="header text-middle text-center">
                     <th>Target</th>
                     <th>Pagu</th>
-                    {{-- total --}}
-                    <th>Kinerja</th>
-                    <th>%</th>
-                    <th>Keuangan</th>
-                    <th>%</th>
                     {{-- tw i --}}
                     <th>Kinerja</th>
                     <th>%</th>
@@ -55,6 +51,11 @@
                     <th>Keuangan</th>
                     <th>%</th>
                     {{-- tw iv --}}
+                    <th>Kinerja</th>
+                    <th>%</th>
+                    <th>Keuangan</th>
+                    <th>%</th>
+                    {{-- total --}}
                     <th>Kinerja</th>
                     <th>%</th>
                     <th>Keuangan</th>

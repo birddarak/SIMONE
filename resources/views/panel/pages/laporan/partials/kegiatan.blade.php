@@ -8,8 +8,10 @@ $rows = $keg->indikator_kegiatan->count() != 0 ? $keg->indikator_kegiatan->count
 $rk = $keg->realisasi_kegiatan()->orderBy('triwulan', 'ASC')->get();
 
 // menghitung total capaian & pagu tw i-iv
-$persentase_kinerja = !is_null($rk->last()) ? number_format(($rk->last()->capaian / $keg->target * 100), 1, ',', '') : 0;
-$persentase_pagu = $keg->sumTotalSubKeg() != 0 ? number_format($keg->sumTotal() / $keg->sumTotalSubKeg() * 100, 1, ',', '')
+$persentase_kinerja = !is_null($rk->last()) ? number_format(($rk->last()->capaian / $keg->target * 100), 1, ',', '') :
+0;
+$persentase_pagu = $keg->sumTotalSubKeg() != 0 ? number_format($keg->sumTotal() / $keg->sumTotalSubKeg() * 100, 1, ',',
+'')
 : 0;
 
 // untuk menghitung total pagu masing-masing triwulan
@@ -28,25 +30,6 @@ $pagu_triwulan = 0;
     <td class="text-right nowrap" rowspan="{{ $rows }}">
         @currency($keg->sumTotalSubKeg())
     </td>
-
-    {{-- total triwulan --}}
-    {{-- total kinerja --}}
-    <td class="text-center nowrap" rowspan="{{ $rows }}">
-        {{ (!is_null($rk->last()) ? $rk->last()->capaian : 0) . ' ' . $keg->satuan }}
-    </td>
-    {{-- total kinerja % --}}
-    <td class="text-center nowrap" rowspan="{{ $rows }}">
-        {{ $persentase_kinerja }} %
-    </td>
-    {{-- total keuangan --}}
-    <td class="text-center nowrap" rowspan="{{ $rows }}">
-        @currency($keg->sumTotal())
-    </td>
-    {{-- total keuangan % --}}
-    <td class="text-center nowrap" rowspan="{{ $rows }}">
-        {{ $persentase_pagu }} %
-    </td>
-    {{-- /. total triwulan --}}
 
     {{-- triwulan I-IV --}}
     @foreach ($triwulan as $tw)
@@ -71,6 +54,25 @@ $pagu_triwulan = 0;
         * 100, 1, ',', '') : 0 }} %
     </td>
     @endforeach
+
+    {{-- total triwulan --}}
+    {{-- total kinerja --}}
+    <td class="text-center nowrap" rowspan="{{ $rows }}">
+        {{ (!is_null($rk->last()) ? $rk->last()->capaian : 0) . ' ' . $keg->satuan }}
+    </td>
+    {{-- total kinerja % --}}
+    <td class="text-center nowrap" rowspan="{{ $rows }}">
+        {{ $persentase_kinerja }} %
+    </td>
+    {{-- total keuangan --}}
+    <td class="text-center nowrap" rowspan="{{ $rows }}">
+        @currency($keg->sumTotal())
+    </td>
+    {{-- total keuangan % --}}
+    <td class="text-center nowrap" rowspan="{{ $rows }}">
+        {{ $persentase_pagu }} %
+    </td>
+    {{-- /. total triwulan --}}
 
     {{-- penanggung jawab --}}
     <td class="text-center" rowspan="{{ $rows }}">
