@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="{{ url('templates/panel') }}/node_modules/owl.carousel/dist/assets/owl.theme.default.css">
 <link rel="stylesheet" href="{{ url('templates/panel') }}/node_modules/jquery-toast-plugin/dist/jquery.toast.min.css">
 <link rel="stylesheet" href="{{ url('templates/panel') }}/dist/css/theme.css">
+<link href="{{ url('templates/panel') }}/node_modules/sweetalert2/dist/sweetalert2.min.css">
 <script src="{{ url('templates/panel') }}/src/js/vendor/modernizr-2.8.3.min.js"></script>
 
 <style>

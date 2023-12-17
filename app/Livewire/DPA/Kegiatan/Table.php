@@ -51,8 +51,7 @@ class Table extends Component
             'target' => $this->target,
             'satuan' => $this->satuan,
         ]);
-
-        session()->flash('message', 'Berhasil menambahkan <b>' . $this->kegiatan . '</b> kedalam Kegiatan');
+        $this->dispatch('alert', html: 'Berhasil menambahkan Kegiatan');
         $this->reset(['pegawai_id', 'kode', 'kegiatan', 'target', 'satuan']);
     }
 
@@ -74,38 +73,44 @@ class Table extends Component
 
         IndikatorKegiatan::create($data);
 
-        session()->flash('message', 'Berhasil menambahkan Indikator <b>' . $this->indikator[$kegiatan->uuid] . '</b>');
+        $this->dispatch('alert', html: 'Berhasil menambahkan Indikator Kegiatan');
         $this->reset(['indikator']);
     }
 
     public function updateKegiatan($uuid, $field, $value)
     {
         $pegawai = ($field == 'pegawai_id') ? Pegawai::where('uuid', $value)->first() : null;
-        Kegiatan::where('uuid', $uuid)
-            ->update(
-                [
-                    $field => (is_null($pegawai)) ? $value : $pegawai->id
-                ]
-            );
+        $data = Kegiatan::where('uuid', $uuid)->first();
+        $data->update(
+            [
+                $field => (is_null($pegawai)) ? $value : $pegawai->id
+            ]
+        );
+        $this->dispatch('alert', html: 'Berhasil memperbaharui Kegiatan');
     }
 
     public function updateIndikator($uuid, $field, $value)
     {
-        IndikatorKegiatan::where('uuid', $uuid)
-            ->update(
-                [
-                    $field => $value
-                ]
-            );
+        $data = IndikatorKegiatan::where('uuid', $uuid)->first();
+        $data->update(
+            [
+                $field => $value
+            ]
+        );
+        $this->dispatch('alert', html: 'Berhasil memperbaharui Indikator Kegiatan');
     }
 
     public function destroyKegiatan($uuid)
     {
-        Kegiatan::where('uuid', $uuid)->delete();
+        $data = Kegiatan::where('uuid', $uuid)->first();
+        $data->delete();
+        $this->dispatch('alert', html: 'Berhasil menghapus Kegiatan');
     }
 
     public function destroyIndikator($uuid)
     {
-        IndikatorKegiatan::where('uuid', $uuid)->delete();
+        $data = IndikatorKegiatan::where('uuid', $uuid)->first();
+        $data->delete();
+        $this->dispatch('alert', html: 'Berhasil menghapus Indikator Kegiatan');
     }
 }

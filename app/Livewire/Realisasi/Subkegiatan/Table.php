@@ -45,23 +45,25 @@ class Table extends Component
 
         RealisasiSubkegiatan::create($data);
 
-        session()->flash('message', 'Berhasil menambahkan realisasi triwulan <b>' . $this->triwulan . '</b> kedalam Sub Kegiatan <b>' . $subkegiatan->title . '</b>');
+        $this->dispatch('alert', html: 'Berhasil menambahkan Capaian Triwulan ' . $this->triwulan);
         $this->reset(['triwulan', 'capaian', 'satuan']);
     }
 
     public function update($uuid, $field, $value)
     {
-        RealisasiSubkegiatan::where('uuid', $uuid)
-            ->update(
-                [
-                    $field => $value
-                ]
-            );
+        $data = RealisasiSubkegiatan::where('uuid', $uuid)->first();
+        $data->update(
+            [
+                $field => $value
+            ]
+        );
+        $this->dispatch('alert', html: 'Berhasil memperbaharui Capaian Triwulan ' . $data->triwulan);
     }
 
     public function destroy($uuid)
     {
         $data = RealisasiSubkegiatan::where('uuid', $uuid)->first();
+        $this->dispatch('alert', html: 'Berhasil menghapus Triwulan ' . $data->triwulan);
         $data->delete();
     }
 }

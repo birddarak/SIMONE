@@ -1,6 +1,5 @@
 <div>
     @include('livewire.partials.card-kegiatan')
-    @include('livewire.partials.alert')
     <div class="table-responsive">
         <table class="mb-3">
             <tr>

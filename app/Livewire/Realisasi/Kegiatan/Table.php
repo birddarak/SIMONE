@@ -16,7 +16,8 @@ class Table extends Component
     // Model Form
     public $kode, $kegiatan, $pegawai_id;
 
-    public function mount($program){
+    public function mount($program)
+    {
         $this->program = $program;
     }
 
@@ -44,23 +45,25 @@ class Table extends Component
 
         RealisasiKegiatan::create($data);
 
-        session()->flash('message', 'Berhasil menambahkan realisasi triwulan <b>' . $this->triwulan . '</b> kedalam Kegiatan <b>' . $kegiatan->title . '</b>');
+        $this->dispatch('alert', html: 'Berhasil menambahkan Capaian Triwulan ' . $this->triwulan);
         $this->reset(['triwulan', 'capaian', 'satuan']);
     }
 
     public function update($uuid, $field, $value)
     {
-        RealisasiKegiatan::where('uuid', $uuid)
-            ->update(
-                [
-                    $field => $value
-                ]
-            );
+        $data = RealisasiKegiatan::where('uuid', $uuid)->first();
+        $data->update(
+            [
+                $field => $value
+            ]
+        );
+        $this->dispatch('alert', html: 'Berhasil memperbaharui Capaian Triwulan ' . $data->triwulan);
     }
 
     public function destroy($uuid)
     {
         $data = RealisasiKegiatan::where('uuid', $uuid)->first();
+        $this->dispatch('alert', html: 'Berhasil menghapus Triwulan ' . $data->triwulan);
         $data->delete();
     }
 }

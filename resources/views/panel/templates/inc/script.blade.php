@@ -1,6 +1,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
-    window.jQuery || document.write('<script src="{{ url("templates/panel") }}/src/js/vendor/jquery-3.3.1.min.js"><\/script>')
+    window.jQuery || document.write(
+								'<script src="{{ url('templates/panel') }}/src/js/vendor/jquery-3.3.1.min.js"><\/script>')
 </script>
 <script src="{{ url('templates/panel') }}/node_modules/popper.js/dist/umd/popper.min.js"></script>
 <script src="{{ url('templates/panel') }}/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -27,20 +28,51 @@
 <script src="{{ url('templates/panel') }}/js/charts.js"></script>
 <script src="{{ url('templates/panel') }}/node_modules/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
 <script src="{{ url('templates/panel') }}/dist/js/theme.min.js"></script>
-<script src="{{ url('templates/panel') }}/js/alerts.js"></script>
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script src="{{ url('templates/panel') }}/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script>
-    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-    e.src='https://www.google-analytics.com/analytics.js';
-    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+    function swalDelete() {
+    Swal.fire({
+        title: "Hapus data ini?",
+        text: "Data tidak akan kembali lagi",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Hapus!",
+        cancelButtonText: "Batal"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "Sukses!",
+                text: "Data berhasil dihapus!",
+                icon: "success",
+                toast: "true",
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    })
+}
 
-    $(document).ready(function() {
-        $('.select2').select2({
-            placeholder: '---Pilih dan Tambahkan---',
-            allowClear: true
-        });
+$(document).ready(function() {
+    // $('.select2').select2({
+    // 	placeholder: '---Pilih dan Tambahkan---',
+    // 	allowClear: true
+    // });
+
+    document.addEventListener('alert', (event) => {
+        let data = event.detail
+		Swal.fire({
+			title: 'Sukses!',
+			html: data.html,
+			icon: 'success',
+			toast: "true",
+			position: "top-end",
+			showConfirmButton: false,
+			timer: 2000,
+			timerProgressBar: true
+		})
     });
+});
 </script>

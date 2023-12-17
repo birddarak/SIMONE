@@ -17,7 +17,8 @@ class Table extends Component
 
     public $indikator = [];
 
-    public function mount() {
+    public function mount()
+    {
         $this->tahun_anggaran = date("Y");
     }
 
@@ -72,7 +73,7 @@ class Table extends Component
         Program::create($data);
 
         // session()->flash('message', $data['uuid']);
-        session()->flash('message', 'Berhasil menambahkan <b>' . $this->program . '</b> kedalam Program');
+        $this->dispatch('alert', html: 'Berhasil menambahkan Program');
         $this->reset(['pegawai_id', 'kode', 'program', 'target', 'satuan']);
     }
 
@@ -92,38 +93,45 @@ class Table extends Component
             'title' => $this->indikator[$program->uuid],
         ];
 
+
         IndikatorProgram::create($data);
 
-        session()->flash('message', 'Berhasil menambahkan Indikator <b>' . $this->indikator[$program->uuid] . '</b>');
+        $this->dispatch('alert', html: 'Berhasil menambahkan Indikator Program');
         $this->reset(['indikator']);
     }
 
     public function updateProgram($uuid, $field, $value)
     {
         $pegawai = ($field == 'pegawai_id') ? Pegawai::where('uuid', $value)->first() : null;
-        Program::where('uuid', $uuid)
-            ->update(
-                [
-                    $field => (is_null($pegawai)) ? $value : $pegawai->id
-                ]
-            );
+        $data = Program::where('uuid', $uuid)->first();
+        $data->update(
+            [
+                $field => (is_null($pegawai)) ? $value : $pegawai->id
+            ]
+        );
+        $this->dispatch('alert', html: 'Berhasil memperbaharui Program');
     }
 
     public function updateIndikator($uuid, $field, $value)
     {
-        IndikatorProgram::where('uuid', $uuid)
-            ->update([
-                $field => $value
-            ]);
+        $data = IndikatorProgram::where('uuid', $uuid)->first();
+        $data->update([
+            $field => $value
+        ]);
+        $this->dispatch('alert', html: 'Berhasil memperbaharui Indikator Program');
     }
 
     public function destroyProgram($uuid)
     {
-        Program::where('uuid', $uuid)->delete();
+        $data = Program::where('uuid', $uuid)->first();
+        $data->delete();
+        $this->dispatch('alert', html: 'Berhasil menghapus Program');
     }
 
     public function destroyIndikator($uuid)
     {
-        IndikatorProgram::where('uuid', $uuid)->delete();
+        $data = IndikatorProgram::where('uuid', $uuid)->first();
+        $data->delete();
+        $this->dispatch('alert', html: 'Berhasil menghapus Indikator Program');
     }
 }

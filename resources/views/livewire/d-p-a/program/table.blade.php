@@ -1,7 +1,6 @@
 <div>
     @include('livewire.partials.filter')
     @include('livewire.partials.card-program')
-    @include('livewire.partials.alert')
     <div class="table-responsive">
 
         <table class="mb-3">

@@ -56,24 +56,26 @@ class Table extends Component
 
         RincianBelanja::create($data);
 
-        session()->flash('message', 'Berhasil menambahkan <b>' . $this->rincian . '</b> kedalam Rincian <b>' . $this->realisasi_subkegiatan->subkegiatan->title . '</b>');
+        $this->dispatch('alert', html: 'Berhasil menambahkan <b>' . $this->rincian . '</b>');
         $this->reset(['rincian', 'tanggal', 'pagu', 'keterangan', 'file']);
     }
 
     public function update($uuid, $field, $value)
     {
-        RincianBelanja::where('uuid', $uuid)
-            ->update(
-                [
-                    $field => $value
-                ]
-            );
+        $data = RincianBelanja::where('uuid', $uuid)->first();
+        $data->update(
+            [
+                $field => $value
+            ]
+        );
+        $this->dispatch('alert', html: 'Berhasil memperbaharui Rincian');
     }
 
     public function destroy($uuid)
     {
         $data = RincianBelanja::where('uuid', $uuid)->first();
         // File::delete('storage/' . $data->file);
+        $this->dispatch('alert', html: 'Berhasil menghapus ' . $data->rincian);
         $data->delete();
     }
 }

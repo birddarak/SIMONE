@@ -19,7 +19,8 @@ class Table extends Component
     // Model Form
     public $kode, $program, $pegawai_id;
 
-    public function mount() {
+    public function mount()
+    {
         $this->tahun_anggaran = date("Y");
     }
 
@@ -64,23 +65,25 @@ class Table extends Component
 
         RealisasiProgram::create($data);
 
-        session()->flash('message', 'Berhasil menambahkan realisasi triwulan <b>' . $this->triwulan . '</b> kedalam Program <b>' . $program->title . '</b>');
+        $this->dispatch('alert', html: 'Berhasil menambahkan Capaian Triwulan ' . $this->triwulan);
         $this->reset(['triwulan', 'capaian', 'satuan']);
     }
 
     public function update($uuid, $field, $value)
     {
-        RealisasiProgram::where('uuid', $uuid)
-            ->update(
-                [
-                    $field => $value
-                ]
-            );
+        $data = RealisasiProgram::where('uuid', $uuid)->first();
+        $data->update(
+            [
+                $field => $value
+            ]
+        );
+        $this->dispatch('alert', html: 'Berhasil memperbaharui Capaian Triwulan ' . $data->triwulan);
     }
 
     public function destroy($uuid)
     {
         $data = RealisasiProgram::where('uuid', $uuid)->first();
+        $this->dispatch('alert', html: 'Berhasil menghapus Triwulan ' . $data->triwulan);
         $data->delete();
     }
 }
