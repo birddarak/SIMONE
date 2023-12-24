@@ -30,32 +30,6 @@
 <script src="{{ url('templates/panel') }}/dist/js/theme.min.js"></script>
 <script src="{{ url('templates/panel') }}/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script>
-    function swalDelete() {
-    Swal.fire({
-        title: "Hapus data ini?",
-        text: "Data tidak akan kembali lagi",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Hapus!",
-        cancelButtonText: "Batal"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire({
-                title: "Sukses!",
-                text: "Data berhasil dihapus!",
-                icon: "success",
-                toast: "true",
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 1500
-            })
-        }
-    })
-}
-
-$(document).ready(function() {
     // $('.select2').select2({
     // 	placeholder: '---Pilih dan Tambahkan---',
     // 	allowClear: true
@@ -74,5 +48,24 @@ $(document).ready(function() {
 			timerProgressBar: true
 		})
     });
-});
+
+    // $('document').on('confirmDelete',function () {
+        // let uuid = event.detail.uuid
+        // let tipe = event.detail.tipe
+        // Swal.fire({
+        // title: "Hapus data ini?",
+        // text: "Data yang dihapus tidak akan kembali lagi",
+        // icon: "warning",
+        // showCancelButton: true,
+        // confirmButtonColor: "#3085d6",
+        // cancelButtonColor: "#d33",
+        // confirmButtonText: "Hapus!",
+        // cancelButtonText: "Batal"
+        // }).then((result) => {
+        //     if (result.isConfirmed) {
+        //         window.livewire.emit('destroyIndikator', uuid, tipe);
+        //     }
+        // })
+    // })  
+
 </script>

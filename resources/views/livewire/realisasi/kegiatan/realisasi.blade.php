@@ -52,7 +52,7 @@ $total_keuangan += $rk->kegiatan->sumTotalRincian($rk->triwulan);
     {{-- capaian kinerja % --}}
     <td class="p-1 text-center">
         {{ number_format(($rk->kegiatan->target != 0 ?
-            $rk->capaian / $rk->kegiatan->target : 0) * 100, 1, ',', '') . ' %'
+        $rk->capaian / $rk->kegiatan->target : 0) * 100, 1, ',', '') . ' %'
         }}
     </td>
     {{-- capaian keuangan --}}
@@ -68,7 +68,7 @@ $total_keuangan += $rk->kegiatan->sumTotalRincian($rk->triwulan);
     {{-- aksi --}}
     <td class="text-center p-1">
         <div class="btn-group">
-            <button class="btn btn-danger btn-icon ml-2 mb-2" onclick="return confirm('Ingin menghapus Realisasi ini?')"
+            <button class="btn btn-danger btn-icon ml-2 mb-2" wire:confirm='Ingin menghapus Realisasi ini?'
                 wire:click='destroy("{{ $rk->uuid }}")'>
                 <i class="ik ik-trash"></i>
             </button>
@@ -83,30 +83,26 @@ $total_keuangan += $rk->kegiatan->sumTotalRincian($rk->triwulan);
     {{-- total --}}
     <td class="text-center">
         {{-- capaian kinerja --}}
-        <strong
-            class="{{ $realisasi_kegiatan->last()->capaian >= $kegiatan->target ? 'text-success' : 'text-dark' }}">
+        <strong class="{{ $realisasi_kegiatan->last()->capaian >= $kegiatan->target ? 'text-success' : 'text-dark' }}">
             {{ $realisasi_kegiatan->last()->capaian . ' ' . $realisasi_kegiatan->last()->kegiatan->satuan }}
         </strong>
     </td>
     <td class="text-center">
         {{-- capaian kinerja --}}
-        <strong
-            class="{{ $realisasi_kegiatan->last()->capaian >= $kegiatan->target ? 'text-success' : 'text-dark' }}">
+        <strong class="{{ $realisasi_kegiatan->last()->capaian >= $kegiatan->target ? 'text-success' : 'text-dark' }}">
             {{ number_format(($realisasi_kegiatan->last()->capaian /
             $kegiatan->target * 100), 1, ',', '') . ' %' }}
         </strong>
     </td>
     {{-- capaian keuangan --}}
     <td class="text-right">
-        <strong
-            class="{{ $kegiatan->subkegiatan->sum('pagu') < $total_keuangan ? 'text-danger' : 'text-dark' }}">
+        <strong class="{{ $kegiatan->subkegiatan->sum('pagu') < $total_keuangan ? 'text-danger' : 'text-dark' }}">
             @currency($total_keuangan)
         </strong>
     </td>
     <td class="text-center">
         {{-- capaian keuangan --}}
-        <strong
-            class="{{ $kegiatan->subkegiatan->sum('pagu') < $total_keuangan ? 'text-danger' : 'text-dark' }}">
+        <strong class="{{ $kegiatan->subkegiatan->sum('pagu') < $total_keuangan ? 'text-danger' : 'text-dark' }}">
             {{ number_format(($kegiatan->subkegiatan->sum('pagu') != 0 ? $total_keuangan /
             $kegiatan->subkegiatan->sum('pagu') : 0) * 100, 1, ',', '') . ' %' }}
         </strong>

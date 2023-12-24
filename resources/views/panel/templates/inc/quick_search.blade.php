@@ -22,7 +22,7 @@
                             <a href="{{ route('dashboard') }}"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
                         </div>
                         <div class="app-item">
-                            <a href="{{ route('laporan') }}"><i class="ik ik-printer"></i><span>Laporan</span></a>
+                            <a href="{{ route('laporan') }}"><i class="ik ik-printer"></i><span>Monev</span></a>
                         </div>
                         <div class="app-item">
                             <a href="{{ route('dpa.index') }}"><i class="ik ik-book"></i><span>DPA</span></a>

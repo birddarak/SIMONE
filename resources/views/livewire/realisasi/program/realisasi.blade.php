@@ -69,7 +69,7 @@ $total_keuangan += $rp->program->sumTotalRincian($rp->triwulan);
     {{-- aksi --}}
     <td class="text-center p-1">
         <div class="btn-group">
-            <button class="btn btn-danger btn-icon ml-2 mb-2" onclick="return confirm('Ingin menghapus Realisasi ini?')"
+            <button class="btn btn-danger btn-icon ml-2 mb-2" wire:confirm='Ingin menghapus Realisasi ini?'
                 wire:click='destroy("{{ $rp->uuid }}")'>
                 <i class="ik ik-trash"></i>
             </button>
@@ -84,30 +84,26 @@ $total_keuangan += $rp->program->sumTotalRincian($rp->triwulan);
     {{-- total --}}
     <td class="text-center">
         {{-- capaian kinerja --}}
-        <strong
-            class="{{ $realisasi_program->last()->capaian >= $program->target ? 'text-success' : 'text-dark' }}">
+        <strong class="{{ $realisasi_program->last()->capaian >= $program->target ? 'text-success' : 'text-dark' }}">
             {{ $realisasi_program->last()->capaian . ' ' . $realisasi_program->last()->program->satuan }}
         </strong>
     </td>
     <td class="text-center">
         {{-- capaian kinerja --}}
-        <strong
-            class="{{ $realisasi_program->last()->capaian >= $program->target ? 'text-success' : 'text-dark' }}">
+        <strong class="{{ $realisasi_program->last()->capaian >= $program->target ? 'text-success' : 'text-dark' }}">
             {{ number_format(($realisasi_program->last()->capaian /
             $program->target * 100), 1, ',', '') . ' %' }}
         </strong>
     </td>
     {{-- capaian keuangan --}}
     <td class="text-right">
-        <strong
-            class="{{ $program->sumTotalSubKeg() < $total_keuangan ? 'text-danger' : 'text-dark' }}">
+        <strong class="{{ $program->sumTotalSubKeg() < $total_keuangan ? 'text-danger' : 'text-dark' }}">
             @currency($total_keuangan)
         </strong>
     </td>
     <td class="text-center">
         {{-- capaian keuangan --}}
-        <strong
-            class="{{ $program->sumTotalSubKeg() < $total_keuangan ? 'text-danger' : 'text-dark' }}">
+        <strong class="{{ $program->sumTotalSubKeg() < $total_keuangan ? 'text-danger' : 'text-dark' }}">
             {{ number_format(($program->sumTotalSubKeg() != 0 ? $total_keuangan /
             $program->sumTotalSubKeg() : 0) * 100, 1, ',', '') . ' %' }}
         </strong>

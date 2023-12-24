@@ -105,8 +105,7 @@
                                 <i class="ik ik-corner-down-right"></i>
                             </a>
                             @if ($kegiatan->subkegiatan->count() == 0)
-                            <button class="btn btn-danger btn-icon ml-2"
-                                onclick="return confirm('Ingin menghapus Kegiatan ini?')"
+                            <button class="btn btn-danger btn-icon ml-2" wire:confirm='Ingin menghapus Kegiatan ini?'
                                 wire:click.prevent='destroyKegiatan("{{ $kegiatan->uuid }}")'><i
                                     class="ik ik-trash-2"></i></button>
                             @endif

@@ -71,7 +71,7 @@ $total_keuangan += $rs->rincian_belanja->sum('pagu');
                 <i class="ik ik-corner-down-right"></i>
             </a>
             @if ($rs->rincian_belanja->count() == 0)
-            <button class="btn btn-danger btn-icon ml-2 mb-2" onclick="return confirm('Ingin menghapus Realisasi ini?')"
+            <button class="btn btn-danger btn-icon ml-2 mb-2" wire:confirm='Ingin menghapus Realisasi ini?'
                 wire:click='destroy("{{ $rs->uuid }}")'>
                 <i class="ik ik-trash"></i>
             </button>
@@ -102,15 +102,13 @@ $total_keuangan += $rs->rincian_belanja->sum('pagu');
     </td>
     {{-- capaian keuangan --}}
     <td class="text-right">
-        <strong
-            class="{{ $subkegiatan->pagu < $total_keuangan ? 'text-danger' : 'text-dark' }}">
+        <strong class="{{ $subkegiatan->pagu < $total_keuangan ? 'text-danger' : 'text-dark' }}">
             @currency($total_keuangan)
         </strong>
     </td>
     <td class="text-center">
         {{-- capaian keuangan --}}
-        <strong
-            class="{{ $subkegiatan->pagu < $total_keuangan ? 'text-danger' : 'text-dark' }}">
+        <strong class="{{ $subkegiatan->pagu < $total_keuangan ? 'text-danger' : 'text-dark' }}">
             {{ number_format(($subkegiatan->pagu != 0 ? $total_keuangan /
             $subkegiatan->pagu : 0) * 100, 1, ',', '') . ' %' }}
         </strong>

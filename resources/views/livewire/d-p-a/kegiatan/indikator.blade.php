@@ -8,7 +8,7 @@
             class="form-control">
     </td>
     <td class="text-center">
-        <button class="btn btn-danger btn-icon" onclick="return confirm('Ingin menghapus Indikator Kegiatan ini?')"
+        <button class="btn btn-danger btn-icon" wire:confirm='Ingin menghapus Indikator Kegiatan ini?'
             wire:click='destroyIndikator("{{ $indikator_kegiatan->uuid }}")'>
             <i class="fas fa-times fa-fw"></i>
         </button>
