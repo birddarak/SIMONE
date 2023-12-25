@@ -4,7 +4,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DpaController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PegawaiController;
-use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\RealisasiController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,8 +32,6 @@ Route::middleware([
     Route::resource('dpa', DpaController::class);
     Route::get('dpa/{program:uuid}/kegiatan', [DpaController::class, 'dpa_kegiatan'])->name('dpa.kegiatan');
     Route::get('dpa/{kegiatan:uuid}/subkegiatan', [DpaController::class, 'dpa_subkegiatan'])->name('dpa.subkegiatan');
-
-    Route::resource('program', ProgramController::class)->parameter('program', 'program:uuid');
 
     Route::resource('pegawai', PegawaiController::class)->parameter('pegawai', 'pegawai:uuid');
 

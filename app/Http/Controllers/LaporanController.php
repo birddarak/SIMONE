@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\MonevExport;
+use App\Models\Pegawai;
 use App\Models\Program;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Mpdf\Mpdf as PDF;
 use Mpdf\Mpdf;
 
 class LaporanController extends Controller
@@ -16,24 +15,21 @@ class LaporanController extends Controller
         return view('panel.pages.laporan.index');
     }
 
-    public function print(Request $request)
-    {
-        $data['apbd'] = $request->apbd;
-        $data['tahun_anggaran'] = $request->tahun_anggaran;
-        $data['programs'] = Program::orderBy('kode', 'ASC')->where('apbd', $request->apbd)->where('tahun_anggaran', $request->tahun_anggaran)->get();
-        return view('panel.pages.laporan.print', $data);
-    }
-
-    public function exportExcel(Request $request)
-    {
-        return (new MonevExport($request->apbd, $request->tahun_anggaran))->download('monev-' . Carbon::now()->timestamp . '.xlsx');
-    }
-
     public function exportPDF(Request $request)
     {
         $data['apbd'] = $request->apbd;
         $data['tahun_anggaran'] = $request->tahun_anggaran;
-        $data['programs'] = Program::orderBy('kode', 'ASC')->where('apbd', $request->apbd)->where('tahun_anggaran', $request->tahun_anggaran)->get();
+
+        if (auth()->user()->rule == 'kabid') {
+            $data['programs'] = Program::orderBy('kode', 'ASC')
+                ->where('pegawai_id', auth()->user()->pegawai->id)
+                ->where('tahun_anggaran', $request->tahun_anggaran)->where('apbd', $request->apbd)
+                ->get();
+        } else {
+            $data['programs'] = Program::orderBy('kode', 'ASC')
+                ->where('tahun_anggaran', $request->tahun_anggaran)->where('apbd', $request->apbd)
+                ->get();
+        }
 
 
         // Baca isi file HTML
