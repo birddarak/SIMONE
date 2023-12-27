@@ -1,4 +1,4 @@
-<tr class="" wire:ignore style="background-color: rgb(214, 214, 214);">
+<tr class="" style="background-color: rgb(214, 214, 214);">
     <td class="collapse" id="collapse-{{ $pegawai->uuid }}" colspan="8">
         <div class="container">
             <div class="card card-body m-0">

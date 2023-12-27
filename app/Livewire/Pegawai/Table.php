@@ -51,7 +51,7 @@ class Table extends Component
             'jabatan' => $this->jabatan
         ]);
 
-        session()->flash('message', 'Berhasil menambahkan <b>' . $this->nama . '</b> sebagai rule <b>' . $this->rule . '</b>');
+        $this->dispatch('alert', html: 'Berhasil menambahkan Data Pegawai & User');
         $this->reset(['nama', 'nip', 'jabatan', 'username', 'email', 'rule']);
     }
 
@@ -59,9 +59,11 @@ class Table extends Component
 
     public function updatePegawai($uuid, $field, $value)
     {
-        Pegawai::where('uuid', $uuid)->update([
+        $data = Pegawai::where('uuid', $uuid)->first();
+        $data->update([
             $field => $value
         ]);
+        $this->dispatch('alert', html: 'Berhasil memperbaharui Data Pegawai');
     }
 
     // User
@@ -71,6 +73,7 @@ class Table extends Component
         User::where('uuid', $uuid)->update([
             $field => $value
         ]);
+        $this->dispatch('alert', html: 'Berhasil memperbaharui Data User');
     }
 
     public function destroy($uuid)
@@ -79,5 +82,6 @@ class Table extends Component
         $user = User::find($pegawai->user_id);
         $user->delete();
         $pegawai->delete();
+        $this->dispatch('alert', html: 'Berhasil menghapus Data Pegawai & User');
     }
 }

@@ -55,7 +55,7 @@
                                 role="button" aria-expanded="false" aria-controls="collapse-{{ $pegawai->uuid }}">
                                 <i class="ik ik-eye"></i>
                             </a>
-                            <button class="btn btn-sm" wire:confirm='Ingin menghapus Program ini?'
+                            <button class="btn btn-sm" wire:confirm='Ingin menghapus Data Pegawai ini?'
                                 wire:click='destroy("{{ $pegawai->uuid }}")'><i class="ik ik-trash-2"></i></button>
                         </div>
                     </td>
