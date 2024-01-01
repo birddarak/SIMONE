@@ -39,6 +39,9 @@
                                     <option value="admin" {{ $pegawai->user->rule == 'admin' ? 'selected' : '' }}>
                                         Admin
                                     </option>
+                                    <option value="non-admin" {{ $pegawai->user->rule == 'non-admin' ? 'selected' : '' }}>
+                                        Non Admin
+                                    </option>
                                 </select>
                             </div>
                         </div>

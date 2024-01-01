@@ -29,28 +29,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'username' => 'required',
-            'email' => 'required',
-            'password1' => 'required',
-            'password2' => 'required'
-        ]);
-
-        $user = $request->all();
-        if ($user['password1'] !== $user['password2']) {
-            return;
-        }
-        $user['uuid'] = str()->uuid();
-        $user['password'] = Hash::make($user['password1'], [
-            'rounds' => 12
-        ]);
-        $user['email_verified_at'] = now();
-        $user['rule'] = 'pegawai';
-        $user['remember_token'] = str()->random(10);
-
-        User::create($user);
-
-        return redirect()->back()->with('success', 'User Berhasil di Tambah');
+        // 
     }
 
     /**

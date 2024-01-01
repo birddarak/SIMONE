@@ -19,8 +19,10 @@
                 <div class="container">
                     <div class="apps-wrap">
                         <div class="app-item">
-                            <a href="{{ route('dashboard') }}"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
+                            <a href="{{ route('dashboard') }}"><i
+                                    class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
                         </div>
+                        @if (auth()->user()->rule != 'non-admin')
                         <div class="app-item">
                             <a href="{{ route('laporan') }}"><i class="ik ik-printer"></i><span>Monev</span></a>
                         </div>
@@ -28,11 +30,15 @@
                             <a href="{{ route('dpa.index') }}"><i class="ik ik-book"></i><span>DPA</span></a>
                         </div>
                         <div class="app-item">
-                            <a href="{{ route('realisasi.index') }}"><i class="ik ik-book-open"></i><span>Realisasi</span></a>
+                            <a href="{{ route('realisasi.index') }}"><i
+                                    class="ik ik-book-open"></i><span>Realisasi</span></a>
                         </div>
+                        @endif
+                        @if (auth()->user()->rule == 'admin')
                         <div class="app-item">
                             <a href="{{ route('pegawai.index') }}"><i class="ik ik-users"></i><span>Pegawai</span></a>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>

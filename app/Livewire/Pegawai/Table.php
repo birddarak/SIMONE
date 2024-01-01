@@ -28,7 +28,7 @@ class Table extends Component
             'jabatan' => 'required|string',
             'username' => 'required|string',
             'email' => 'required|email|unique:users,email',
-            'rule' => 'required|string|in:kepala dinas,kabid,admin'
+            'rule' => 'required|string|in:kepala dinas,kabid,admin,non-admin'
         ]);
 
         $user = User::create([

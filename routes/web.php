@@ -38,10 +38,9 @@ Route::middleware([
     Route::resource('realisasi', RealisasiController::class);
     Route::get('realisasi/{program:uuid}/kegiatan', [RealisasiController::class, 'realisasi_kegiatan'])->name('realisasi.kegiatan');
     Route::get('realisasi/{kegiatan:uuid}/subkegiatan', [RealisasiController::class, 'realisasi_subkegiatan'])->name('realisasi.subkegiatan');
-    
+
     Route::get('realisasi/{realisasi_subkegiatan:uuid}/rincian-belanja', [RealisasiController::class, 'rincian_belanja'])->name('realisasi.rincian-belanja');
 
     Route::get('index', [LaporanController::class, 'index'])->name('laporan');
     Route::get('exportPDF', [LaporanController::class, 'exportPDF'])->name('exportPDF');
-    
 });

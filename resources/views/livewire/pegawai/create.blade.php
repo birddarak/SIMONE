@@ -61,6 +61,7 @@
             <option value="kepala dinas">Kepala Dinas</option>
             <option value="kabid">Kabid</option>
             <option value="admin">Admin</option>
+            <option value="non-admin">Non Admin</option>
         </select>
 
         @error('rule')
