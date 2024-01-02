@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Laporan;
 
-use App\Models\Pegawai;
 use App\Models\Program;
 use Livewire\Component;
 

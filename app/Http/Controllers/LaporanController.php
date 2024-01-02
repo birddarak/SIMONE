@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pegawai;
 use App\Models\Program;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -44,6 +43,6 @@ class LaporanController extends Controller
         // content
         $mpdf->WriteHTML($htmlContent);
         // output
-        $mpdf->Output('monev-' . Carbon::now()->timestamp . '.pdf', 'I');
+        $mpdf->Output('monev ' . $request->apbd . ' tahun ' . $request->tahun_anggaran . '.pdf', 'I');
     }
 }
