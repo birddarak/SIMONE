@@ -28,9 +28,9 @@
                     Mohon isi Nama Target
                 </span>
             @enderror
-            <button class="btn btn-sm btn-transparent">
+            <div class="btn btn-transparent">
                 /
-            </button>
+            </div>
             <input type="text" placeholder="SATUAN" class="form-control @error('satuan') is-invalid @enderror"
                 wire:model='satuan' wire:keydown.enter='storeSubkegiatan()'>
 
