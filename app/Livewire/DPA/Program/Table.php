@@ -73,7 +73,7 @@ class Table extends Component
         Program::create($data);
 
         // session()->flash('message', $data['uuid']);
-        $this->dispatch('alert', html: 'Berhasil menambahkan Program');
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil menambahkan Program');
         $this->reset(['pegawai_id', 'kode', 'program', 'target', 'satuan']);
     }
 
@@ -96,7 +96,7 @@ class Table extends Component
 
         IndikatorProgram::create($data);
 
-        $this->dispatch('alert', html: 'Berhasil menambahkan Indikator Program');
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil menambahkan Indikator Program');
         $this->reset(['indikator']);
     }
 
@@ -104,12 +104,16 @@ class Table extends Component
     {
         $pegawai = ($field == 'pegawai_id') ? Pegawai::where('uuid', $value)->first() : null;
         $data = Program::where('uuid', $uuid)->first();
+        if ($field == 'target' && !is_numeric($value)) {
+            $this->dispatch('alert', title: 'Gagal!', icon: 'warning', html: 'Terdapat karakter bukan angka atau spasi berlebih saat menginput ');
+            return;
+        }
         $data->update(
             [
                 $field => (is_null($pegawai)) ? $value : $pegawai->id
             ]
         );
-        $this->dispatch('alert', html: 'Berhasil memperbaharui Program');
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil memperbaharui Program');
     }
 
     public function updateIndikator($uuid, $field, $value)
@@ -118,20 +122,20 @@ class Table extends Component
         $data->update([
             $field => $value
         ]);
-        $this->dispatch('alert', html: 'Berhasil memperbaharui Indikator Program');
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil memperbaharui Indikator Program');
     }
 
     public function destroyProgram($uuid)
     {
         $data = Program::where('uuid', $uuid)->first();
         $data->delete();
-        $this->dispatch('alert', html: 'Berhasil menghapus Program');
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil menghapus Program');
     }
 
     public function destroyIndikator($uuid)
     {
         $data = IndikatorProgram::where('uuid', $uuid)->first();
         $data->delete();
-        $this->dispatch('alert', html: 'Berhasil menghapus Indikator Program');
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil menghapus Indikator Program');
     }
 }

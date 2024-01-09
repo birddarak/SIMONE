@@ -31,6 +31,7 @@ class Table extends Component
 
     public function store()
     {
+
         $this->validate([
             'rincian' => 'required|string',
             'tanggal' => 'required',
@@ -56,26 +57,30 @@ class Table extends Component
 
         RincianBelanja::create($data);
 
-        $this->dispatch('alert', html: 'Berhasil menambahkan <b>' . $this->rincian . '</b>');
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil menambahkan <b>' . $this->rincian . '</b>');
         $this->reset(['rincian', 'tanggal', 'pagu', 'keterangan', 'file']);
     }
 
     public function update($uuid, $field, $value)
     {
         $data = RincianBelanja::where('uuid', $uuid)->first();
+        if ($field == 'pagu' && !filter_var($value, FILTER_VALIDATE_INT)) {
+            $this->dispatch('alert', title: 'Gagal!', icon: 'warning', html: 'Terdapat karakter bukan bilangan bulat atau spasi berlebih saat menginput ');
+            return;
+        }
         $data->update(
             [
                 $field => $value
             ]
         );
-        $this->dispatch('alert', html: 'Berhasil memperbaharui Rincian');
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil memperbaharui Rincian');
     }
 
     public function destroy($uuid)
     {
         $data = RincianBelanja::where('uuid', $uuid)->first();
         // File::delete('storage/' . $data->file);
-        $this->dispatch('alert', html: 'Berhasil menghapus ' . $data->rincian);
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil menghapus ' . $data->rincian);
         $data->delete();
     }
 }

@@ -38,9 +38,9 @@
     document.addEventListener('alert', (event) => {
         let data = event.detail
 		Swal.fire({
-			title: 'Sukses!',
+			title: data.title,
 			html: data.html,
-			icon: 'success',
+			icon: data.icon,
 			toast: "true",
 			position: "top-end",
 			showConfirmButton: false,
@@ -48,24 +48,5 @@
 			timerProgressBar: true
 		})
     });
-
-    // $('document').on('confirmDelete',function () {
-        // let uuid = event.detail.uuid
-        // let tipe = event.detail.tipe
-        // Swal.fire({
-        // title: "Hapus data ini?",
-        // text: "Data yang dihapus tidak akan kembali lagi",
-        // icon: "warning",
-        // showCancelButton: true,
-        // confirmButtonColor: "#3085d6",
-        // cancelButtonColor: "#d33",
-        // confirmButtonText: "Hapus!",
-        // cancelButtonText: "Batal"
-        // }).then((result) => {
-        //     if (result.isConfirmed) {
-        //         window.livewire.emit('destroyIndikator', uuid, tipe);
-        //     }
-        // })
-    // })  
 
 </script>

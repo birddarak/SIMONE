@@ -21,7 +21,7 @@
     </td>
     <td class="p-1">
         <input type="number" placeholder="PAGU" class="form-control @error('pagu') is-invalid @enderror"
-            wire:model='pagu' wire:keydown.enter='store()'>
+            wire:model='pagu' pattern="\d+" title="Input harus berupa angka" wire:keydown.enter='store()'>
 
         @error('pagu')
             <span class="text-danger">

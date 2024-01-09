@@ -51,7 +51,7 @@ class Table extends Component
 
         Subkegiatan::create($data);
 
-        $this->dispatch('alert', html: 'Berhasil menambahkan Sub Kegiatan');
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil menambahkan Sub Kegiatan');
         $this->reset(['pegawai_id', 'kode', 'subkegiatan', 'target', 'satuan', 'pagu']);
     }
 
@@ -73,7 +73,7 @@ class Table extends Component
 
         IndikatorSubkegiatan::create($data);
 
-        $this->dispatch('alert', html: 'Berhasil menambahkan Indikator Sub Kegiatan');
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil menambahkan Indikator Sub Kegiatan');
         $this->reset(['indikator']);
     }
 
@@ -81,12 +81,18 @@ class Table extends Component
     {
         $pegawai = ($field == 'pegawai_id') ? Pegawai::where('uuid', $value)->first() : null;
         $data = Subkegiatan::where('uuid', $uuid)->first();
+
+        if ($field == 'pagu' && !filter_var($value, FILTER_VALIDATE_INT)) {
+            $this->dispatch('alert', title: 'Gagal!', icon: 'warning', html: 'Terdapat karakter bukan bilangan bulat atau spasi berlebih saat menginput ');
+            return;
+        }
+
         $data->update(
             [
                 $field => (is_null($pegawai)) ? $value : $pegawai->id
             ]
         );
-        $this->dispatch('alert', html: 'Berhasil memperbaharui Sub Kegiatan');
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil memperbaharui Sub Kegiatan');
     }
 
     public function updateIndikator($uuid, $field, $value)
@@ -97,20 +103,20 @@ class Table extends Component
                 $field => $value
             ]
         );
-        $this->dispatch('alert', html: 'Berhasil memperbaharui Indikator Sub Kegiatan');
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil memperbaharui Indikator Sub Kegiatan');
     }
 
     public function destroySubkegiatan($uuid)
     {
         $data = Subkegiatan::where('uuid', $uuid)->first();
         $data->delete();
-        $this->dispatch('alert', html: 'Berhasil menghapus Sub Kegiatan');
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil menghapus Sub Kegiatan');
     }
 
     public function destroyIndikator($uuid)
     {
         $data = IndikatorSubkegiatan::where('uuid', $uuid)->first();
         $data->delete();
-        $this->dispatch('alert', html: 'Berhasil menghapus Indikator Sub Kegiatan');
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil menghapus Indikator Sub Kegiatan');
     }
 }

@@ -16,7 +16,7 @@
     </td>
     <td class="p-1">
         <div class="input-group m-0">
-            <input type="number" class="form-control" placeholder="Capaian" wire:model='capaian' wire:keydown.enter='store("{{ $kegiatan->uuid }}")'>
+            <input type="number" class="form-control" placeholder="Capaian" pattern="\d+" title="Input harus berupa angka" wire:model='capaian' wire:keydown.enter='store("{{ $kegiatan->uuid }}")'>
             @error('capaian')
                 <span class="text-danger">{{ $message }}</span>
             @enderror

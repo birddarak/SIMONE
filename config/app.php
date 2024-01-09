@@ -172,6 +172,7 @@ return [
         App\Providers\JetstreamServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Bkwld\Cloner\ServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -189,6 +190,7 @@ return [
         // 'Example' => App\Facades\Example::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Url' => RalphJSmit\Livewire\Urls\Facades\Url::class,
     ])->toArray(),
 
 ];

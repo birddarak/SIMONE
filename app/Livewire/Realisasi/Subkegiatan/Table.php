@@ -3,7 +3,6 @@
 namespace App\Livewire\Realisasi\Subkegiatan;
 
 use Livewire\Component;
-use App\Models\Kegiatan;
 use App\Models\Subkegiatan;
 use App\Models\RealisasiSubkegiatan;
 
@@ -31,7 +30,7 @@ class Table extends Component
     {
         $this->validate([
             'triwulan' => 'required|string|in:I,II,III,IV',
-            'capaian' => 'required|string',
+            'capaian' => 'required|integer',
         ]);
 
         $subkegiatan = Subkegiatan::where('uuid', $uuid)->first();
@@ -45,25 +44,29 @@ class Table extends Component
 
         RealisasiSubkegiatan::create($data);
 
-        $this->dispatch('alert', html: 'Berhasil menambahkan Capaian Triwulan ' . $this->triwulan);
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil menambahkan Capaian Triwulan ' . $this->triwulan);
         $this->reset(['triwulan', 'capaian', 'satuan']);
     }
 
     public function update($uuid, $field, $value)
     {
         $data = RealisasiSubkegiatan::where('uuid', $uuid)->first();
+        if ($field == 'capaian' && !is_numeric($value)) {
+            $this->dispatch('alert', title: 'Gagal!', icon: 'warning', html: 'Terdapat karakter bukan angka atau spasi berlebih saat menginput ');
+            return;
+        }
         $data->update(
             [
                 $field => $value
             ]
         );
-        $this->dispatch('alert', html: 'Berhasil memperbaharui Capaian Triwulan ' . $data->triwulan);
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil memperbaharui Capaian Triwulan ' . $data->triwulan);
     }
 
     public function destroy($uuid)
     {
         $data = RealisasiSubkegiatan::where('uuid', $uuid)->first();
-        $this->dispatch('alert', html: 'Berhasil menghapus Triwulan ' . $data->triwulan);
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil menghapus Triwulan ' . $data->triwulan);
         $data->delete();
     }
 }
