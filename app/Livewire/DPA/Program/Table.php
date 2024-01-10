@@ -6,6 +6,7 @@ use App\Models\IndikatorProgram;
 use App\Models\Pegawai;
 use App\Models\Program;
 use Livewire\Component;
+use RalphJSmit\Livewire\Urls\Facades\Url;
 
 class Table extends Component
 {
@@ -14,6 +15,9 @@ class Table extends Component
 
     // Model Form
     public $pegawai_id, $kode, $program, $target, $satuan;
+
+    // Model Duplicate
+    public $tahun_apbd = ['tahun_awal' => '', 'apbd_awal' => '', 'tahun_tujuan' => '', 'apbd_tujuan' => ''];
 
     public $indikator = [];
 
@@ -45,6 +49,21 @@ class Table extends Component
         return view('livewire.d-p-a.program.table', $data);
     }
 
+    public function duplicateData()
+    {
+        $programs = Program::where('tahun_anggaran', $this->tahun_apbd['tahun_awal'])->where('apbd', $this->tahun_apbd['apbd_awal'])->get();
+        // modify collection attributes
+        foreach ($programs as $program) {
+            $program->tahun_anggaran = $this->tahun_apbd['tahun_tujuan'];
+            $program->apbd = $this->tahun_apbd['apbd_tujuan'];
+
+            $program->duplicate();
+        }
+        // dd($programs);
+
+        redirect()->to(Url::current());
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil Berhasil Menduplikat Semua Program');
+    }
 
     public function storeProgram()
     {

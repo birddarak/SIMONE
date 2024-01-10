@@ -17,7 +17,7 @@
                             <div class="input-group-prepend">
                                 <div class="btn btn-secondary">TAHUN</div>
                             </div>
-                            <select class="form-control" wire:model='duplicate.tahun_awal' required>
+                            <select class="form-control" wire:model='tahun_apbd.tahun_awal' required>
                                 <option value="">PILIH</option>
                                 @for ($i = 2019; $i <= date('Y'); $i++) <option value="{{ $i }}">{{ $i }}</option>
                                     @endfor
@@ -27,7 +27,7 @@
                             <div class="input-group-prepend">
                                 <div class="btn btn-secondary">APBD</div>
                             </div>
-                            <select class="form-control" wire:model='duplicate.apbd_awal' required>
+                            <select class="form-control" wire:model='tahun_apbd.apbd_awal' required>
                                 <option value="">PILIH</option>
                                 <option value="murni">MURNI</option>
                                 <option value="perubahan">PERUBAHAN
@@ -48,7 +48,7 @@
                             <div class="input-group-prepend">
                                 <div class="btn btn-primary">TAHUN</div>
                             </div>
-                            <select class="form-control" wire:model="duplicate.tahun_tujuan" required>
+                            <select class="form-control" wire:model="tahun_apbd.tahun_tujuan" required>
                                 <option value="">PILIH</option>
                                 @for ($i = 2019; $i <= date('Y'); $i++) <option value="{{ $i }}">{{ $i }}
                                     </option>
@@ -59,7 +59,7 @@
                             <div class="input-group-prepend">
                                 <div class="btn btn-primary">APBD</div>
                             </div>
-                            <select class="form-control" wire:model="duplicate.apbd_tujuan" required>
+                            <select class="form-control" wire:model="tahun_apbd.apbd_tujuan" required>
                                 <option value="">PILIH</option>
                                 <option value="murni">MURNI</option>
                                 <option value="perubahan">PERUBAHAN</option>

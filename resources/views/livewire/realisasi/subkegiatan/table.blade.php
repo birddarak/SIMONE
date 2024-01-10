@@ -51,21 +51,15 @@
                             <i class="fas fa-plus fa-fw"></i>
                             </button>
                             @endif
-                            </td>
+                    </th>
                 </tr>
-                @if ($subkegiatan->realisasi_subkegiatan->count() < 4) 
-                {{-- tombol create --}}
-                    @include('livewire.realisasi.subkegiatan.create') 
-                {{-- /. tombol create --}} 
-                @endif 
-                {{-- tampilan realisasi --}} 
-                    @include('livewire.realisasi.subkegiatan.realisasi') 
-                {{-- /. tampilan realisasi --}}
-                @empty
-                <tr class="">
+                @if ($subkegiatan->realisasi_subkegiatan->count() < 4) {{-- tombol create --}}
+                    @include('livewire.realisasi.subkegiatan.create') {{-- /. tombol create --}} @endif {{-- tampilan
+                    realisasi --}} @include('livewire.realisasi.subkegiatan.realisasi') {{-- /. tampilan realisasi --}}
+                    @empty <tr class="">
                     <td class="text-center" colspan="7">Sub Kegiatan Masih Kosong, Mohon Tambahkan dimenu DPA</td>
-                </tr>
-                @endforelse
+                    </tr>
+                    @endforelse
 
             </tbody>
         </table>
