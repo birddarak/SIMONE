@@ -27,7 +27,7 @@ $realisasi_program = $program->realisasi_program()->orderBy('triwulan', 'ASC')->
 $total_keuangan += $rp->program->sumTotalRincian($rp->triwulan);
 @endphp
 
-<tr>
+<tr wire:key='{{ $rp->uuid }}'>
     <td></td>
     <td class="p-1">
         <div class="input-group m-0">

@@ -26,7 +26,7 @@ $realisasi_subkegiatan = $subkegiatan->realisasi_subkegiatan()->orderBy('triwula
 $total_keuangan += $rs->rincian_belanja->sum('pagu');
 @endphp
 
-<tr>
+<tr wire:key='{{ $rs->uuid }}'>
     <td></td>
     <td class="p-1">
         <div class="input-group m-0">

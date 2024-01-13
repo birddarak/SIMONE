@@ -26,7 +26,7 @@ $realisasi_kegiatan = $kegiatan->realisasi_kegiatan()->orderBy('triwulan', 'ASC'
 $total_keuangan += $rk->kegiatan->sumTotalRincian($rk->triwulan);
 @endphp
 
-<tr>
+<tr wire:key='{{ $rk->uuid }}'>
     <td></td>
     <td class="p-1">
         <div class="input-group m-0">
