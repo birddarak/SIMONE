@@ -1,9 +1,12 @@
 <div class="card border border-2">
     <div class="card-body">
-        <button onclick="window.history.back()" class="btn btn-light">
+        @php
+        $prefix = explode('.', Url::currentRoute());
+        @endphp
+        <a href="{{ route($prefix[0] . '.kegiatan', ['program' => $kegiatan->program->uuid]) }}" class="btn btn-light">
             <i class="fas fa-arrow-left"></i>
             Kembali
-        </button>
+        </a>
         <br>
         <br>
         <table class="text-uppercase col-12">

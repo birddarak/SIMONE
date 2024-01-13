@@ -14,6 +14,9 @@ class PegawaiController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->rule !== 'admin') {
+            return abort(403);
+        }
         return view('panel.pages.pegawai.index');
     }
 

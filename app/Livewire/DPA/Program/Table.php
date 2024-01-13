@@ -11,7 +11,7 @@ use RalphJSmit\Livewire\Urls\Facades\Url;
 class Table extends Component
 {
     // Model Filter
-    public  $tahun_anggaran, $apbd = 'murni';
+    public  $tahun_anggaran, $apbd;
 
     // Model Form
     public $pegawai_id, $kode, $program, $target, $satuan;
@@ -21,9 +21,10 @@ class Table extends Component
 
     public $indikator = [];
 
-    public function mount()
+    public function mount($tahun_anggaran, $apbd)
     {
-        $this->tahun_anggaran = date("Y");
+        $this->tahun_anggaran = $tahun_anggaran;
+        $this->apbd = $apbd;
     }
 
     public function render()
@@ -59,7 +60,6 @@ class Table extends Component
 
             $program->duplicate();
         }
-        // dd($programs);
 
         redirect()->to(Url::current());
         $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil Berhasil Menduplikat Semua Program');

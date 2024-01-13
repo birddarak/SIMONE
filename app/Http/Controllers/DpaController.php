@@ -7,9 +7,14 @@ use App\Models\Program;
 
 class DpaController extends Controller
 {
-    public function index()
+    public function dpa_program($tahun_anggaran, $apbd)
     {
-        return view('panel.pages.dpa.program');
+        if (auth()->user()->rule == 'kabid') {
+            return abort(403);
+        }
+        $data['tahun_anggaran'] = $tahun_anggaran;
+        $data['apbd'] = $apbd;
+        return view('panel.pages.dpa.program', $data);
     }
 
     public function dpa_kegiatan(Program $program)

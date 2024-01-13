@@ -1,9 +1,13 @@
 <div class="card border border-2">
     <div class="card-body">
-        <button onclick="window.history.back()" class="btn btn-light">
+        @php
+        $prefix = explode('.', Url::currentRoute());
+        @endphp
+        <a href="{{ route($prefix[0] . '.program', ['tahun_anggaran' => $program->tahun_anggaran, 'apbd' => $program->apbd]) }}"
+            class="btn btn-light">
             <i class="fas fa-arrow-left"></i>
             Kembali
-        </button>
+        </a>
         <br>
         <br>
         <table class="text-uppercase col-12">
@@ -31,12 +35,12 @@
                 <td class="col-3">PAGU PROGRAM</td>
                 <td>:</td>
                 @php
-                    $pagu_program = 0;
-                    foreach ($program->kegiatan as $keg) {
-                        foreach ($keg->subkegiatan as $sub) {
-                            $pagu_program += $sub->pagu;
-                        }
-                    }
+                $pagu_program = 0;
+                foreach ($program->kegiatan as $keg) {
+                foreach ($keg->subkegiatan as $sub) {
+                $pagu_program += $sub->pagu;
+                }
+                }
                 @endphp
                 <td><b>@currency($pagu_program)</b></td>
             </tr>
@@ -44,16 +48,16 @@
                 <td class="col-3">PAGU TERSERAP</td>
                 <td>:</td>
                 @php
-                    $pagu_trsrp = 0;
-                    foreach ($program->kegiatan as $keg) {
-                        foreach ($keg->subkegiatan as $sub) {
-                            foreach ($sub->realisasi_subkegiatan as $rs) {
-                                foreach ($rs->rincian_belanja as $rb) {
-                                    $pagu_trsrp += $rb->pagu;
-                                }
-                            }
-                        }
-                    }
+                $pagu_trsrp = 0;
+                foreach ($program->kegiatan as $keg) {
+                foreach ($keg->subkegiatan as $sub) {
+                foreach ($sub->realisasi_subkegiatan as $rs) {
+                foreach ($rs->rincian_belanja as $rb) {
+                $pagu_trsrp += $rb->pagu;
+                }
+                }
+                }
+                }
 
                 @endphp
                 <td>

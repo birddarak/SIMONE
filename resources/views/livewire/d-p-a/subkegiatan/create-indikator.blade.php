@@ -1,4 +1,4 @@
-<tr class="bg-form-indikator-subkegiatan  collapse" id="collapse-{{ $subkegiatan->uuid }}-sk" wire:ignore>
+<tr class="bg-form-indikator-subkegiatan collapse" id="collapse-{{ $subkegiatan->uuid }}-indikator" wire:ignore>
     <td></td>
     <td class="p-1" colspan="4">
         <input type="text" placeholder="INDIKATOR"

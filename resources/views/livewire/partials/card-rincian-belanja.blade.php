@@ -1,9 +1,10 @@
 <div class="card border border-2">
     <div class="card-body">
-        <button onclick="window.history.back()" class="btn btn-light">
+        <a href="{{ route('realisasi.subkegiatan', ['kegiatan' => $realisasi_subkegiatan->subkegiatan->kegiatan->uuid]) }}"
+            class="btn btn-light">
             <i class="fas fa-arrow-left"></i>
             Kembali
-        </button>
+        </a>
         <br>
         <br>
         <table class="text-uppercase col-12">
@@ -52,21 +53,21 @@
                 <td class="col-3">TRIWULAN</td>
                 <td>:</td>
                 <td><b>
-                    @switch($realisasi_subkegiatan->triwulan)
+                        @switch($realisasi_subkegiatan->triwulan)
                         @case('I')
                         {{ $realisasi_subkegiatan->triwulan . ' (SATU)' }}
                         @break
                         @case('II')
                         {{ $realisasi_subkegiatan->triwulan . ' (DUA)' }}
-                            @break
+                        @break
                         @case('III')
                         {{ $realisasi_subkegiatan->triwulan . ' (TIGA)' }}
-                            @break
+                        @break
                         @case('IV')
                         {{ $realisasi_subkegiatan->triwulan . ' (EMPAT)' }}
-                            @break
-                    @endswitch
-                </b></td>
+                        @break
+                        @endswitch
+                    </b></td>
             </tr>
             <tr>
                 <td class="col-3">PAGU TERSERAP</td>

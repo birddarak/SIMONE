@@ -113,8 +113,8 @@
                     </td>
                     <td>
                         <button class="btn btn-success btn-icon btn-sm" data-toggle="collapse"
-                            href="#collapse-{{ $subkegiatan->uuid }}-sk" role="button" aria-expanded="false"
-                            aria-controls="collapse-{{ $subkegiatan->uuid }}-sk">
+                            href="#collapse-{{ $subkegiatan->uuid }}-indikator" role="button" aria-expanded="false"
+                            aria-controls="collapse-{{ $subkegiatan->uuid }}-indikator">
                             <i class="fas fa-plus fa-fw"></i>
                         </button>
                     </td>

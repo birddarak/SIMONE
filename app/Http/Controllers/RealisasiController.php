@@ -8,9 +8,14 @@ use App\Models\RealisasiSubkegiatan;
 
 class RealisasiController extends Controller
 {
-    public function index()
+    public function realisasi_program($tahun_anggaran, $apbd)
     {
-        return view('panel.pages.realisasi.program');
+        if (auth()->user()->rule == 'kabid') {
+            return abort(403);
+        }
+        $data['tahun_anggaran'] = $tahun_anggaran;
+        $data['apbd'] = $apbd;
+        return view('panel.pages.realisasi.program', $data);
     }
 
     public function realisasi_kegiatan(Program $program)

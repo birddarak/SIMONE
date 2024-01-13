@@ -29,13 +29,18 @@ Route::middleware([
 
     Route::get('logout', [DashboardController::class, 'logout'])->name('logout');
 
-    Route::resource('dpa', DpaController::class);
+    // Route::resource('dpa', DpaController::class);
+    // Route::get('dpa/{program:tahun_anggaran}/{program:apbd}/program', [DpaController::class, 'dpa_kegiatan'])->group(function () {
+    //     Route::get('program', [DpaController::class, 'program'])->name('dpa.program');
+    // });
+    Route::get('dpa/{tahun_anggaran}/{apbd}/program', [DpaController::class, 'dpa_program'])->name('dpa.program');
     Route::get('dpa/{program:uuid}/kegiatan', [DpaController::class, 'dpa_kegiatan'])->name('dpa.kegiatan');
     Route::get('dpa/{kegiatan:uuid}/subkegiatan', [DpaController::class, 'dpa_subkegiatan'])->name('dpa.subkegiatan');
-
+    
     Route::resource('pegawai', PegawaiController::class)->parameter('pegawai', 'pegawai:uuid');
-
-    Route::resource('realisasi', RealisasiController::class);
+    
+    // Route::resource('realisasi', RealisasiController::class);
+    Route::get('realisasi/{tahun_anggaran}/{apbd}/program', [RealisasiController::class, 'realisasi_program'])->name('realisasi.program');
     Route::get('realisasi/{program:uuid}/kegiatan', [RealisasiController::class, 'realisasi_kegiatan'])->name('realisasi.kegiatan');
     Route::get('realisasi/{kegiatan:uuid}/subkegiatan', [RealisasiController::class, 'realisasi_subkegiatan'])->name('realisasi.subkegiatan');
 

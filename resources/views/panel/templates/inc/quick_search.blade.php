@@ -27,10 +27,11 @@
                             <a href="{{ route('laporan') }}"><i class="ik ik-printer"></i><span>Monev</span></a>
                         </div>
                         <div class="app-item">
-                            <a href="{{ route('dpa.index') }}"><i class="ik ik-book"></i><span>DPA</span></a>
+                            <a href="{{ route('dpa.program', ['tahun_anggaran' => date('Y'), 'apbd' => 'murni']) }}"><i
+                                    class="ik ik-book"></i><span>DPA</span></a>
                         </div>
                         <div class="app-item">
-                            <a href="{{ route('realisasi.index') }}"><i
+                            <a href="{{ route('realisasi.program', ['tahun_anggaran' => date('Y'), 'apbd' => 'murni']) }}"><i
                                     class="ik ik-book-open"></i><span>Realisasi</span></a>
                         </div>
                         @endif
