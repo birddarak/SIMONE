@@ -11,7 +11,7 @@
             <option value="perubahan">PERUBAHAN</option>
         </select>
     </div>
-    @if (Url::currentRoute() == 'dpa.index')
+    @if (Url::currentRoute() == 'dpa.program')
     @include('livewire.partials.duplicate')
     @endif
 </div>
