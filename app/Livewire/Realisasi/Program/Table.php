@@ -14,7 +14,8 @@ class Table extends Component
     public $tahun_anggaran, $apbd;
 
     // FORM REALISASI
-    public $triwulan, $capaian, $satuan;
+    public $triwulan = [];
+    public $capaian = [];
 
     // Model Form
     public $kode, $program, $pegawai_id;
@@ -48,33 +49,38 @@ class Table extends Component
         return view('livewire.realisasi.program.table', $data);
     }
 
-    public function store($uuid)
+    public function store(Program $program)
     {
-        $this->validate([
-            'triwulan' => 'required|string|in:I,II,III,IV',
-            'capaian' => 'required|integer',
-        ]);
+        if (empty($this->triwulan)) {
+            $this->triwulan[$program->uuid] = null;
+        }
+        if (empty($this->capaian)) {
+            $this->capaian[$program->uuid] = null;
+        }
 
-        $program = Program::where('uuid', $uuid)->first();
+        $this->validate([
+            'triwulan.' . $program->uuid => 'required|string|in:I,II,III,IV',
+            'capaian.' . $program->uuid => 'required|integer'
+        ]);
 
         $data = [
             'program_id' => $program->id,
             'uuid' => str()->uuid(),
-            'triwulan' => $this->triwulan,
-            'capaian' => $this->capaian,
+            'triwulan' => $this->triwulan[$program->uuid],
+            'capaian' => $this->capaian[$program->uuid]
         ];
 
         RealisasiProgram::create($data);
 
-        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil menambahkan Capaian Triwulan ' . $this->triwulan);
-        $this->reset(['triwulan', 'capaian', 'satuan']);
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil menambahkan Capaian Triwulan ' . $this->triwulan[$program->uuid]);
+        $this->reset(['triwulan', 'capaian']);
     }
 
     public function update($uuid, $field, $value)
     {
         $data = RealisasiProgram::where('uuid', $uuid)->first();
         if ($field == 'capaian' && !is_numeric($value)) {
-            $this->dispatch('alert', title: 'Gagal!', icon: 'warning', html: 'Terdapat karakter bukan angka atau spasi berlebih saat menginput ');
+            $this->dispatch('alert', title: 'Gagal!', icon: 'warning', html: 'Terdapat karakter bukan angka atau spasi berlebih saat menginput');
             return;
         }
         $data->update(
@@ -82,7 +88,7 @@ class Table extends Component
                 $field => $value
             ]
         );
-        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil memperbaharui Capaian Triwulan ' . $data->triwulan);
+        $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil memperbaharui Realisasi');
     }
 
     public function destroy($uuid)
