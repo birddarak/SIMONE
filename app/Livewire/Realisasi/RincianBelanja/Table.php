@@ -5,6 +5,7 @@ namespace App\Livewire\Realisasi\RincianBelanja;
 use App\Models\RealisasiSubkegiatan;
 use Livewire\Component;
 use App\Models\RincianBelanja;
+use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 
 class Table extends Component
@@ -79,7 +80,7 @@ class Table extends Component
     public function destroy($uuid)
     {
         $data = RincianBelanja::where('uuid', $uuid)->first();
-        // File::delete('storage/' . $data->file);
+        File::delete('storage/' . $data->file);
         $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil menghapus ' . $data->rincian);
         $data->delete();
     }

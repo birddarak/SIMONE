@@ -9,7 +9,7 @@ class DpaController extends Controller
 {
     public function dpa_program($tahun_anggaran, $apbd)
     {
-        if (auth()->user()->rule == 'kabid') {
+        if (auth()->user()->rule == 'kabid' || auth()->user()->rule == 'non-admin') {
             return abort(403);
         }
         $data['tahun_anggaran'] = $tahun_anggaran;
@@ -19,7 +19,7 @@ class DpaController extends Controller
 
     public function dpa_kegiatan(Program $program)
     {
-        if (auth()->user()->rule == 'kabid') {
+        if (auth()->user()->rule == 'kabid' || auth()->user()->rule == 'non-admin') {
             if ($program->pegawai_id != auth()->user()->pegawai->id) {
                 return abort(403);
             }
@@ -29,7 +29,7 @@ class DpaController extends Controller
 
     public function dpa_subkegiatan(Kegiatan $kegiatan)
     {
-        if (auth()->user()->rule == 'kabid') {
+        if (auth()->user()->rule == 'kabid' || auth()->user()->rule == 'non-admin') {
             if ($kegiatan->program->pegawai_id != auth()->user()->pegawai->id) {
                 return abort(403);
             }

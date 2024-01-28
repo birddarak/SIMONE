@@ -10,7 +10,7 @@ class RealisasiController extends Controller
 {
     public function realisasi_program($tahun_anggaran, $apbd)
     {
-        if (auth()->user()->rule == 'kabid') {
+        if (auth()->user()->rule == 'non-admin') {
             return abort(403);
         }
         $data['tahun_anggaran'] = $tahun_anggaran;
@@ -20,7 +20,7 @@ class RealisasiController extends Controller
 
     public function realisasi_kegiatan(Program $program)
     {
-        if (auth()->user()->rule == 'kabid') {
+        if (auth()->user()->rule == 'non-admin') {
             if ($program->pegawai_id != auth()->user()->pegawai->id) {
                 return abort(403);
             }
@@ -30,7 +30,7 @@ class RealisasiController extends Controller
 
     public function realisasi_subkegiatan(Kegiatan $kegiatan)
     {
-        if (auth()->user()->rule == 'kabid') {
+        if (auth()->user()->rule == 'non-admin') {
             if ($kegiatan->program->pegawai_id != auth()->user()->pegawai->id) {
                 return abort(403);
             }
@@ -40,7 +40,7 @@ class RealisasiController extends Controller
 
     public function rincian_belanja(RealisasiSubkegiatan $realisasi_subkegiatan)
     {
-        if (auth()->user()->rule == 'kabid') {
+        if (auth()->user()->rule == 'non-admin') {
             if ($realisasi_subkegiatan->subkegiatan->kegiatan->program->pegawai_id != auth()->user()->pegawai->id) {
                 return abort(403);
             }
