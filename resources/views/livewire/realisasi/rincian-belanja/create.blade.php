@@ -40,7 +40,7 @@
         @enderror
     </td>
     <td class="p-1">
-        <input type="file" placeholder="FILE" class="form-control"
+        <input type="file" id="resetfile" placeholder="FILE" class="form-control"
             wire:model="file">
             <span class="ml-3 text-danger">*ukuran maksimal 5MB</span>
     </td>

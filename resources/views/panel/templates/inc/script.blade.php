@@ -49,4 +49,8 @@
 		})
     });
 
+	document.addEventListener('resetFileInput', (event) => {
+        document.getElementById('resetfile').value = null;
+    });
+
 </script>

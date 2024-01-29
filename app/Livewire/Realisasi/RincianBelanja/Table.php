@@ -15,6 +15,7 @@ class Table extends Component
     public $realisasi_subkegiatan;
 
     public $rincian, $tanggal, $pagu, $keterangan, $file;
+    public $resetFile;
 
     public function mount($realisasi_subkegiatan)
     {
@@ -61,7 +62,8 @@ class Table extends Component
         RincianBelanja::create($data);
 
         $this->dispatch('alert', title: 'Sukses!', icon: 'success', html: 'Berhasil menambahkan <b>' . $this->rincian . '</b>');
-        $this->reset(['rincian', 'tanggal', 'pagu', 'keterangan', 'file']);
+        $this->dispatch('resetFileInput');
+        $this->reset(['rincian', 'tanggal', 'pagu', 'keterangan']);
     }
 
     public function update($uuid, $field, $value)
