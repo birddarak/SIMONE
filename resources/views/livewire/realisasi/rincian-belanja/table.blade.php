@@ -9,7 +9,7 @@
                     <th>TANGGAL <small class="text-danger">*</small></th>
                     <th>PAGU <small class="text-danger">*</small></th>
                     <th>KETERANGAN</th>
-                    <th>FILE</th>
+                    <th>FILE (.pdf/.docx)</th>
                     <th>AKSI</th>
                     <th class="text-center">
                         <button class="btn btn-success btn-icon btn-sm" data-toggle="collapse" href="#collapse-program"
