@@ -5,9 +5,9 @@
         <table class="table custom-bordered-table">
             <thead class="thead-dark">
                 <tr>
-                    <th>RINCIAN</th>
-                    <th>TANGGAL</th>
-                    <th>PAGU</th>
+                    <th>RINCIAN <small class="text-danger">*</small></th>
+                    <th>TANGGAL <small class="text-danger">*</small></th>
+                    <th>PAGU <small class="text-danger">*</small></th>
                     <th>KETERANGAN</th>
                     <th>FILE</th>
                     <th>AKSI</th>

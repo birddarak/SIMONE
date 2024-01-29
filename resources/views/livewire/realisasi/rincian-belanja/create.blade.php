@@ -40,14 +40,9 @@
         @enderror
     </td>
     <td class="p-1">
-        <input type="file" placeholder="FILE" class="form-control @error('file') is-invalid @enderror"
+        <input type="file" placeholder="FILE" class="form-control"
             wire:model="file">
-
-        @error('file')
-            <span class="text-danger">
-                Mohon Tambahkan File
-            </span>
-        @enderror
+            <span class="ml-3 text-danger">*maksimal 5MB</span>
     </td>
     <td class="p-1">
         <div class="list-actions d-flex justify-content-around form-inline">

@@ -48,12 +48,8 @@
                 <td>:</td>
                 @php
                 $pagu_terserap = 0;
-                foreach ($kegiatan->subkegiatan as $sub) {
-                foreach ($sub->realisasi_subkegiatan as $rs) {
-                foreach ($rs->rincian_belanja as $rb) {
-                $pagu_terserap += $rb->pagu;
-                }
-                }
+                foreach ($kegiatan->subkegiatan as $subkegiatan) {
+                $pagu_terserap += $subkegiatan->sumTotal();
                 }
                 @endphp
                 <td>

@@ -31,11 +31,11 @@
         <table class="table custom-bordered-table">
             <thead class="thead-dark">
                 <tr>
-                    <th class="text-center">KODE</th>
-                    <th>SUB KEGIATAN</th>
-                    <th class="text-center">TARGET</th>
-                    <th>PENANGGUNG JAWAB</th>
-                    <th>PAGU</th>
+                    <th class="text-center">KODE <small class="text-danger">*</small></th>
+                    <th>SUB KEGIATAN <small class="text-danger">*</small></th>
+                    <th class="text-center">TARGET <small class="text-danger">*</small></th>
+                    <th>PENANGGUNG JAWAB <small class="text-danger">*</small></th>
+                    <th>PAGU <small class="text-danger">*</small></th>
                     <th>AKSI</th>
                     <th class="text-center">
                         <button class="btn btn-success btn-icon btn-sm" data-toggle="collapse"

@@ -27,9 +27,6 @@ class Table extends Component
         return view('livewire.realisasi.rincian-belanja.table', $data);
     }
 
-    //     $file = (!is_null($this->file)) ? $this->file->store('assets/sub-kegiatan/realisasi', 'public') : NULL;
-    // $rincian = (!is_null($this->rincian)) ? $this->rincian : NULL;
-
     public function store()
     {
 
@@ -38,13 +35,18 @@ class Table extends Component
             'tanggal' => 'required',
             'pagu' => 'required|integer',
             'keterangan' => 'nullable|string',
-            'file' => 'nullable',
         ]);
 
         // $realisasi_subkegiatan = RealisasiSubkegiatan::where('uuid', $this->realisasi_subkegiatan->uuid)->first();
 
-        $file = (!is_null($this->file)) ? $this->file->store('assets/sub-kegiatan/realisasi/rincian', 'public') : NULL;
-        // $rincian = (!is_null($this->rincian)) ? $this->rincian : NULL;
+        if (!is_null($this->file)) {
+            $this->validate([
+                'file' => 'required|file|mimes:pdf,docx|max:5120'
+            ]);
+            $file = $this->file->store('assets/sub-kegiatan/realisasi/rincian', 'public');
+        } else {
+            $file = NULL;
+        }
 
         $data = [
             'realisasi_subkegiatan_id' => $this->realisasi_subkegiatan->id,

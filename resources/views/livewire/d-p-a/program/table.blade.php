@@ -31,10 +31,10 @@
         <table class="table custom-bordered-table">
             <thead class="thead-dark">
                 <tr>
-                    <th class="text-center">KODE</th>
-                    <th>PROGRAM</th>
-                    <th class="text-center">TARGET</th>
-                    <th>PENANGGUNG JAWAB</th>
+                    <th class="text-center">KODE <small class="text-danger">*</small></th>
+                    <th>PROGRAM <small class="text-danger">*</small></th>
+                    <th class="text-center">TARGET <small class="text-danger">*</small></th>
+                    <th>PENANGGUNG JAWAB <small class="text-danger">*</small></th>
                     <th>PAGU</th>
                     <th>
                         AKSI

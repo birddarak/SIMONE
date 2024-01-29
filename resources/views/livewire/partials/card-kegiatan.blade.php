@@ -36,10 +36,8 @@
                 <td>:</td>
                 @php
                 $pagu_program = 0;
-                foreach ($program->kegiatan as $keg) {
-                foreach ($keg->subkegiatan as $sub) {
-                $pagu_program += $sub->pagu;
-                }
+                foreach ($program->kegiatan as $kegiatan) {
+                $pagu_program += $kegiatan->sumTotalSubKeg();
                 }
                 @endphp
                 <td><b>@currency($pagu_program)</b></td>
@@ -48,21 +46,15 @@
                 <td class="col-3">PAGU TERSERAP</td>
                 <td>:</td>
                 @php
-                $pagu_trsrp = 0;
-                foreach ($program->kegiatan as $keg) {
-                foreach ($keg->subkegiatan as $sub) {
-                foreach ($sub->realisasi_subkegiatan as $rs) {
-                foreach ($rs->rincian_belanja as $rb) {
-                $pagu_trsrp += $rb->pagu;
-                }
-                }
-                }
+                $pagu_terserap = 0;
+                foreach ($program->kegiatan as $kegiatan) {
+                $pagu_terserap += $kegiatan->sumTotal();
                 }
 
                 @endphp
                 <td>
-                    <b class="{{ $pagu_program >= $pagu_trsrp ? 'text-success' : 'text-danger' }}">
-                        @currency($pagu_trsrp)
+                    <b class="{{ $pagu_program >= $pagu_terserap ? 'text-success' : 'text-danger' }}">
+                        @currency($pagu_terserap)
                     </b>
                 </td>
             </tr>

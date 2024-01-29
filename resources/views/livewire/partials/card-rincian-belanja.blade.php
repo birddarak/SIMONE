@@ -73,7 +73,7 @@
                 <td class="col-3">PAGU TERSERAP</td>
                 <td>:</td>
                 @php
-                $pagu_terserap = $realisasi_subkegiatan->rincian_belanja->sum('pagu');
+                $pagu_terserap = $realisasi_subkegiatan->subkegiatan->sumTotal();
                 @endphp
                 <td>
                     <b class="{{ $pagu_subkegiatan >= $pagu_terserap ? 'text-success' : 'text-danger' }}">
