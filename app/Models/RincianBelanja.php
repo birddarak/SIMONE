@@ -12,7 +12,7 @@ class RincianBelanja extends Model
     use Cloneable;
 
     protected $guarded = ['id'];
-    protected $clone_exempt_attributes = ['uuid'];
+    protected $clone_exempt_attributes = ['uuid', 'file'];
 
     public function onCloning(){
         $this->uuid = str()->uuid();
