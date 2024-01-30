@@ -4,9 +4,9 @@
             wire:model="rincian" wire:keydown.enter='store()'>
 
         @error('rincian')
-            <span class="text-danger">
-                Mohon isi Rincian
-            </span>
+        <span class="text-danger">
+            Mohon isi Rincian
+        </span>
         @enderror
     </td>
     <td class="p-1">
@@ -14,9 +14,9 @@
             wire:model="tanggal" wire:keydown.enter='store()'>
 
         @error('tanggal')
-            <span class="text-danger">
-                Mohon isi Tanggal
-            </span>
+        <span class="text-danger">
+            Mohon isi Tanggal
+        </span>
         @enderror
     </td>
     <td class="p-1">
@@ -24,9 +24,9 @@
             wire:model='pagu' pattern="\d+" title="Input harus berupa angka" wire:keydown.enter='store()'>
 
         @error('pagu')
-            <span class="text-danger">
-                Mohon isi Pagu
-            </span>
+        <span class="text-danger">
+            Mohon isi Pagu
+        </span>
         @enderror
     </td>
     <td class="p-1">
@@ -34,19 +34,21 @@
             wire:model="keterangan" wire:keydown.enter='store()'>
 
         @error('keterangan')
-            <span class="text-danger">
-                Mohon isi Keterangan
-            </span>
+        <span class="text-danger">
+            Mohon isi Keterangan
+        </span>
         @enderror
     </td>
     <td class="p-1">
-        <input type="file" id="resetfile" placeholder="FILE" class="form-control"
-            wire:model="file">
-            <span class="ml-3 text-danger">*ukuran maksimal 5MB</span>
+        <input type="file" id="resetFileInput" placeholder="FILE" class="form-control" wire:model="file">
+        <span class="ml-3 text-danger">*ukuran maksimal 5MB</span>
+        <div wire:loading wire:target='file' class="text-center">
+            <span>Menyiapkan File...</span>
+        </div>
     </td>
     <td class="p-1">
         <div class="list-actions d-flex justify-content-around form-inline">
-            <button class="btn btn-info btn-icon" wire:click='store()'>
+            <button class="btn btn-info btn-icon" wire:loading.attr='disabled' wire:target='file' wire:click='store()'>
                 <i class="ik ik-save"></i>
             </button>
         </div>

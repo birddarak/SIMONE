@@ -50,7 +50,7 @@
     });
 
 	document.addEventListener('resetFileInput', (event) => {
-        document.getElementById('resetfile').value = null;
+        document.getElementById('resetFileInput').value = null;
     });
 
 </script>

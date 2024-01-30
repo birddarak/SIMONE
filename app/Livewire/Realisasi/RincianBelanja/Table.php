@@ -15,7 +15,6 @@ class Table extends Component
     public $realisasi_subkegiatan;
 
     public $rincian, $tanggal, $pagu, $keterangan, $file;
-    public $resetFile;
 
     public function mount($realisasi_subkegiatan)
     {
@@ -37,8 +36,6 @@ class Table extends Component
             'pagu' => 'required|integer',
             'keterangan' => 'nullable|string',
         ]);
-
-        // $realisasi_subkegiatan = RealisasiSubkegiatan::where('uuid', $this->realisasi_subkegiatan->uuid)->first();
 
         if (!is_null($this->file)) {
             $this->validate([
