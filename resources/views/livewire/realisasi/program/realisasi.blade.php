@@ -96,7 +96,7 @@ $total_keuangan += $rp->program->sumTotalRincian($rp->triwulan);
         </strong>
     </td>
     {{-- capaian keuangan --}}
-    <td class="text-right">
+    <td class="p-1 text-right">
         <strong class="{{ $program->sumTotalSubKeg() < $total_keuangan ? 'text-danger' : 'text-dark' }}">
             @currency($total_keuangan)
         </strong>
