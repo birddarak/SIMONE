@@ -29,25 +29,35 @@ $total_keuangan += $rk->kegiatan->sumTotalRincian($rk->triwulan);
 <tr wire:key='{{ $rk->uuid }}'>
     <td></td>
     <td class="p-1">
+        @if (auth()->user()->rule != 'kabid')
         <div class="input-group m-0">
             <select class="form-control" wire:change="update('{{ $rk->uuid }}', 'triwulan', $event.target.value)">
                 <option value="I" {{ $rk->triwulan == 'I' ? 'selected' : '' }}>I</option>
                 <option value="II" {{ $rk->triwulan == 'II' ? 'selected' : '' }}>II</option>
-                <option value="III" {{ $rk->triwulan == 'III' ? 'selected' : '' }}>III
-                </option>
-                <option value="IV" {{ $rk->triwulan == 'IV' ? 'selected' : '' }}>IV
-                </option>
+                <option value="III" {{ $rk->triwulan == 'III' ? 'selected' : '' }}>III</option>
+                <option value="IV" {{ $rk->triwulan == 'IV' ? 'selected' : '' }}>IV</option>
             </select>
         </div>
+        @else
+        <div class="text-center">
+            <span>{{ $rk->triwulan }}</span>
+        </div>
+        @endif
     </td>
     {{-- capaian kinerja --}}
     <td class="p-1 col-2">
+        @if (auth()->user()->rule != 'kabid')
         <div class="input-group m-0">
             <input type="number" value="{{ $rk->capaian }}" class="form-control col-5"
                 wire:blur="update('{{ $rk->uuid }}', 'capaian', $event.target.value)"
                 wire:keydown.enter="update('{{ $rk->uuid }}', 'capaian', $event.target.value)">
             <span class="text-left btn btn-transparent col-7"> / {{ $kegiatan->satuan }}</span>
         </div>
+        @else
+        <div class="text-center">
+            <span>{{ $rk->capaian }} {{ $kegiatan->satuan }}</span>
+        </div>
+        @endif
     </td>
     {{-- capaian kinerja % --}}
     <td class="p-1 text-center">
@@ -67,12 +77,14 @@ $total_keuangan += $rk->kegiatan->sumTotalRincian($rk->triwulan);
     </td>
     {{-- aksi --}}
     <td class="text-center p-1">
+        @if (auth()->user()->rule != 'kabid')
         <div class="btn-group">
             <button class="btn btn-danger btn-icon ml-2 mb-2" wire:confirm='Ingin menghapus Realisasi ini?'
                 wire:click='destroy("{{ $rk->uuid }}")'>
                 <i class="ik ik-trash"></i>
             </button>
         </div>
+        @endif
     </td>
 </tr>
 @endforeach

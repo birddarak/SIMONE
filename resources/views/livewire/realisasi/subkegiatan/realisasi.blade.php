@@ -29,6 +29,7 @@ $total_keuangan += $rs->rincian_belanja->sum('pagu');
 <tr wire:key='{{ $rs->uuid }}'>
     <td></td>
     <td class="p-1">
+        @if (auth()->user()->rule != 'kabid')
         <div class="input-group m-0">
             <select class="form-control" wire:change="update('{{ $rs->uuid }}', 'triwulan', $event.target.value)">
                 <option value="I" {{ $rs->triwulan == 'I' ? 'selected' : '' }}>I</option>
@@ -39,15 +40,26 @@ $total_keuangan += $rs->rincian_belanja->sum('pagu');
                 </option>
             </select>
         </div>
+        @else
+        <div class="text-center">
+            <span>{{ $rs->triwulan }}</span>
+        </div>
+        @endif
     </td>
     {{-- capaian kinerja --}}
     <td class="p-1 col-2">
+        @if (auth()->user()->rule != 'kabid')
         <div class="input-group m-0">
             <input type="number" value="{{ $rs->capaian }}" class="form-control col-5"
                 wire:blur="update('{{ $rs->uuid }}', 'capaian', $event.target.value)"
                 wire:keydown.enter="update('{{ $rs->uuid }}', 'capaian', $event.target.value)">
             <div class="btn btn-transparent col-7"> / {{ $subkegiatan->satuan }}</div>
         </div>
+        @else
+        <div class="text-center">
+            <span>{{ $rs->capaian }} {{ $subkegiatan->satuan }}</span>
+        </div>
+        @endif
     </td>
     {{-- capaian kinerja % --}}
     <td class="p-1 text-center">
@@ -70,11 +82,13 @@ $total_keuangan += $rs->rincian_belanja->sum('pagu');
             <a href="{{ route('realisasi.rincian-belanja', $rs->uuid) }}" class="btn btn-info btn-icon ml-2 mb-2">
                 <i class="ik ik-corner-down-right"></i>
             </a>
+            @if (auth()->user()->rule != 'kabid')
             @if ($rs->rincian_belanja->count() == 0)
             <button class="btn btn-danger btn-icon ml-2 mb-2" wire:confirm='Ingin menghapus Realisasi ini?'
                 wire:click='destroy("{{ $rs->uuid }}")'>
                 <i class="ik ik-trash"></i>
             </button>
+            @endif
             @endif
         </div>
     </td>

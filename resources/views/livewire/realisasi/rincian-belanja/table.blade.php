@@ -5,12 +5,12 @@
         <table class="table custom-bordered-table">
             <thead class="thead-dark">
                 <tr>
-                    <th>RINCIAN <small class="text-danger">*</small></th>
-                    <th>TANGGAL <small class="text-danger">*</small></th>
-                    <th>PAGU <small class="text-danger">*</small></th>
-                    <th>KETERANGAN</th>
-                    <th>FILE (.pdf/.docx)</th>
-                    <th>AKSI</th>
+                    <th class="text-center">RINCIAN <small class="text-danger">*</small></th>
+                    <th class="text-center">TANGGAL <small class="text-danger">*</small></th>
+                    <th class="text-center">PAGU <small class="text-danger">*</small></th>
+                    <th class="text-center">KETERANGAN</th>
+                    <th class="text-center">FILE ( pdf/docx )</th>
+                    <th class="text-center">AKSI</th>
                     <th class="text-center">
                         <button class="btn btn-success btn-icon btn-sm" data-toggle="collapse" href="#collapse-program"
                             role="button" aria-expanded="false" aria-controls="collapse-program">
