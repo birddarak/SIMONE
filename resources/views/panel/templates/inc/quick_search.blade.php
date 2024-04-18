@@ -23,9 +23,9 @@
                                     class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
                         </div>
                         @if (auth()->user()->rule != 'non-admin')
-                        <div class="app-item">
+                        {{-- <div class="app-item">
                             <a href="{{ route('laporan') }}"><i class="ik ik-printer"></i><span>Monev</span></a>
-                        </div>
+                        </div> --}}
                         <div class="app-item">
                             <a href="{{ route('dpa.program', ['tahun_anggaran' => date('Y'), 'apbd' => 'murni']) }}"><i
                                     class="ik ik-book"></i><span>DPA</span></a>

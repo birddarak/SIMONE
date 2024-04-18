@@ -6,9 +6,9 @@
                 <a href="{{ route('dashboard') }}"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
             </div>
             @if (auth()->user()->rule != 'non-admin')
-            <div class="nav-item {{ Route::currentRouteName() == 'laporan' ? 'active' : '' }}">
+            {{-- <div class="nav-item {{ Route::currentRouteName() == 'laporan' ? 'active' : '' }}">
                 <a href="{{ route('laporan') }}"><i class="ik ik-printer"></i><span>Monev</span></a>
-            </div>
+            </div> --}}
             <div class="nav-lavel">Perencanaan</div>
             @if (auth()->user()->rule != 'kabid')
             <div
