@@ -8,11 +8,11 @@
     </th>
 </tr>
 <tr class="bg-secondary text-white text-center">
-    <th>KINERJA</th>
-    <th>%</th>
+    {{-- <th>KINERJA</th>
+    <th>%</th> --}}
 
-    <th>KEUANGAN</th>
-    <th>%</th>
+    <th colspan="2">KEUANGAN</th>
+    <th colspan="2">%</th>
 </tr>
 
 @php
@@ -46,7 +46,7 @@ $total_keuangan += $rp->program->sumTotalRincian($rp->triwulan);
         @endif
     </td>
     {{-- capaian kinerja --}}
-    <td class="p-1 col-2">
+    {{-- <td class="p-1 col-2">
         @if (auth()->user()->rule != 'kabid')
         <div class="input-group m-0">
             <input type="number" value="{{ $rp->capaian }}" class="form-control col-5"
@@ -59,19 +59,19 @@ $total_keuangan += $rp->program->sumTotalRincian($rp->triwulan);
             <span>{{ $rp->capaian }} {{ $program->satuan }}</span>
         </div>
         @endif
-    </td>
+    </td> --}}
     {{-- capaian kinerja % --}}
-    <td class="p-1 text-center">
+    {{-- <td class="p-1 text-center">
         {{ number_format(($rp->program->target != 0 ?
         $rp->capaian / $rp->program->target : 0) * 100, 1, ',', '') . ' %'
         }}
-    </td>
+    </td> --}}
     {{-- capaian keuangan --}}
-    <td class="p-1 text-right">
+    <td colspan="2" class="p-1 text-right">
         @currency($total_keuangan)
     </td>
     {{-- capaian keuangan % --}}
-    <td class="p-1 text-center">
+    <td colspan="2" class="p-1 text-center">
         {{ number_format(($rp->program->sumTotalSubKeg() != 0 ?
         $total_keuangan / $rp->program->sumTotalSubKeg() : 0) * 100, 1, ',', '') . ' %'
         }}
@@ -94,26 +94,26 @@ $total_keuangan += $rp->program->sumTotalRincian($rp->triwulan);
     <td></td>
     <th>TOTAL CAPAIAN</th>
     {{-- total --}}
-    <td class="text-center">
+    {{-- <td class="text-center"> --}}
         {{-- capaian kinerja --}}
-        <strong class="{{ $realisasi_program->last()->capaian >= $program->target ? 'text-success' : 'text-dark' }}">
+        {{-- <strong class="{{ $realisasi_program->last()->capaian >= $program->target ? 'text-success' : 'text-dark' }}">
             {{ $realisasi_program->last()->capaian . ' ' . $realisasi_program->last()->program->satuan }}
-        </strong>
-    </td>
-    <td class="text-center">
+        </strong> --}}
+    {{-- </td> --}}
+    {{-- <td class="text-center"> --}}
         {{-- capaian kinerja --}}
-        <strong class="{{ $realisasi_program->last()->capaian >= $program->target ? 'text-success' : 'text-dark' }}">
+        {{-- <strong class="{{ $realisasi_program->last()->capaian >= $program->target ? 'text-success' : 'text-dark' }}">
             {{ number_format(($realisasi_program->last()->capaian /
             $program->target * 100), 1, ',', '') . ' %' }}
-        </strong>
-    </td>
+        </strong> --}}
+    {{-- </td> --}}
     {{-- capaian keuangan --}}
-    <td class="p-1 text-right">
+    <td colspan="2" class="p-1 text-right">
         <strong class="{{ $program->sumTotalSubKeg() < $total_keuangan ? 'text-danger' : 'text-dark' }}">
             @currency($total_keuangan)
         </strong>
     </td>
-    <td class="text-center">
+    <td colspan="2" class="text-center">
         {{-- capaian keuangan --}}
         <strong class="{{ $program->sumTotalSubKeg() < $total_keuangan ? 'text-danger' : 'text-dark' }}">
             {{ number_format(($program->sumTotalSubKeg() != 0 ? $total_keuangan /
