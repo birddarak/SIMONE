@@ -16,6 +16,8 @@ return new class extends Migration
             $table->uuid();
             $table->foreignId('kegiatan_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('title');
+            $table->string('target');
+            $table->string('satuan');
             $table->timestamps();
         });
     }

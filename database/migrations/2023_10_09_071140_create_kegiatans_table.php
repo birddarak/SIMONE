@@ -18,8 +18,6 @@ return new class extends Migration
             $table->foreignId('pegawai_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('kode');
             $table->string('title');
-            $table->string('target');
-            $table->string('satuan');
             $table->timestamps();
         });
     }

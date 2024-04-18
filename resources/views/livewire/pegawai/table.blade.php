@@ -64,7 +64,7 @@
                 @include('livewire.pegawai.user')
                 @empty
                 <tr class="">
-                    <td class="text-center" colspan="5">Data Pegawai Masih Kosong, Silahkan Tambahkan .. :D</td>
+                    <td class="text-center" colspan="8">Data Pegawai Masih Kosong, Silahkan Tambahkan .. :D</td>
                 </tr>
                 @endforelse
                 {{-- --}}
