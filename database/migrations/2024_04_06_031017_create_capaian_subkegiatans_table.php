@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('realisasi_subkegiatans', function (Blueprint $table) {
+        Schema::create('capaian_subkegiatans', function (Blueprint $table) {
             $table->id();
             $table->uuid();
-            $table->foreignId('subkegiatan_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('indikator_subkegiatan_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->enum('triwulan', ['I', 'II', 'III', 'IV']);
-            $table->tinyInteger('kunci');
+            $table->integer('capaian');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('realisasi_subkegiatans');
+        Schema::dropIfExists('capaian_subkegiatans');
     }
 };

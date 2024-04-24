@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use function Laravel\Prompts\table;
+
 return new class extends Migration
 {
     /**
@@ -16,8 +18,7 @@ return new class extends Migration
             $table->uuid();
             $table->foreignId('program_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->enum('triwulan', ['I', 'II', 'III', 'IV']);
-            $table->string('capaian')->nullable();
-            $table->string('satuan')->nullable();
+            $table->tinyInteger('kunci');
             $table->timestamps();
         });
     }
