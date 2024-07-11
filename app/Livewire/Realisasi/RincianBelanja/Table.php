@@ -23,7 +23,7 @@ class Table extends Component
 
     public function render()
     {
-        $data['rincian_belanjas'] = RincianBelanja::where('realisasi_subkegiatan_id', $this->realisasi_subkegiatan->id)->get();
+        $data['rincian_belanjas'] = RincianBelanja::orderBy('id', 'DESC')->where('realisasi_subkegiatan_id', $this->realisasi_subkegiatan->id)->get();
         return view('livewire.realisasi.rincian-belanja.table', $data);
     }
 

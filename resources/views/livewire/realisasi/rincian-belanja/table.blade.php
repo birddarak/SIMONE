@@ -25,10 +25,10 @@
                 @forelse ($rincian_belanjas as $rincian_belanja)
                 <tr class="">
                     <td class="p-1">
-                        <input type="text" value="{{ $rincian_belanja->rincian }}"
+                        <textarea rows="3" type="text"
                             wire:blur="update('{{ $rincian_belanja->uuid }}', 'rincian', $event.target.value)"
                             wire:keydown.enter="update('{{ $rincian_belanja->uuid }}', 'rincian', $event.target.value)"
-                            class="form-control">
+                            class="form-control">{{ $rincian_belanja->rincian }}</textarea>
                     </td>
                     <td class="p-1">
                         <input type="date" value="{{ $rincian_belanja->tanggal }}"
