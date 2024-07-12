@@ -1,7 +1,7 @@
 <tr class="bg-form-program collapse" id="collapse-program" wire:ignore>
     <td class="p-1">
         <input type="text" placeholder="RINCIAN" class="form-control @error('rincian') is-invalid @enderror"
-            wire:model="rincian" wire:keydown.enter='store()'>
+            wire:model="rincian" wire:keydown.enter='store()' maxlength="800">
 
         @error('rincian')
         <span class="text-danger">
@@ -31,7 +31,7 @@
     </td>
     <td class="p-1">
         <input type="text" placeholder="KETERANGAN" class="form-control @error('keterangan') is-invalid @enderror"
-            wire:model="keterangan" wire:keydown.enter='store()'>
+            wire:model="keterangan" wire:keydown.enter='store()' maxlength="800">
 
         @error('keterangan')
         <span class="text-danger">

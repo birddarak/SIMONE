@@ -28,7 +28,7 @@
                         <textarea rows="3" type="text"
                             wire:blur="update('{{ $rincian_belanja->uuid }}', 'rincian', $event.target.value)"
                             wire:keydown.enter="update('{{ $rincian_belanja->uuid }}', 'rincian', $event.target.value)"
-                            class="form-control">{{ $rincian_belanja->rincian }}</textarea>
+                            class="form-control" maxlength="800">{{ $rincian_belanja->rincian }}</textarea>
                     </td>
                     <td class="p-1">
                         <input type="date" value="{{ $rincian_belanja->tanggal }}"
@@ -51,7 +51,7 @@
                         <textarea rows="3" type="text"
                             wire:blur="update('{{ $rincian_belanja->uuid }}', 'keterangan', $event.target.value)"
                             wire:keydown.enter="update('{{ $rincian_belanja->uuid }}', 'keterangan', $event.target.value)"
-                            class="form-control">{{ $rincian_belanja->keterangan }}</textarea>
+                            class="form-control" maxlength="800">{{ $rincian_belanja->keterangan }}</textarea>
                     </td>
                     <td class="p-1 text-center">
                         @if ($rincian_belanja->file != '')
